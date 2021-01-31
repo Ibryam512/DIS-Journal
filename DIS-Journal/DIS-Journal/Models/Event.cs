@@ -51,7 +51,14 @@ namespace DIS_Journal
             }
             set
             {
-                this._description = value;
+                if(value.Length < 200)
+                {
+                    this._description = value;
+                }
+                else
+                {
+                    throw new ArgumentOutOfRangeException("The description can't be over 200 symbols");
+                }
             }
         }
 
