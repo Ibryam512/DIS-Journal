@@ -91,7 +91,6 @@ namespace DIS_Journal
 
     public enum Interval
     {
-        //once a
         Once,
         Daily,
         Weekly,
