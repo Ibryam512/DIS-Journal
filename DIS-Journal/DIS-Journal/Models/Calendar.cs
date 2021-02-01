@@ -35,12 +35,18 @@ namespace DIS_Journal.Models
 
         public void AddEvent(Event e)
         {
-            this._events.Add(e);
+            if (e.Repeatedness == Interval.Once || e.Repeatedness == Interval.Monthly || e.Repeatedness == Interval.Yearly)
+            {
+                this._events.Add(e);
+            }
         }
 
-        public void AddEvent(DateTime date, string title, string description)
+        public void AddEvent(DateTime date, string title, string description, Interval period)
         {
-            this._events.Add(new Event(date, title, description));
+            if(period == Interval.Once || period == Interval.Monthly || period == Interval.Yearly) //we'll remove them when we're doing the
+            {                                                                                     //input but for now let them be just to remember about it
+                this._events.Add(new Event(date, title, description, period));
+            }              
         }
 
         public void RemoveEvent(Event e)

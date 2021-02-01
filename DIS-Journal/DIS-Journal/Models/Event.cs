@@ -11,6 +11,7 @@ namespace DIS_Journal
         private DateTime _dateTime;
         private string _title;
         private string _description;
+        private Interval _repeatedness;
 
         public DateTime DateTime
         {
@@ -47,7 +48,7 @@ namespace DIS_Journal
         {
             get
             {
-                return this.Description;
+                return this._description;
             }
             set
             {
@@ -62,16 +63,39 @@ namespace DIS_Journal
             }
         }
 
-        public Event(DateTime dateTime, string title, string description)
+        public Interval Repeatedness
+        {
+            get
+            {
+                return this._repeatedness;
+            }
+            set
+            {
+                this._repeatedness = value;
+            }
+        }
+
+        public Event(DateTime dateTime, string title, string description, Interval repeatedness)
         {
             this.DateTime = dateTime;
             this.Title = title;
             this.Description = title;
+            this.Repeatedness = repeatedness;
         }
 
         public override string ToString()
         {
             return $"{this._title}";
         }
+    }
+
+    public enum Interval
+    {
+        //once a
+        Once,
+        Daily,
+        Weekly,
+        Monthly,
+        Yearly
     }
 }
