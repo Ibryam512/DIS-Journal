@@ -9,26 +9,26 @@ namespace DIS_Journal.Models
     class Health
     {
         //private string exercices;
-        private List<Health> excercices;
-        private List<Health> pills;
+        private List<string> excercices;
+        private List<string> pills;
         private List<Health> meals; //eventualno da se razpredelqt po dni i vid???
         //private string sleep;
         private int hour1;  //falling asleep
         private int hour2;  // waking up
         private string description; 
         private string dreams;  //idk man
-        private List<Health> other_activities;
+        private List<string> other_activities;
 
-        public List<Health> Excercices
+        public List<string> Excercices
         { get { return this.excercices; } }
 
-        public List<Health> Pills
+        public List<string> Pills
         { get { return this.pills; } }
 
-        public List<Health> Meals
+        public List<string> Meals
         { get { return this.meals; } }
 
-        public List<Health> Other_activities
+        public List<string> Other_activities
         { get { return this.other_activities; } }
 
         public int Hour1
@@ -57,10 +57,10 @@ namespace DIS_Journal.Models
 
         public Health()
         {
-            this.excercices = new List<Health>();
-            this.pills = new List<Health>();
-            this.meals = new List<Health>();
-            this.other_activities = new List<Health>();
+            this.excercices = new List<string>();
+            this.pills = new List<string>();
+            this.meals = new List<string>();
+            this.other_activities = new List<string>();
             this.Hour1 = hour1;
             this.Hour2 = hour2;
             this.Dreams = dreams;
