@@ -1,0 +1,4 @@
+C:\Users\valer\Desktop\DIS-Journal\DIS-Journal\DIS-Journal\obj\Debug\DIS-Journal.csprojAssemblyReference.cache
+C:\Users\valer\Desktop\DIS-Journal\DIS-Journal\DIS-Journal\obj\Debug\DIS_Journal.Properties.Resources.resources
+C:\Users\valer\Desktop\DIS-Journal\DIS-Journal\DIS-Journal\obj\Debug\DIS-Journal.csproj.GenerateResource.cache
+C:\Users\valer\Desktop\DIS-Journal\DIS-Journal\DIS-Journal\obj\Debug\DIS-Journal.csproj.CoreCompileInputs.cache
