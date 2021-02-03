@@ -12,7 +12,7 @@ namespace DIS_Journal.Models
         string LastName { get; }
         string Email { get;  }
         string Password { get; }
-        int Age { get; }
+        DateTime Birth { get; }
         string Role { get; }
     }
 }

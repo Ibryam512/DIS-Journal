@@ -12,16 +12,16 @@ namespace DIS_Journal.Models
         public string LastName { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
-        public int Age { get; set; }
+        public DateTime Birth { get; set; }
         public string Role { get; set; }
 
-        public User(string firstName, string lastName, string email, string password, int age, string role = "user")
+        public User(string firstName, string lastName, string email, string password, DateTime birth, string role = "user")
         {
             this.FirstName = firstName;
             this.LastName = lastName;
             this.Email = email;
             this.Password = password;
-            this.Age = age;
+            this.Birth = birth;
             this.Role = role;
         }
        

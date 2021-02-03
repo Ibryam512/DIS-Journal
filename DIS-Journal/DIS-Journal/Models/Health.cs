@@ -11,7 +11,7 @@ namespace DIS_Journal.Models
         //private string exercices;
         private List<string> excercices;
         private List<string> pills;
-        private List<Health> meals; //eventualno da se razpredelqt po dni i vid???
+        private List<string> meals; //eventualno da se razpredelqt po dni i vid???
         //private string sleep;
         private int hour1;  //falling asleep
         private int hour2;  // waking up

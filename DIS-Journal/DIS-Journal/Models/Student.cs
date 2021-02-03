@@ -8,7 +8,7 @@ namespace DIS_Journal.Models
 {
     class Student : User
     {
-        public Student(string firstName, string lastName, string email, string password, int age) : base(firstName, lastName, email, password, age, "student")
+        public Student(string firstName, string lastName, string email, string password, DateTime birth) : base(firstName, lastName, email, password, birth, "student")
         { }
     }
 }

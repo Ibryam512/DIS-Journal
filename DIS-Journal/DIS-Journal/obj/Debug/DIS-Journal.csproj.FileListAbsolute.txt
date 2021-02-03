@@ -2,3 +2,12 @@ C:\Users\valer\Desktop\DIS-Journal\DIS-Journal\DIS-Journal\obj\Debug\DIS-Journal
 C:\Users\valer\Desktop\DIS-Journal\DIS-Journal\DIS-Journal\obj\Debug\DIS_Journal.Properties.Resources.resources
 C:\Users\valer\Desktop\DIS-Journal\DIS-Journal\DIS-Journal\obj\Debug\DIS-Journal.csproj.GenerateResource.cache
 C:\Users\valer\Desktop\DIS-Journal\DIS-Journal\DIS-Journal\obj\Debug\DIS-Journal.csproj.CoreCompileInputs.cache
+C:\Users\Ibryam\Desktop\DIS-Journal\DIS-Journal\DIS-Journal\obj\Debug\DIS-Journal.csprojAssemblyReference.cache
+C:\Users\Ibryam\Desktop\DIS-Journal\DIS-Journal\DIS-Journal\obj\Debug\DIS_Journal.Properties.Resources.resources
+C:\Users\Ibryam\Desktop\DIS-Journal\DIS-Journal\DIS-Journal\obj\Debug\DIS-Journal.csproj.GenerateResource.cache
+C:\Users\Ibryam\Desktop\DIS-Journal\DIS-Journal\DIS-Journal\obj\Debug\DIS-Journal.csproj.CoreCompileInputs.cache
+C:\Users\Ibryam\Desktop\DIS-Journal\DIS-Journal\DIS-Journal\bin\Debug\DIS-Journal.exe.config
+C:\Users\Ibryam\Desktop\DIS-Journal\DIS-Journal\DIS-Journal\bin\Debug\DIS-Journal.exe
+C:\Users\Ibryam\Desktop\DIS-Journal\DIS-Journal\DIS-Journal\bin\Debug\DIS-Journal.pdb
+C:\Users\Ibryam\Desktop\DIS-Journal\DIS-Journal\DIS-Journal\obj\Debug\DIS-Journal.exe
+C:\Users\Ibryam\Desktop\DIS-Journal\DIS-Journal\DIS-Journal\obj\Debug\DIS-Journal.pdb

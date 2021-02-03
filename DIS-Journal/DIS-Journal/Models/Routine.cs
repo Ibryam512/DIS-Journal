@@ -16,20 +16,20 @@ namespace DIS_Journal.Models
         //private List<Routine> evening_routine1;
 
         public string Morning_routine
-        { get { return this.morning_routine} 
+        { get { return this.morning_routine; } 
           set { this.morning_routine = value; }
         }
 
         public string Noon_routine
         {
-            get { return this.morning_routine; }
-            set { this.morning_routine = value; }
+            get { return this.noon_routine; }
+            set { this.noon_routine = value; }
         }
 
         public string Evening_routine
         {
-            get { return this.morning_routine; }
-            set { this.morning_routine = value; }
+            get { return this.evening_routine; }
+            set { this.evening_routine = value; }
         }
 
         public Routine()
