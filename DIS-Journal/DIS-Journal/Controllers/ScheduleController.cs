@@ -27,6 +27,17 @@ namespace DIS_Journal.Controllers
                 schedule.Events[day].Add(e);
                 schedule.Events[day] = schedule.Events[day].OrderBy(x => x.DateTime.TimeOfDay).ToList();
             }
+            else if (e.Repeatedness == Interval.MondayToFriday)
+            {
+                foreach (DayOfWeek day in (DayOfWeek[])Enum.GetValues(typeof(DayOfWeek)))
+                {
+                    if(day != DayOfWeek.Saturday || day != DayOfWeek.Sunday)
+                    {
+                        schedule.Events[day].Add(e);
+                    }
+                    schedule.Events[day] = schedule.Events[day].OrderBy(x => x.DateTime.TimeOfDay).ToList();
+                }
+            }
         }
 
         public void RemoveEvent(Event e)
@@ -59,51 +70,8 @@ namespace DIS_Journal.Controllers
                 case "description":
                     to_be_changed.Description = change_to;
                     break;
-                case "date":
-                    to_be_changed.DateTime = DateTime.Parse(change_to);
-                    break;
-                case "repetition":
-                    if (change_to == "Weekly" || change_to == "Daily")
-                    {
-                        Interval interval;
-                        if (change_to == "Daily")
-                        {
-                            interval = Interval.Daily;
-                        }
-                        else
-                        {
-                            interval = Interval.Weekly;
-                        }
-                    }
-                    else
-                    {
-                        Interval interval;
-                        switch (change_to)
-                        {
-                            case "Once":
-                                interval = Interval.Once;
-                                break;
-                            case "Monthly":
-                                interval = Interval.Weekly;
-                                break;
-                            case "Yearly":
-                                interval = Interval.Yearly;
-                                break;
-                            default:
-                                throw new ArgumentException("Doesn't have that interval in enum");
-                        }
-                        to_be_changed.Repeatedness = interval;
-                        foreach (DayOfWeek d in (DayOfWeek[])Enum.GetValues(typeof(DayOfWeek)))
-                        {
-                            if (schedule.Events[d].Contains(to_be_changed))
-                            {
-                                schedule.Events[d].Remove(to_be_changed);
-                            }
-                        }
-                    }
-                    break;
                 default:
-                    throw new ArgumentException("Event doesn't support that property");
+                    throw new ArgumentException("Schedule events don't support that property");
             }
         }
         public List<Event> EventsForTheDay(DayOfWeek day)

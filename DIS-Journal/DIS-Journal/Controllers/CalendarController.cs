@@ -55,12 +55,16 @@ namespace DIS_Journal.Controllers
                     to_be_changed.DateTime = DateTime.Parse(change_to);
                     break;
                 case "repetition":
-                    if(change_to == "Weekly" || change_to == "Daily")
+                    if(change_to == "Weekly" || change_to == "Daily" || change_to == "MondayToFriday")
                     {
                         Interval interval;
                         if(change_to == "Daily")
                         {
                             interval = Interval.Daily;
+                        }
+                        else if(change_to == "MondayToFriday")
+                        {
+                            interval = Interval.MondayToFriday;
                         }
                         else
                         {
@@ -69,6 +73,7 @@ namespace DIS_Journal.Controllers
                         to_be_changed.Repeatedness = interval;
                         ScheduleController.AddEvent(to_be_changed);
                         calendar.Events.Remove(to_be_changed);
+                        calendar.Events = calendar.Events.OrderBy(x => x.DateTime.TimeOfDay).ToList();
                     }
                     else
                     {
@@ -92,7 +97,7 @@ namespace DIS_Journal.Controllers
                     }
                     break;
                 default:
-                    throw new ArgumentException("Event doesn't support that property");
+                    throw new ArgumentException("Calendar events don't support that property");
             }
         }
     }

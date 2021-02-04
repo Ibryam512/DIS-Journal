@@ -79,7 +79,7 @@ namespace DIS_Journal
         {
             this.DateTime = dateTime;
             this.Title = title;
-            this.Description = title;
+            this.Description = description;
             this.Repeatedness = repeatedness;
         }
 
@@ -93,6 +93,7 @@ namespace DIS_Journal
     {
         Once,
         Daily,
+        MondayToFriday,
         Weekly,
         Monthly,
         Yearly

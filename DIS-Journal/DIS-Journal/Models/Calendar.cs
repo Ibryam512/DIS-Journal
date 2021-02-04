@@ -17,6 +17,10 @@ namespace DIS_Journal.Models
             {
                 return this._events;
             }
+            set
+            {
+                this._events = value;
+            }
         }
 
         public int DaysInMonth
