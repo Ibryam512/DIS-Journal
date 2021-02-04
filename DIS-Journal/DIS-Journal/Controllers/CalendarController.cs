@@ -9,7 +9,7 @@ namespace DIS_Journal.Controllers
 {
     class CalendarController
     {
-        public static Calendar calendar;
+        public static Calendar calendar = new Calendar();
 
         public void AddEvent(Event e)
         {
@@ -67,7 +67,6 @@ namespace DIS_Journal.Controllers
                             interval = Interval.Weekly;
                         }
                         to_be_changed.Repeatedness = interval;
-                        DayOfWeek day = to_be_changed.DateTime.DayOfWeek;
                         ScheduleController.AddEvent(to_be_changed);
                         calendar.Events.Remove(to_be_changed);
                     }
@@ -89,6 +88,7 @@ namespace DIS_Journal.Controllers
                                 throw new ArgumentException("Doesn't have that interval in enum");
                         }
                         to_be_changed.Repeatedness = interval;
+                        ScheduleController.AddEvent(to_be_changed);
                     }
                     break;
                 default:

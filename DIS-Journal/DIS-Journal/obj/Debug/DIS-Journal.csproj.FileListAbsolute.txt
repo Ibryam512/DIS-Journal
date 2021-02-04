@@ -11,3 +11,8 @@ C:\Users\Ibryam\Desktop\DIS-Journal\DIS-Journal\DIS-Journal\bin\Debug\DIS-Journa
 C:\Users\Ibryam\Desktop\DIS-Journal\DIS-Journal\DIS-Journal\bin\Debug\DIS-Journal.pdb
 C:\Users\Ibryam\Desktop\DIS-Journal\DIS-Journal\DIS-Journal\obj\Debug\DIS-Journal.exe
 C:\Users\Ibryam\Desktop\DIS-Journal\DIS-Journal\DIS-Journal\obj\Debug\DIS-Journal.pdb
+C:\Users\valer\Desktop\DIS-Journal\DIS-Journal\DIS-Journal\bin\Debug\DIS-Journal.exe.config
+C:\Users\valer\Desktop\DIS-Journal\DIS-Journal\DIS-Journal\bin\Debug\DIS-Journal.exe
+C:\Users\valer\Desktop\DIS-Journal\DIS-Journal\DIS-Journal\bin\Debug\DIS-Journal.pdb
+C:\Users\valer\Desktop\DIS-Journal\DIS-Journal\DIS-Journal\obj\Debug\DIS-Journal.exe
+C:\Users\valer\Desktop\DIS-Journal\DIS-Journal\DIS-Journal\obj\Debug\DIS-Journal.pdb

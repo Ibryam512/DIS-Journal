@@ -8,22 +8,22 @@ namespace DIS_Journal.Models
 {
     class Schedule
     {
-        private Dictionary<DayOfWeek, List<Event>> _scheduledEvents;
+        private Dictionary<DayOfWeek, List<Event>> events;
 
-        public Dictionary<DayOfWeek, List<Event>> ScheduledEvents
+        public Dictionary<DayOfWeek, List<Event>> Events
         {
             get
             {
-                return this._scheduledEvents;
+                return this.events;
             }
         }
 
-        public Schedule() //I'm too sleepy idk what I am doing I will check it later
+        public Schedule()
         {
-            this._scheduledEvents = new Dictionary<DayOfWeek, List<Event>>();
+            this.events = new Dictionary<DayOfWeek, List<Event>>();
             foreach (DayOfWeek day in (DayOfWeek[])Enum.GetValues(typeof(DayOfWeek))) //idk if it will run
             {
-                this._scheduledEvents.Add(day, new List<Event>());
+                this.events.Add(day, new List<Event>());
             }
         }
     }
