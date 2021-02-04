@@ -17,14 +17,16 @@ namespace DIS_Journal.Controllers
             {
                 calendar.Events.Add(e);
             }
+            else
+            {
+                ScheduleController.AddEvent(e);
+            }
         }
 
         public void AddEvent(DateTime date, string title, string description, Interval period)
         {
-            if (period == Interval.Once || period == Interval.Monthly || period == Interval.Yearly)
-            {                                                                                     
-                calendar.Events.Add(new Event(date, title, description, period));
-            }
+            Event e = new Event(date, title, description, period);
+            AddEvent(e);
         }
 
         public void RemoveEvent(Event e)
