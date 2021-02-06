@@ -54,50 +54,52 @@ namespace DIS_Journal.Controllers
                 case "date":
                     to_be_changed.DateTime = DateTime.Parse(change_to);
                     break;
-                case "repetition":
-                    if(change_to == "Weekly" || change_to == "Daily" || change_to == "MondayToFriday")
-                    {
-                        Interval interval;
-                        if(change_to == "Daily")
-                        {
-                            interval = Interval.Daily;
-                        }
-                        else if(change_to == "MondayToFriday")
-                        {
-                            interval = Interval.MondayToFriday;
-                        }
-                        else
-                        {
-                            interval = Interval.Weekly;
-                        }
-                        to_be_changed.Repeatedness = interval;
-                        ScheduleController.AddEvent(to_be_changed);
-                        calendar.Events.Remove(to_be_changed);
-                        calendar.Events = calendar.Events.OrderBy(x => x.DateTime.TimeOfDay).ToList();
-                    }
-                    else
-                    {
-                        Interval interval;
-                        switch (change_to)
-                        {
-                            case "Once":
-                                interval = Interval.Once;
-                                break;
-                            case "Monthly":
-                                interval = Interval.Weekly;
-                                break;
-                            case "Yearly":
-                                interval = Interval.Yearly;
-                                break;
-                            default:
-                                throw new ArgumentException("Doesn't have that interval in enum");
-                        }
-                        to_be_changed.Repeatedness = interval;
-                        ScheduleController.AddEvent(to_be_changed);
-                    }
-                    break;
                 default:
                     throw new ArgumentException("Calendar events don't support that property");
+            }
+        }
+
+        public void ChangeEventInterval(Event e, string change_to)
+        {
+            Event to_be_changed = calendar.Events.Find(x => x == e);
+            if (change_to == "Weekly" || change_to == "Daily" || change_to == "MondayToFriday")
+            {
+                Interval interval;
+                if (change_to == "Daily")
+                {
+                    interval = Interval.Daily;
+                }
+                else if (change_to == "MondayToFriday")
+                {
+                    interval = Interval.MondayToFriday;
+                }
+                else
+                {
+                    interval = Interval.Weekly;
+                }
+                to_be_changed.Repeatedness = interval;
+                ScheduleController.AddEvent(to_be_changed);
+                calendar.Events.Remove(to_be_changed);
+                calendar.Events = calendar.Events.OrderBy(x => x.DateTime.TimeOfDay).ToList();
+            }
+            else
+            {
+                Interval interval;
+                switch (change_to)
+                {
+                    case "Once":
+                        interval = Interval.Once;
+                        break;
+                    case "Monthly":
+                        interval = Interval.Weekly;
+                        break;
+                    case "Yearly":
+                        interval = Interval.Yearly;
+                        break;
+                    default:
+                        throw new ArgumentException("Doesn't have that interval in enum");
+                }
+                to_be_changed.Repeatedness = interval;
             }
         }
     }
