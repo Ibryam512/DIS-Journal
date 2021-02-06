@@ -9,24 +9,47 @@ namespace DIS_Journal.Controllers
 {
     class UserController
     {
+        DisDbContext context = new DisDbContext();
         public void Register(string firstName, string lastName, string email, string password, DateTime birth, string role)
         {
-           
+            var user = new User()
+            {
+                FirstName = firstName,
+                LastName = lastName,
+                Email = email,
+                Password = password,
+                Birth = birth,
+                Role = role
+            };
+            context.Users.Add(user);
+            context.SaveChanges();
         }
 
         public void Login(string email, string password)
         {
-            
+            var users = context.Users.Where(e => e.Email == email && e.Password == password).ToArray();
+            if (users.Length != 0)
+            {
+                //logged
+            }
+
         }
 
-        public void Update(string firstName, string lastName, string password)
+        public void Update(int id, string firstName, string lastName, string password)
         {
+            User user = context.Users.Single(e => e.Id == id);
+            user.FirstName = firstName;
+            user.LastName = lastName;
+            user.Password = password;
+            context.SaveChanges();
 
         }
 
-        public void Delete()
+        public void Delete(int id)
         {
-
+            User user = context.Users.Single(e => e.Id == id);
+            context.Users.Remove(user);
+            context.SaveChanges();
         }
     }
 }
