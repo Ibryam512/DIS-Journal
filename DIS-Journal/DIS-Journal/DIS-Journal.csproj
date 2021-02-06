@@ -159,6 +159,7 @@
     <Compile Include="Controllers\ScheduleController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Models\Calendar.cs" />
+    <Compile Include="Models\DisDbContext.cs" />
     <Compile Include="Models\Event.cs" />
     <Compile Include="Models\Health.cs" />
     <Compile Include="Models\IUser.cs" />
