@@ -30,7 +30,14 @@ namespace DIS_Journal.Controllers
             var users = context.Users.Where(e => e.Email == email && e.Password == password).ToArray();
             if (users.Length != 0)
             {
-                //logged
+                User user = users[0];
+                Logged.Id = user.Id;
+                Logged.FirstName = user.FirstName;
+                Logged.LastName = user.LastName;
+                Logged.Email = user.Email;
+                Logged.Password = user.Password;
+                Logged.Birth = user.Birth;
+                Logged.Role = user.Role;
             }
 
         }

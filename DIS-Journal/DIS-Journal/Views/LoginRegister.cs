@@ -16,5 +16,31 @@ namespace DIS_Journal.Views
         {
             InitializeComponent();
         }
+
+        private void textBoxEmail_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(textBoxEmail.Text))
+            {
+                labelEmail.Visible = true;
+            }
+            else
+            {
+                labelEmail.Visible = false;
+            }
+        }
+
+        private void textBoxPassword_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(textBoxPassword.Text))
+            {
+                labelPass.Visible = true;
+            }
+            else
+            {
+                labelPass.Visible = false;
+            }
+        }
+
+       }
     }
 }

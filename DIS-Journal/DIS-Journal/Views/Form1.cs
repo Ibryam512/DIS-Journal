@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DIS_Journal.Views;
 
 namespace DIS_Journal
 {
@@ -15,6 +16,12 @@ namespace DIS_Journal
         public Form1()
         {
             InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            LoginRegister form = new LoginRegister();
+            form.ShowDialog();
         }
     }
 }
