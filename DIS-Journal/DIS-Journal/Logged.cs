@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using DIS_Journal.Models;
 namespace DIS_Journal
 {
     static class Logged
