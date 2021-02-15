@@ -41,6 +41,6 @@ namespace DIS_Journal.Views
             }
         }
 
-       }
     }
 }
+
