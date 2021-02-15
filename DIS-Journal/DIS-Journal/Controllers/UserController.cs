@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using DIS_Journal.Models;
 
 namespace DIS_Journal.Controllers
@@ -38,6 +39,7 @@ namespace DIS_Journal.Controllers
                 Logged.Password = user.Password;
                 Logged.Birth = user.Birth;
                 Logged.Role = user.Role;
+                MessageBox.Show($"{Logged.FirstName}, влязохте успешно!");
             }
 
         }
@@ -49,6 +51,7 @@ namespace DIS_Journal.Controllers
             user.LastName = lastName;
             user.Password = password;
             context.SaveChanges();
+            MessageBox.Show($"Успешна регистрация!");
 
         }
 

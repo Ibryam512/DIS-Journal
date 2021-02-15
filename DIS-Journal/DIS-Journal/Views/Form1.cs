@@ -20,7 +20,7 @@ namespace DIS_Journal
 
         private void button1_Click(object sender, EventArgs e)
         {
-            LoginRegister form = new LoginRegister();
+            Login form = new Login();
             form.ShowDialog();
         }
     }

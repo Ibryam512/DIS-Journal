@@ -14,7 +14,7 @@ namespace DIS_Journal.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseMySQL("server=bqa0euv4na39nvxw2o9w-mysql.services.clever-cloud.com;database=bqa0euv4na39nvxw2o9w;user=uvllsqwcceiys8wh;password=L3OZQwgPkyHILB6WkETs");
+            optionsBuilder.UseMySQL("server = bqa0euv4na39nvxw2o9w-mysql.services.clever-cloud.com:3306; database = bqa0euv4na39nvxw2o9w; user = uvllsqwcceiys8wh; password = L3OZQwgPkyHILB6WkETs");
         }
     }
 }

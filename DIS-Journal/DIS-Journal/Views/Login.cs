@@ -7,12 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DIS_Journal.Controllers;
 
 namespace DIS_Journal.Views
 {
-    public partial class LoginRegister : Form
+    public partial class Login : Form
     {
-        public LoginRegister()
+        UserController user = new UserController();
+        public Login()
         {
             InitializeComponent();
         }
@@ -33,14 +35,24 @@ namespace DIS_Journal.Views
         {
             if (string.IsNullOrWhiteSpace(textBoxPassword.Text))
             {
-                labelPass.Visible = true;
+                labelPassword.Visible = true;
             }
             else
             {
-                labelPass.Visible = false;
+                labelPassword.Visible = false;
             }
         }
 
+        private void buttonLogin_Click(object sender, EventArgs e)
+        {
+            user.Login(textBoxEmail.Text, textBoxPassword.Text);
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+            Register register = new Register();
+            register.ShowDialog();
+        }
     }
 }
 

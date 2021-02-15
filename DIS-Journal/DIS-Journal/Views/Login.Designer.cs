@@ -1,6 +1,6 @@
 ﻿namespace DIS_Journal.Views
 {
-    partial class LoginRegister
+    partial class Login
     {
         /// <summary>
         /// Required designer variable.
@@ -31,10 +31,10 @@
             this.label1 = new System.Windows.Forms.Label();
             this.textBoxEmail = new System.Windows.Forms.TextBox();
             this.textBoxPassword = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.buttonLogin = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.labelEmail = new System.Windows.Forms.Label();
-            this.labelPass = new System.Windows.Forms.Label();
+            this.labelPassword = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -65,17 +65,18 @@
             this.textBoxPassword.UseSystemPasswordChar = true;
             this.textBoxPassword.TextChanged += new System.EventHandler(this.textBoxPassword_TextChanged);
             // 
-            // button1
+            // buttonLogin
             // 
-            this.button1.BackColor = System.Drawing.Color.YellowGreen;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(93, 319);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(180, 43);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Влез";
-            this.button1.UseVisualStyleBackColor = false;
+            this.buttonLogin.BackColor = System.Drawing.Color.YellowGreen;
+            this.buttonLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonLogin.Location = new System.Drawing.Point(93, 319);
+            this.buttonLogin.Name = "buttonLogin";
+            this.buttonLogin.Size = new System.Drawing.Size(180, 43);
+            this.buttonLogin.TabIndex = 3;
+            this.buttonLogin.Text = "Влез";
+            this.buttonLogin.UseVisualStyleBackColor = false;
+            this.buttonLogin.Click += new System.EventHandler(this.buttonLogin_Click);
             // 
             // label2
             // 
@@ -87,6 +88,7 @@
             this.label2.Size = new System.Drawing.Size(111, 17);
             this.label2.TabIndex = 4;
             this.label2.Text = "Регистрирай се";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // labelEmail
             // 
@@ -96,37 +98,37 @@
             this.labelEmail.ForeColor = System.Drawing.SystemColors.ScrollBar;
             this.labelEmail.Location = new System.Drawing.Point(41, 148);
             this.labelEmail.Name = "labelEmail";
-            this.labelEmail.Size = new System.Drawing.Size(301, 23);
+            this.labelEmail.Size = new System.Drawing.Size(300, 23);
             this.labelEmail.TabIndex = 5;
             this.labelEmail.Text = "Имейл";
             // 
-            // labelPass
+            // labelPassword
             // 
-            this.labelPass.BackColor = System.Drawing.Color.White;
-            this.labelPass.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.labelPass.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelPass.ForeColor = System.Drawing.SystemColors.ScrollBar;
-            this.labelPass.Location = new System.Drawing.Point(41, 233);
-            this.labelPass.Name = "labelPass";
-            this.labelPass.Size = new System.Drawing.Size(286, 23);
-            this.labelPass.TabIndex = 6;
-            this.labelPass.Text = "Парола";
+            this.labelPassword.BackColor = System.Drawing.Color.White;
+            this.labelPassword.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.labelPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelPassword.ForeColor = System.Drawing.SystemColors.ScrollBar;
+            this.labelPassword.Location = new System.Drawing.Point(41, 233);
+            this.labelPassword.Name = "labelPassword";
+            this.labelPassword.Size = new System.Drawing.Size(286, 23);
+            this.labelPassword.TabIndex = 6;
+            this.labelPassword.Text = "Парола";
             // 
-            // LoginRegister
+            // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Khaki;
             this.ClientSize = new System.Drawing.Size(373, 440);
-            this.Controls.Add(this.labelPass);
+            this.Controls.Add(this.labelPassword);
             this.Controls.Add(this.labelEmail);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.buttonLogin);
             this.Controls.Add(this.textBoxPassword);
             this.Controls.Add(this.textBoxEmail);
             this.Controls.Add(this.label1);
-            this.Name = "LoginRegister";
-            this.Text = "LoginRegister";
+            this.Name = "Login";
+            this.Text = "Вход";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -137,9 +139,9 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBoxEmail;
         private System.Windows.Forms.TextBox textBoxPassword;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button buttonLogin;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label labelEmail;
-        private System.Windows.Forms.Label labelPass;
+        private System.Windows.Forms.Label labelPassword;
     }
 }
