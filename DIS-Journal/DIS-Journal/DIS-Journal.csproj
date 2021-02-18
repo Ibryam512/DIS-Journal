@@ -155,11 +155,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\CalendarController.cs" />
     <Compile Include="Controllers\ScheduleController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Logged.cs" />
-    <Compile Include="Models\Calendar.cs" />
     <Compile Include="Models\DisDbContext.cs" />
     <Compile Include="Models\Event.cs" />
     <Compile Include="Models\Health.cs" />
