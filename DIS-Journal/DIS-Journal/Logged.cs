@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using DIS_Journal.Models;
 namespace DIS_Journal
 {
+    //The class Logged saves the information about the logged user
     static class Logged
     {
         public static int Id { get; set; }
