@@ -47,7 +47,6 @@ namespace DIS_Journal.Controllers
                 Logged.Role = user.Role;
                 MessageBox.Show($"{Logged.FirstName}, влязохте успешно!");
             }
-
         }
 
         public void Update(int id, string firstName, string lastName, string password)
@@ -88,6 +87,5 @@ namespace DIS_Journal.Controllers
             string hashedPassword = new ASCIIEncoding().GetString(md5data);
             return hashedPassword;
         }
-
     }
 }
