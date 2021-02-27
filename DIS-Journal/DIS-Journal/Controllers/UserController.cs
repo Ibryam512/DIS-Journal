@@ -12,7 +12,6 @@ namespace DIS_Journal.Controllers
     class UserController
     {
         DisDbContext context = new DisDbContext();
-        private object user;
 
         public void Register(string firstName, string lastName, string email, string password, DateTime birth, string role)
         {
@@ -26,7 +25,7 @@ namespace DIS_Journal.Controllers
                 Birth = birth,
                 Role = role
             };
-            context.users.Add(user);
+            context.Users.Add(user);
             context.SaveChanges();
             MessageBox.Show($"Успешна регистрация!");
         }
@@ -35,7 +34,7 @@ namespace DIS_Journal.Controllers
         {
             password = Hash(password);
             //searching for users with the same email and password
-            var users = context.users.Where(e => e.Email == email && e.Password == password).ToArray();
+            var users = context.Users.Where(e => e.Email == email && e.Password == password).ToArray();
             if (users.Length != 0)
             {
                 User user = users[0];
@@ -54,7 +53,7 @@ namespace DIS_Journal.Controllers
         public void Update(int id, string firstName, string lastName, string password)
         {
             //finnding the user who wants to edit his information
-            User user = context.users.Single(e => e.Id == id);
+            User user = context.Users.Single(e => e.Id == id);
             user.FirstName = firstName;
             user.LastName = lastName;
             user.Password = Hash(password);
@@ -65,8 +64,8 @@ namespace DIS_Journal.Controllers
         public void Delete(int id)
         {
             //finnding the user who wants to delete his account
-            User user = context.users.Single(e => e.Id == id);
-            context.users.Remove(user);
+            User user = context.Users.Single(e => e.Id == id);
+            context.Users.Remove(user);
             context.SaveChanges();
         }
 

@@ -11,7 +11,7 @@ namespace DIS_Journal.Controllers
     {
         public static Schedule schedule = new Schedule();
 
-        public static void AddEvent(Event e)
+        /*public static void AddEvent(Event e)
         {
             if (e.Repeatedness == Interval.Daily)
             {
@@ -77,6 +77,6 @@ namespace DIS_Journal.Controllers
         public List<Event> EventsForTheDay(DayOfWeek day)
         {
             return schedule.Events[day];
-        }
+        }*/
     } 
 }

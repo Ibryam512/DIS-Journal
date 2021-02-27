@@ -8,23 +8,25 @@ namespace DIS_Journal.Models
 {
     class Schedule
     {
-        private Dictionary<DayOfWeek, List<Event>> events;
+        public int Id { get; set; }
+        /* private Dictionary<DayOfWeek, List<Event>> events;
 
-        public Dictionary<DayOfWeek, List<Event>> Events
-        {
-            get
-            {
-                return this.events;
-            }
-        }
+         public Dictionary<DayOfWeek, List<Event>> Events
+         {
+             get
+             {
+                 return this.events;
+             }
+         }
 
-        public Schedule()
-        {
-            this.events = new Dictionary<DayOfWeek, List<Event>>();
-            foreach (DayOfWeek day in (DayOfWeek[])Enum.GetValues(typeof(DayOfWeek))) //idk if it will run
-            {
-                this.events.Add(day, new List<Event>());
-            }
-        }
+         public Schedule()
+         {
+             this.events = new Dictionary<DayOfWeek, List<Event>>();
+             foreach (DayOfWeek day in (DayOfWeek[])Enum.GetValues(typeof(DayOfWeek))) //idk if it will run
+             {
+                 this.events.Add(day, new List<Event>());
+             }
+         }
+       */
     }
 }

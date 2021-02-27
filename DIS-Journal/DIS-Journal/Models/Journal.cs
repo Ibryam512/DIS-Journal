@@ -12,6 +12,7 @@ namespace DIS_Journal.Models
         private DateTime date;
         private string description;
 
+        public int Id { get; set; }
         public string Title
         {
             get { return this.title; }

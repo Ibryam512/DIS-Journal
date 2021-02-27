@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Configuration;
 using Microsoft.EntityFrameworkCore;
 using MySql.EntityFrameworkCore;
 
@@ -12,12 +13,14 @@ namespace DIS_Journal.Models
     class DisDbContext : DbContext
     {
         //This collection referes to table 'users' (the name of the collection should be just like the name of the table which it refers to)
-        public DbSet<User> users { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Journal> Journals { get; set; }
+        public DbSet<Schedule> Schedules { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             //the connection string
-            optionsBuilder.UseMySQL("server=bqa0euv4na39nvxw2o9w-mysql.services.clever-cloud.com;database=bqa0euv4na39nvxw2o9w;user=uvllsqwcceiys8wh;password=L3OZQwgPkyHILB6WkETs");
+            optionsBuilder.UseMySQL(ConfigurationManager.ConnectionStrings["database"].ConnectionString);
         }
     }
 }
