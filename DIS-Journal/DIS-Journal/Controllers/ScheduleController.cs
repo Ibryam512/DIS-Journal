@@ -78,5 +78,6 @@ namespace DIS_Journal.Controllers
         {
             return schedule.Events[day];
         }
+        
     } 
 }

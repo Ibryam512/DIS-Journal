@@ -15,6 +15,8 @@ namespace DIS_Journal.Models
         private string evening_routine;
         //private List<Routine> evening_routine1;
 
+        
+
         public string Morning_routine
         { get { return this.morning_routine; } 
           set { this.morning_routine = value; }
