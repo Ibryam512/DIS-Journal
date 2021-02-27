@@ -88,5 +88,6 @@ namespace DIS_Journal.Controllers
             string hashedPassword = new ASCIIEncoding().GetString(md5data);
             return hashedPassword;
         }
+
     }
 }

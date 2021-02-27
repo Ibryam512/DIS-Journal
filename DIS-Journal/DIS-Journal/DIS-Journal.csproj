@@ -159,7 +159,6 @@
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Logged.cs" />
     <Compile Include="Models\DisDbContext.cs" />
-    <Compile Include="Models\Health.cs" />
     <Compile Include="Models\IUser.cs" />
     <Compile Include="Models\Journal.cs" />
     <Compile Include="Models\User.cs" />
