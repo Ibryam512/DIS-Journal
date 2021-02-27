@@ -12,14 +12,14 @@ namespace DIS_Journal.Models
     //This is DbContext class, which is required for the connection between the database and the application
     class DisDbContext : DbContext
     {
-        //This collection referes to table 'users' (the name of the collection should be just like the name of the table which it refers to)
+        //This collections referes to the tables in the database (the name of the collection should be just like the name of the table which it refers to)
         public DbSet<User> Users { get; set; }
         public DbSet<Journal> Journals { get; set; }
         public DbSet<Schedule> Schedules { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //the connection string
+            //the string thanks to which there is connection between the database and the application
             optionsBuilder.UseMySQL(ConfigurationManager.ConnectionStrings["database"].ConnectionString);
         }
     }
