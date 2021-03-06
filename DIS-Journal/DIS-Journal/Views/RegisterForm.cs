@@ -177,6 +177,12 @@ namespace DIS_Journal.Views
 
         }
 
+        private void button1_MouseEnter_1(object sender, EventArgs e)
+        {
+            button1.BackgroundImage = Image.FromFile(button_h);
+            button1.ForeColor = Color.White;
+        }
+
         private void textBox3_Leave(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(textBox1.Text))

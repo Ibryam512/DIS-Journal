@@ -291,7 +291,7 @@ namespace DIS_Journal.Views
             this.button1.Text = "Sign up";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
-            this.button1.MouseEnter += new System.EventHandler(this.pictureBox4_MouseEnter);
+            this.button1.MouseEnter += new System.EventHandler(this.button1_MouseEnter_1);
             this.button1.MouseLeave += new System.EventHandler(this.button1_MouseLeave);
             // 
             // label4
