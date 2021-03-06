@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Drawing;
+using DIS_Journal.Views;
 
 namespace DIS_Journal
 {
@@ -16,7 +18,7 @@ namespace DIS_Journal
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(DesignController.OpenMainForm());
         }
     }
 }

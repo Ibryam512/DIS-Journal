@@ -81,7 +81,6 @@ C:\Users\Ibryam\Desktop\DIS-Journal\DIS-Journal\DIS-Journal\bin\Debug\System.Mem
 C:\Users\Ibryam\Desktop\DIS-Journal\DIS-Journal\DIS-Journal\bin\Debug\System.Numerics.Vectors.xml
 C:\Users\Ibryam\Desktop\DIS-Journal\DIS-Journal\DIS-Journal\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 C:\Users\Ibryam\Desktop\DIS-Journal\DIS-Journal\DIS-Journal\bin\Debug\System.Threading.Tasks.Extensions.xml
-C:\Users\Ibryam\Desktop\DIS-Journal\DIS-Journal\DIS-Journal\obj\Debug\DIS_Journal.Form1.resources
 C:\Users\Ibryam\Desktop\DIS-Journal\DIS-Journal\DIS-Journal\obj\Debug\DIS-Journal.csproj.CopyComplete
 C:\Users\valer\Desktop\DIS-Journal\DIS-Journal\DIS-Journal\obj\Debug\DIS_Journal.Form1.resources
 C:\Users\valer\Desktop\DIS-Journal\DIS-Journal\DIS-Journal\obj\Debug\DIS_Journal.Views.LoginRegister.resources
@@ -151,5 +150,7 @@ C:\Users\valer\Desktop\DIS-Journal\DIS-Journal\DIS-Journal\bin\Debug\System.Nume
 C:\Users\valer\Desktop\DIS-Journal\DIS-Journal\DIS-Journal\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 C:\Users\valer\Desktop\DIS-Journal\DIS-Journal\DIS-Journal\bin\Debug\System.Threading.Tasks.Extensions.xml
 C:\Users\valer\Desktop\DIS-Journal\DIS-Journal\DIS-Journal\obj\Debug\DIS-Journal.csproj.CopyComplete
-C:\Users\Ibryam\Desktop\DIS-Journal\DIS-Journal\DIS-Journal\obj\Debug\DIS_Journal.Views.Login.resources
-C:\Users\Ibryam\Desktop\DIS-Journal\DIS-Journal\DIS-Journal\obj\Debug\DIS_Journal.Views.Register.resources
+C:\Users\Ibryam\Desktop\DIS-Journal\DIS-Journal\DIS-Journal\obj\Debug\DIS_Journal.Views.IntroForm.resources
+C:\Users\Ibryam\Desktop\DIS-Journal\DIS-Journal\DIS-Journal\obj\Debug\DIS_Journal.Views.LoginForm.resources
+C:\Users\Ibryam\Desktop\DIS-Journal\DIS-Journal\DIS-Journal\obj\Debug\DIS_Journal.Views.MainForm.resources
+C:\Users\Ibryam\Desktop\DIS-Journal\DIS-Journal\DIS-Journal\obj\Debug\DIS_Journal.Views.RegisterForm.resources
