@@ -93,7 +93,7 @@ namespace DIS_Journal.Views
 
         private void buttonRegister_Click(object sender, EventArgs e)
         {
-            user.Register(textBoxFirstName.Text, textBoxLastName.Text, textBoxEmail.Text, textBoxPassword.Text, DateTime.Parse(textBoxBirth.Text), textBoxRole.Text);
+            user.Register(textBoxFirstName.Text, textBoxEmail.Text, textBoxPassword.Text, DateTime.Parse(textBoxBirth.Text), textBoxRole.Text);
         }
     }
 }

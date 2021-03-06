@@ -8,8 +8,7 @@ namespace DIS_Journal.Models
 {
     interface IUser
     {
-        string FirstName { get; }
-        string LastName { get; }
+        string UserName { get; set; }
         string Email { get;  }
         string Password { get; }
         DateTime Birth { get; }

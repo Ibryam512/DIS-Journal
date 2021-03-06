@@ -13,13 +13,12 @@ namespace DIS_Journal.Controllers
     {
         DisDbContext context = new DisDbContext();
 
-        public void Register(string firstName, string lastName, string email, string password, DateTime birth, string role)
+        public void Register(string userName, string email, string password, DateTime birth, string role)
         {
             //making new object to class User - the new object is the new user
             var user = new User()
             {
-                FirstName = firstName,
-                LastName = lastName,
+                UserName = userName,
                 Email = email,
                 Password = Hash(password),
                 Birth = birth,
@@ -39,22 +38,20 @@ namespace DIS_Journal.Controllers
             {
                 User user = users[0];
                 Logged.Id = user.Id;
-                Logged.FirstName = user.FirstName;
-                Logged.LastName = user.LastName;
+                Logged.UserName = user.UserName;
                 Logged.Email = user.Email;
                 Logged.Password = user.Password;
                 Logged.Birth = user.Birth;
                 Logged.Role = user.Role;
-                MessageBox.Show($"{Logged.FirstName}, влязохте успешно!");
+                MessageBox.Show($"{Logged.UserName}, влязохте успешно!");
             }
         }
 
-        public void Update(int id, string firstName, string lastName, string password)
+        public void Update(int id, string userName, string password)
         {
             //finnding the user who wants to edit his information
             User user = context.Users.Single(e => e.Id == id);
-            user.FirstName = firstName;
-            user.LastName = lastName;
+            user.UserName = userName;
             user.Password = Hash(password);
             context.SaveChanges();
 
@@ -71,12 +68,11 @@ namespace DIS_Journal.Controllers
         public void Logout()
         {
             Logged.Id = 0;
-            Logged.FirstName = "";
-            Logged.LastName = "";
-            Logged.Email = "";
-            Logged.Password = "";
+            Logged.UserName = null;
+            Logged.Email = null;
+            Logged.Password = null;
             Logged.Birth = new DateTime();
-            Logged.Role = "";
+            Logged.Role = null;
         }
 
         private string Hash(string password)

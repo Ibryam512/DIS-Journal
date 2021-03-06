@@ -9,7 +9,7 @@ namespace DIS_Journal.Controllers
 {
     class ScheduleController
     {
-        public static Schedule schedule = new Schedule();
+        //public static Schedule schedule = new Schedule();
 
         /*public static void AddEvent(Event e)
         {
