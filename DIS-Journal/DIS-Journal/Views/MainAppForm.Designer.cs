@@ -48,7 +48,7 @@ namespace DIS_Journal.Views
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(357, 788);
+            this.panel1.Size = new System.Drawing.Size(362, 788);
             this.panel1.TabIndex = 0;
             // 
             // button2
@@ -108,9 +108,9 @@ namespace DIS_Journal.Views
             // panel2
             // 
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel2.Location = new System.Drawing.Point(350, 0);
+            this.panel2.Location = new System.Drawing.Point(358, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(796, 788);
+            this.panel2.Size = new System.Drawing.Size(788, 788);
             this.panel2.TabIndex = 1;
             // 
             // MainAppForm
@@ -123,6 +123,7 @@ namespace DIS_Journal.Views
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "MainAppForm";
             this.Text = "MainAppForm";
+            this.Load += new System.EventHandler(this.MainAppForm_Load);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
@@ -132,9 +133,9 @@ namespace DIS_Journal.Views
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
+        public System.Windows.Forms.Panel panel2;
     }
 }

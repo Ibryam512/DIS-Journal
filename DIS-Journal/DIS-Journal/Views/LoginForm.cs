@@ -31,12 +31,8 @@ namespace DIS_Journal.Views
         private void LoginForm_Load(object sender, EventArgs e)
         {
             panel1.BackColor = primary;
-            //label1.ForeColor = secondary;
-            //label2.ForeColor = primary;
-            //label3.ForeColor = primary;
             button1.ForeColor = secondary;
             button1.BackgroundImage = Image.FromFile(button_o);
-            //pictureBox1.Image = Image.FromFile(pic);
         }
 
         //username textbox

@@ -12,14 +12,37 @@ namespace DIS_Journal.Views
 {
     public partial class MainAppForm : Form
     {
-        public MainAppForm()
+        Color primary, secondary;
+        Image hover;
+        public MainAppForm(Color pr, Color se)
         {
             InitializeComponent();
+            primary = pr;
+            secondary = se;
+        }
+
+        private void MainAppForm_Load(object sender, EventArgs e)
+        {
+            switch (primary.A)
+            {
+                case 58:
+                    hover = Image.FromFile("main_form/ihover.png");
+                    break;
+                case 105:
+                    hover = Image.FromFile("main_form/vhover.png");
+                    break;
+                default:
+                    hover = Image.FromFile("main_form/nhover.png");
+                    break;
+            }
+            panel1.BackColor = primary;
+            button1.BackColor = primary;
+            button2.BackColor = primary;
         }
 
         private void button1_MouseEnter(object sender, EventArgs e)
         {
-            button1.BackgroundImage = Image.FromFile("main_form/vhover.png");
+            button1.BackgroundImage = hover;
         }
 
         private void button1_MouseLeave(object sender, EventArgs e)
@@ -27,25 +50,30 @@ namespace DIS_Journal.Views
             if(button1.ForeColor != Color.White)
             {
                 button1.BackgroundImage = null;
-                button1.BackColor = Color.FromArgb(105, 165, 218);
+                button1.BackColor = primary;
             }
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             button1.ForeColor = Color.White;
-            button1.BackgroundImage = Image.FromFile("main_form/vsel.png");
+            button1.BackgroundImage = hover;
             if(button2.ForeColor == Color.White)
             {
                 button2.BackgroundImage = null;
-                button2.BackColor = Color.FromArgb(105, 165, 218);
+                button2.BackColor = primary;
                 button2.ForeColor = Color.WhiteSmoke;
             }
+            if (object.ReferenceEquals(DesignController.Journal, null))
+            {
+                DesignController.Journal = new JournalForm(primary, secondary, hover);
+            }
+            DesignController.OpenFormInApp(DesignController.Journal);
         }
 
         private void button2_MouseEnter(object sender, EventArgs e)
         {
-            button2.BackgroundImage = Image.FromFile("main_form/vhover.png");
+            button2.BackgroundImage = hover;
         }
 
         private void button2_MouseLeave(object sender, EventArgs e)
@@ -53,18 +81,18 @@ namespace DIS_Journal.Views
             if (button2.ForeColor != Color.White)
             {
                 button2.BackgroundImage = null;
-                button2.BackColor = Color.FromArgb(105, 165, 218);
+                button2.BackColor = primary;
             }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             button2.ForeColor = Color.White;
-            button2.BackgroundImage = Image.FromFile("main_form/vsel.png");
+            button2.BackgroundImage = hover;
             if (button1.ForeColor == Color.White)
             {
                 button1.BackgroundImage = null;
-                button1.BackColor = Color.FromArgb(105, 165, 218);
+                button1.BackColor = primary;
                 button1.ForeColor = Color.WhiteSmoke;
             }
         }
