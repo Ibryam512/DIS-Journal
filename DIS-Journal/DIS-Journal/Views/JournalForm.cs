@@ -51,7 +51,7 @@ namespace DIS_Journal.Views
             {
                 textBox1.Clear();
             }
-            textBox1.ForeColor = secondary;
+            textBox1.ForeColor = primary;
         }
 
         private void textBox1_Leave(object sender, EventArgs e)
@@ -69,7 +69,7 @@ namespace DIS_Journal.Views
             {
                 richTextBox1.Clear();
             }
-            richTextBox1.ForeColor = secondary; //Color.FromArgb(64, 64, 64)
+            richTextBox1.ForeColor = primary;
         }
 
         private void richTextBox1_Leave(object sender, EventArgs e)
@@ -80,5 +80,6 @@ namespace DIS_Journal.Views
                 richTextBox1.ForeColor = Color.LightGray;
             }
         }
+
     }
 }

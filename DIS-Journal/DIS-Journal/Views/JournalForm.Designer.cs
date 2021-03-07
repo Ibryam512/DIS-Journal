@@ -46,7 +46,7 @@ namespace DIS_Journal.Views
             this.textBox1.TabIndex = 0;
             this.textBox1.Text = " Title";
             this.textBox1.Click += new System.EventHandler(this.textBox1_Click);
-            this.textBox1.MouseLeave += new System.EventHandler(this.textBox1_Leave);
+            this.textBox1.Leave += new System.EventHandler(this.textBox1_Leave);
             // 
             // richTextBox1
             // 
@@ -57,6 +57,8 @@ namespace DIS_Journal.Views
             this.richTextBox1.Size = new System.Drawing.Size(741, 554);
             this.richTextBox1.TabIndex = 1;
             this.richTextBox1.Text = " Dear Diary...";
+            this.richTextBox1.Click += new System.EventHandler(this.richTextBox1_Click);
+            this.richTextBox1.Leave += new System.EventHandler(this.richTextBox1_Leave);
             // 
             // label1
             // 
@@ -89,7 +91,7 @@ namespace DIS_Journal.Views
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.Control;
+            this.BackColor = System.Drawing.Color.LightBlue;
             this.ClientSize = new System.Drawing.Size(788, 788);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);

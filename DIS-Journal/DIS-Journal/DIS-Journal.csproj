@@ -155,6 +155,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\JournalController.cs" />
     <Compile Include="Controllers\ScheduleController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Logged.cs" />

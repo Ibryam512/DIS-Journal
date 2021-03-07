@@ -23,7 +23,7 @@ namespace DIS_Journal.Views
 
         private void MainAppForm_Load(object sender, EventArgs e)
         {
-            switch (primary.A)
+            switch (primary.R)
             {
                 case 58:
                     hover = Image.FromFile("main_form/ihover.png");
