@@ -42,7 +42,10 @@ namespace DIS_Journal.Views
         //username textbox
         private void textBox1_Click(object sender, EventArgs e)
         {
-            textBox1.Clear();
+            if (textBox1.Text == " Username")
+            {
+                textBox1.Clear();
+            }
             textBox1.ForeColor = Color.FromArgb(64, 64, 64);
         }
 
@@ -69,7 +72,10 @@ namespace DIS_Journal.Views
 
         private void textBox2_Click(object sender, EventArgs e)
         {
-            textBox2.Clear();
+            if(textBox2.Text == " Password")
+            {
+                textBox2.Clear();
+            }
             textBox2.PasswordChar = '*';
             textBox2.ForeColor = Color.FromArgb(64, 64, 64);
         }

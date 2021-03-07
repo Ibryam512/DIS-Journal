@@ -92,7 +92,10 @@ namespace DIS_Journal.Views
         //username textbox
         private void textBox1_Click(object sender, EventArgs e)
         {
-            textBox1.Clear();
+            if (textBox1.Text == " Username")
+            {
+                textBox1.Clear();
+            }
             textBox1.ForeColor = Color.FromArgb(64, 64, 64);
         }
 
@@ -119,7 +122,10 @@ namespace DIS_Journal.Views
 
         private void textBox2_Click(object sender, EventArgs e)
         {
-            textBox2.Clear();
+            if (textBox2.Text == " Password")
+            {
+                textBox2.Clear();
+            }
             textBox2.PasswordChar = '*';
             textBox2.ForeColor = Color.FromArgb(64, 64, 64);
         }
@@ -144,7 +150,10 @@ namespace DIS_Journal.Views
         //email textbox
         private void textBox3_Click(object sender, EventArgs e)
         {
-            textBox3.Clear();
+            if (textBox3.Text == " Email")
+            {
+                textBox3.Clear();
+            }
             textBox3.ForeColor = Color.FromArgb(64, 64, 64);
         }
 
@@ -183,11 +192,40 @@ namespace DIS_Journal.Views
             button1.ForeColor = Color.White;
         }
 
+        private void comboBox3_TextUpdate(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox3_DropDownClosed(object sender, EventArgs e)
+        {
+            if(comboBox3.Text == "YYYY")
+            {
+                comboBox3.ForeColor = Color.LightGray;
+            }
+        }
+
+        private void comboBox1_DropDownClosed(object sender, EventArgs e)
+        {
+            if (comboBox1.Text == "MM")
+            {
+                comboBox1.ForeColor = Color.LightGray;
+            }
+        }
+
+        private void comboBox2_DropDownClosed(object sender, EventArgs e)
+        {
+            if (comboBox2.Text == "YYYY")
+            {
+                comboBox2.ForeColor = Color.LightGray;
+            }
+        }
+
         private void textBox3_Leave(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(textBox1.Text))
             {
-                textBox3.Text = " Email";
+                textBox3.Text = "Email";
                 textBox3.ForeColor = Color.LightGray;
             }
         }

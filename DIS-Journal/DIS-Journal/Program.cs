@@ -18,7 +18,7 @@ namespace DIS_Journal
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainAppForm());
+            Application.Run(DesignController.OpenMainForm());
         }
     }
 }

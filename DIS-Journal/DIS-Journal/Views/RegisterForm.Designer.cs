@@ -89,7 +89,7 @@ namespace DIS_Journal.Views
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Bahnschrift", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(132, 665);
+            this.label5.Location = new System.Drawing.Point(131, 622);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(316, 29);
             this.label5.TabIndex = 3;
@@ -121,6 +121,7 @@ namespace DIS_Journal.Views
             this.comboBox3.TabIndex = 15;
             this.comboBox3.Text = "YYYY";
             this.comboBox3.DropDown += new System.EventHandler(this.comboBox3_DropDown);
+            this.comboBox3.DropDownClosed += new System.EventHandler(this.comboBox3_DropDownClosed);
             // 
             // comboBox2
             // 
@@ -164,6 +165,7 @@ namespace DIS_Journal.Views
             this.comboBox2.TabIndex = 14;
             this.comboBox2.Text = "DD";
             this.comboBox2.DropDown += new System.EventHandler(this.comboBox2_DropDown);
+            this.comboBox2.DropDownClosed += new System.EventHandler(this.comboBox2_DropDownClosed);
             // 
             // comboBox1
             // 
@@ -191,6 +193,7 @@ namespace DIS_Journal.Views
             this.comboBox1.TabIndex = 13;
             this.comboBox1.Text = "MM";
             this.comboBox1.DropDown += new System.EventHandler(this.comboBox1_DropDown);
+            this.comboBox1.DropDownClosed += new System.EventHandler(this.comboBox1_DropDownClosed);
             this.comboBox1.SelectedValueChanged += new System.EventHandler(this.comboBox1_SelectedValueChanged);
             // 
             // pictureBox5
@@ -284,7 +287,7 @@ namespace DIS_Journal.Views
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Bahnschrift SemiBold", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(83)))), ((int)(((byte)(45)))));
-            this.button1.Location = new System.Drawing.Point(147, 554);
+            this.button1.Location = new System.Drawing.Point(147, 508);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(291, 108);
             this.button1.TabIndex = 5;
