@@ -3,80 +3,72 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Drawing;
 using DIS_Journal.Models;
 
 namespace DIS_Journal.Controllers
 {
     class ScheduleController
     {
-        //public static Schedule schedule = new Schedule();
+        public Subject[,] schedule = new Subject[5, 7];
+        public List<Subject> subjects = new List<Subject>();
 
-        /*public static void AddEvent(Event e)
+        public void AddSubject(string title, Color color)
         {
-            if (e.Repeatedness == Interval.Daily)
+            if(subjects.Any(x => x.Title == title))
             {
-                foreach (DayOfWeek day in (DayOfWeek[])Enum.GetValues(typeof(DayOfWeek)))
-                {
-                    schedule.Events[day].Add(e);
-                    schedule.Events[day] = schedule.Events[day].OrderBy(x => x.DateTime.TimeOfDay).ToList();
-                }
+                throw new Exception("The subject already exsists");
             }
-            else if (e.Repeatedness == Interval.Weekly)
+            else
             {
-                DayOfWeek day = e.DateTime.DayOfWeek;
-                schedule.Events[day].Add(e);
-                schedule.Events[day] = schedule.Events[day].OrderBy(x => x.DateTime.TimeOfDay).ToList();
+                subjects.Add(new Subject(title, color));
             }
-            else if (e.Repeatedness == Interval.MondayToFriday)
+        }
+
+        public void AddClass(Subject subject, int dayOfTheWeek, int period)
+        {
+            if (schedule[dayOfTheWeek - 1, period - 1] != default(Subject))
             {
-                foreach (DayOfWeek day in (DayOfWeek[])Enum.GetValues(typeof(DayOfWeek)))
+                throw new Exception("There's already a class there!");
+            }
+            else
+            {
+                schedule[dayOfTheWeek - 1, period - 1] = subject;
+            }
+        }
+
+        public void AddClass(string title, Color color, int dayOfTheWeek, int period)
+        {
+            Subject s = subjects.Find(x => x.Title == title);
+            AddClass(s, dayOfTheWeek, period);
+        }
+
+        public void RemoveSubject(string title)
+        {
+            Subject subject = subjects.Find(x => x.Title == title);
+            subjects.Remove(subject);
+            for(int i = 0; i < 8; i++)
+            {
+                for(int j = 0; j < 5; j++)
                 {
-                    if(day != DayOfWeek.Saturday || day != DayOfWeek.Sunday)
+                    if(schedule[i, j] == subject)
                     {
-                        schedule.Events[day].Add(e);
+                        schedule[i, j] = default(Subject);
                     }
-                    schedule.Events[day] = schedule.Events[day].OrderBy(x => x.DateTime.TimeOfDay).ToList();
                 }
             }
         }
 
-        public void RemoveEvent(Event e)
+        public void RemoveClass(int dayOfTheWeek, int period)
         {
-            if (e.Repeatedness == Interval.Daily)
+            if (schedule[dayOfTheWeek - 1, period - 1] == default(Subject))
             {
-                foreach (DayOfWeek day in (DayOfWeek[])Enum.GetValues(typeof(DayOfWeek)))
-                {
-                    schedule.Events[day].Remove(e);
-                    schedule.Events[day] = schedule.Events[day].OrderBy(x => x.DateTime.TimeOfDay).ToList();
-                }
+                throw new ArgumentException("There isn't a class there");
             }
-            else if (e.Repeatedness == Interval.Weekly)
+            else
             {
-                DayOfWeek day = e.DateTime.DayOfWeek;
-                schedule.Events[day].Remove(e);
-                schedule.Events[day] = schedule.Events[day].OrderBy(x => x.DateTime.TimeOfDay).ToList();
+                schedule[dayOfTheWeek - 1, period - 1] = default(Subject);
             }
         }
-
-        public void ChangeEvent(Event e, string property_to_be_changed, string change_to)
-        {
-            DayOfWeek day = e.DateTime.DayOfWeek;
-            Event to_be_changed = schedule.Events[day].Find(x => x == e);
-            switch (property_to_be_changed)
-            {
-                case "title":
-                    to_be_changed.Title = change_to;
-                    break;
-                case "description":
-                    to_be_changed.Description = change_to;
-                    break;
-                default:
-                    throw new ArgumentException("Schedule events don't support that property");
-            }
-        }
-        public List<Event> EventsForTheDay(DayOfWeek day)
-        {
-            return schedule.Events[day];
-        }*/
     } 
 }
