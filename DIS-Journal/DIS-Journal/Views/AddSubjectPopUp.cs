@@ -54,5 +54,15 @@ namespace DIS_Journal.Views
         {
             PickColor(pictureBox4);
         }
+
+        private void pictureBox5_Click(object sender, EventArgs e)
+        {
+            PickColor(pictureBox5);
+        }
+
+        private void pictureBox6_Click(object sender, EventArgs e)
+        {
+            PickColor(pictureBox6);
+        }
     }
 }

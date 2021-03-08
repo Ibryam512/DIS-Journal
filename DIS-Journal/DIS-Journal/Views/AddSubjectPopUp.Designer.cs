@@ -83,6 +83,7 @@ namespace DIS_Journal.Views
             this.pictureBox5.Size = new System.Drawing.Size(60, 60);
             this.pictureBox5.TabIndex = 6;
             this.pictureBox5.TabStop = false;
+            this.pictureBox5.Click += new System.EventHandler(this.pictureBox5_Click);
             // 
             // pictureBox6
             // 
@@ -92,6 +93,7 @@ namespace DIS_Journal.Views
             this.pictureBox6.Size = new System.Drawing.Size(60, 60);
             this.pictureBox6.TabIndex = 5;
             this.pictureBox6.TabStop = false;
+            this.pictureBox6.Click += new System.EventHandler(this.pictureBox6_Click);
             // 
             // pictureBox3
             // 

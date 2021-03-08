@@ -162,6 +162,7 @@
     <Compile Include="Models\DisDbContext.cs" />
     <Compile Include="Models\IUser.cs" />
     <Compile Include="Models\Journal.cs" />
+    <Compile Include="Models\Subject.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -195,6 +196,12 @@
     </Compile>
     <Compile Include="Views\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddSubjectPopUp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\AddSubjectPopUp.Designer.cs">
+      <DependentUpon>AddSubjectPopUp.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\RegisterForm.cs">
       <SubType>Form</SubType>
@@ -231,6 +238,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\AddSubjectPopUp.resx">
+      <DependentUpon>AddSubjectPopUp.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\RegisterForm.resx">
       <DependentUpon>RegisterForm.cs</DependentUpon>
