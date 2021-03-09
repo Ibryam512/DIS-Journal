@@ -12,9 +12,21 @@ namespace DIS_Journal.Views
 {
     public partial class ScheduleForm : Form
     {
-        public ScheduleForm()
+        Color primary, secondary;
+        Image hover;
+
+        public ScheduleForm(Color pr, Color se, Image h)
         {
             InitializeComponent();
+            primary = pr;
+            secondary = se;
+            hover = h;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            AddSubjectPopUp pop = new AddSubjectPopUp(primary, secondary, hover);
+            pop.Show();
         }
     }
 }

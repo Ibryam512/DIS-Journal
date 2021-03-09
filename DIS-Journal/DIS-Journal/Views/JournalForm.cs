@@ -72,6 +72,20 @@ namespace DIS_Journal.Views
             richTextBox1.ForeColor = primary;
         }
 
+        private void button1_MouseEnter(object sender, EventArgs e)
+        {
+            button1.BackgroundImage = null;
+            button1.BackColor = Color.White;
+            button1.ForeColor = primary;
+        }
+
+        private void button1_MouseLeave(object sender, EventArgs e)
+        {
+            button1.BackgroundImage = hover;
+            button1.BackColor = Color.Transparent;
+            button1.ForeColor = Color.White;
+        }
+
         private void richTextBox1_Leave(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(richTextBox1.Text))

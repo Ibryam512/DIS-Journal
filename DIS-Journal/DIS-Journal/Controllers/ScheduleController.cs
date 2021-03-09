@@ -8,12 +8,12 @@ using DIS_Journal.Models;
 
 namespace DIS_Journal.Controllers
 {
-    class ScheduleController
+    static class ScheduleController
     {
-        public Subject[,] schedule = new Subject[5, 7];
-        public List<Subject> subjects = new List<Subject>();
+        public static Subject[,] schedule = new Subject[5, 7];
+        public static List<Subject> subjects = new List<Subject>();
 
-        public void AddSubject(string title, Color color)
+        public static void AddSubject(string title, Color color)
         {
             if(subjects.Any(x => x.Title == title))
             {
@@ -25,7 +25,7 @@ namespace DIS_Journal.Controllers
             }
         }
 
-        public void AddClass(Subject subject, int dayOfTheWeek, int period)
+        public static void AddClass(Subject subject, int dayOfTheWeek, int period)
         {
             if (schedule[dayOfTheWeek - 1, period - 1] != default(Subject))
             {
@@ -37,13 +37,13 @@ namespace DIS_Journal.Controllers
             }
         }
 
-        public void AddClass(string title, Color color, int dayOfTheWeek, int period)
+        public static void AddClass(string title, Color color, int dayOfTheWeek, int period)
         {
             Subject s = subjects.Find(x => x.Title == title);
             AddClass(s, dayOfTheWeek, period);
         }
 
-        public void RemoveSubject(string title)
+        public static void RemoveSubject(string title)
         {
             Subject subject = subjects.Find(x => x.Title == title);
             subjects.Remove(subject);
@@ -59,7 +59,7 @@ namespace DIS_Journal.Controllers
             }
         }
 
-        public void RemoveClass(int dayOfTheWeek, int period)
+        public static void RemoveClass(int dayOfTheWeek, int period)
         {
             if (schedule[dayOfTheWeek - 1, period - 1] == default(Subject))
             {
