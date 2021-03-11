@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DIS_Journal.Controllers;
 
 namespace DIS_Journal.Views
 {
@@ -168,7 +169,15 @@ namespace DIS_Journal.Views
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            string username = textBox1.Text;
+            string password = textBox2.Text;
+            string email = textBox3.Text;
+            int year = int.Parse(comboBox3.SelectedItem.ToString());
+            int month = int.Parse(comboBox1.SelectedItem.ToString());
+            int day = int.Parse(comboBox2.SelectedItem.ToString());
+            DateTime birth = new DateTime(year, month, day);
+            var userController = new UserController();
+            userController.Register(username, email, password, birth, "user");
         }
 
         private void label5_MouseEnter(object sender, EventArgs e)

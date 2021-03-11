@@ -21,7 +21,7 @@ namespace DIS_Journal.Views
         public static Form OpenMainForm()
         {
             Main = new MainForm();
-            OpenForm(App);
+            OpenForm(Intro);
             return Main;
         }
 

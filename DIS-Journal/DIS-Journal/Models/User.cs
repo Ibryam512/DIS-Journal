@@ -10,7 +10,7 @@ namespace DIS_Journal.Models
     class User : IUser
     {
         public int Id { get; set; }
-        public string UserName { get; set; }
+        public string Username { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
         public DateTime Birth { get; set; }

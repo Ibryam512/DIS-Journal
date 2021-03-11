@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DIS_Journal.Controllers;
 
 namespace DIS_Journal.Views
 {
@@ -38,7 +39,7 @@ namespace DIS_Journal.Views
         //username textbox
         private void textBox1_Click(object sender, EventArgs e)
         {
-            if (textBox1.Text == " Username")
+            if (textBox1.Text == " Username or email")
             {
                 textBox1.Clear();
             }
@@ -49,7 +50,7 @@ namespace DIS_Journal.Views
         {
             if (string.IsNullOrWhiteSpace(textBox1.Text))
             {
-                textBox1.Text = " Username";
+                textBox1.Text = " Username or email";
                 textBox1.ForeColor = Color.LightGray;
             }
         }
@@ -94,7 +95,10 @@ namespace DIS_Journal.Views
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            string username = textBox1.Text;
+            string password = textBox2.Text;
+            var userController = new UserController();
+            userController.Login(username, password);
         }
 
         private void label5_MouseEnter(object sender, EventArgs e)

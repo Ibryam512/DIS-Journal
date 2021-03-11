@@ -10,7 +10,7 @@ namespace DIS_Journal
     static class Logged
     {
         public static int Id { get; set; }
-        public static string UserName { get; set; }
+        public static string Username { get; set; }
         public static string Email { get; set; }
         public static string Password { get; set; }
         public static DateTime Birth { get; set; }

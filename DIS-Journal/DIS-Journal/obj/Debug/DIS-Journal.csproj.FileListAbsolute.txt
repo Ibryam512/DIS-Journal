@@ -160,3 +160,7 @@ C:\Users\valer\Desktop\DIS-Journal\DIS-Journal\DIS-Journal\obj\Debug\DIS_Journal
 C:\Users\valer\Desktop\DIS-Journal\DIS-Journal\DIS-Journal\obj\Debug\DIS_Journal.Views.JournalForm.resources
 C:\Users\valer\Desktop\DIS-Journal\DIS-Journal\DIS-Journal\obj\Debug\DIS_Journal.Views.ScheduleForm.resources
 C:\Users\valer\Desktop\DIS-Journal\DIS-Journal\DIS-Journal\obj\Debug\DIS_Journal.Views.AddSubjectPopUp.resources
+C:\Users\Ibryam\Desktop\DIS-Journal\DIS-Journal\DIS-Journal\obj\Debug\DIS_Journal.Views.JournalForm.resources
+C:\Users\Ibryam\Desktop\DIS-Journal\DIS-Journal\DIS-Journal\obj\Debug\DIS_Journal.Views.MainAppForm.resources
+C:\Users\Ibryam\Desktop\DIS-Journal\DIS-Journal\DIS-Journal\obj\Debug\DIS_Journal.Views.AddSubjectPopUp.resources
+C:\Users\Ibryam\Desktop\DIS-Journal\DIS-Journal\DIS-Journal\obj\Debug\DIS_Journal.Views.ScheduleForm.resources

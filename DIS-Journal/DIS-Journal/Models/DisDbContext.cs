@@ -15,6 +15,7 @@ namespace DIS_Journal.Models
         //This collections referes to the tables in the database (the name of the collection should be just like the name of the table which it refers to)
         public DbSet<User> Users { get; set; }
         public DbSet<Journal> Journals { get; set; }
+        public DbSet<Subject> Subjects { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

@@ -13,12 +13,12 @@ namespace DIS_Journal.Controllers
     {
         DisDbContext context = new DisDbContext();
 
-        public void Register(string userName, string email, string password, DateTime birth, string role)
+        public void Register(string username, string email, string password, DateTime birth, string role)
         {
             //making new object to class User - the new object is the new user
             var user = new User()
             {
-                UserName = userName,
+                Username = username,
                 Email = email,
                 Password = Hash(password),
                 Birth = birth,
@@ -33,25 +33,25 @@ namespace DIS_Journal.Controllers
         {
             password = Hash(password);
             //searching for users with the same email and password
-            var users = context.Users.Where(e => e.Email == email && e.Password == password).ToArray();
+            var users = context.Users.Where(e => (e.Email == email || e.Username == email) && e.Password == password).ToArray();
             if (users.Length != 0)
             {
                 User user = users[0];
                 Logged.Id = user.Id;
-                Logged.UserName = user.UserName;
+                Logged.Username = user.Username;
                 Logged.Email = user.Email;
                 Logged.Password = user.Password;
                 Logged.Birth = user.Birth;
                 Logged.Role = user.Role;
-                MessageBox.Show($"{Logged.UserName}, влязохте успешно!");
+                MessageBox.Show($"{Logged.Username}, влязохте успешно!");
             }
         }
 
-        public void Update(int id, string userName, string password)
+        public void Update(int id, string username, string password)
         {
             //finnding the user who wants to edit his information
             User user = context.Users.Single(e => e.Id == id);
-            user.UserName = userName;
+            user.Username = username;
             user.Password = Hash(password);
             context.SaveChanges();
 
@@ -68,7 +68,7 @@ namespace DIS_Journal.Controllers
         public void Logout()
         {
             Logged.Id = 0;
-            Logged.UserName = null;
+            Logged.Username = null;
             Logged.Email = null;
             Logged.Password = null;
             Logged.Birth = new DateTime();
