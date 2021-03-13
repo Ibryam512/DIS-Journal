@@ -16,6 +16,8 @@ namespace DIS_Journal.Views
         public ArchiveForm(Color pr, Color se)
         {
             InitializeComponent();
+            primary = pr;
+            secondary = se;
         }
 
         private void ArchiveForm_Load(object sender, EventArgs e)

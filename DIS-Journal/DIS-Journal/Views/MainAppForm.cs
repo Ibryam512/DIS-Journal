@@ -144,11 +144,11 @@ namespace DIS_Journal.Views
                 button2.BackColor = primary;
                 button2.ForeColor = Color.WhiteSmoke;
             }
-            if (object.ReferenceEquals(DesignController.Schedule, null))
+            if (object.ReferenceEquals(DesignController.Archive, null))
             {
-                DesignController.Schedule = new ScheduleForm(primary, secondary, hover);
+                DesignController.Archive = new ArchiveForm(primary, secondary);
             }
-            DesignController.OpenFormInApp(DesignController.Schedule);
+            DesignController.OpenFormInApp(DesignController.Archive);
         }
     }
 }

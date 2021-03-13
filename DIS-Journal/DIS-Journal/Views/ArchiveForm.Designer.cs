@@ -41,6 +41,7 @@ namespace DIS_Journal.Views
             this.richTextBox1.Font = new System.Drawing.Font("Bahnschrift", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.richTextBox1.Location = new System.Drawing.Point(25, 152);
             this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.ReadOnly = true;
             this.richTextBox1.Size = new System.Drawing.Size(741, 554);
             this.richTextBox1.TabIndex = 3;
             this.richTextBox1.Text = " Dear Diary...";
@@ -53,6 +54,7 @@ namespace DIS_Journal.Views
             this.textBox1.Font = new System.Drawing.Font("Bahnschrift SemiBold", 22F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox1.Location = new System.Drawing.Point(25, 82);
             this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(741, 53);
             this.textBox1.TabIndex = 2;
             this.textBox1.Text = " Title";
@@ -63,7 +65,7 @@ namespace DIS_Journal.Views
             // 
             this.comboBox1.Font = new System.Drawing.Font("Bahnschrift", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(106, 26);
+            this.comboBox1.Location = new System.Drawing.Point(121, 23);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(284, 42);
             this.comboBox1.TabIndex = 4;

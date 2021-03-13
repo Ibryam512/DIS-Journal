@@ -17,6 +17,7 @@ namespace DIS_Journal.Views
         public static MainAppForm App = new MainAppForm(Color.FromArgb(105, 165, 218), Color.FromArgb(71, 113, 184));
         public static JournalForm Journal;
         public static ScheduleForm Schedule;
+        public static ArchiveForm Archive;
 
         public static Form OpenMainForm()
         {
