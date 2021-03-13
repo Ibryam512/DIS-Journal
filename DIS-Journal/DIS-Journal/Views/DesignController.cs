@@ -14,7 +14,7 @@ namespace DIS_Journal.Views
         public static IntroForm Intro = new IntroForm();
         public static LoginForm Login;
         public static RegisterForm Register;
-        public static MainAppForm App = new MainAppForm(Color.FromArgb(105, 165, 218), Color.FromArgb(71, 113, 184));
+        public static MainAppForm App;
         public static JournalForm Journal;
         public static ScheduleForm Schedule;
         public static ArchiveForm Archive;
@@ -22,7 +22,7 @@ namespace DIS_Journal.Views
         public static Form OpenMainForm()
         {
             Main = new MainForm();
-            OpenForm(App);
+            OpenForm(Intro);
             return Main;
         }
 

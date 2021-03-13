@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DIS_Journal.Controllers;
 
 namespace DIS_Journal.Views
 {
@@ -38,6 +39,13 @@ namespace DIS_Journal.Views
                     this.BackColor = Color.FromArgb(186, 136, 238);
                     break;
             }
+            var journalController = new JournalController();
+            var journals = journalController.GetJournals();
+            foreach (var journal in journals)
+            {
+                comboBox1.Items.Add(journal.Title);
+            }
+          
         }
         private void textBox1_Click(object sender, EventArgs e)
         {
@@ -64,6 +72,15 @@ namespace DIS_Journal.Views
                 richTextBox1.Clear();
             }
             richTextBox1.ForeColor = primary;
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var title = comboBox1.SelectedItem.ToString();
+            var journalController = new JournalController();
+            var journal = journalController.GetJournal(title);
+            textBox1.Text = journal.Title;
+            richTextBox1.Text = journal.Description;
         }
 
         private void richTextBox1_Leave(object sender, EventArgs e)

@@ -9,33 +9,23 @@ namespace DIS_Journal.Controllers
 {
     class JournalController
     {
-        public static Journal journal = new Journal();
-
-        public void AddTitle(string title)
+        DisDbContext context = new DisDbContext();
+        public void UploadJournal(string title, string description, DateTime date)
         {
-            if (String.IsNullOrWhiteSpace(title))
+            var journal = new Journal()
             {
-                throw new ArgumentException("The title can't be empty!");
-            }
-            //else
-               // journal.titles.Add(title);
-
-            /* if(journal.Title != "")
-             {journal.titles.Add(title);}
-             */
+                Title = title,
+                Description = description,
+                Date = date,
+                User = Logged.Id
+            };
+            context.Journals.Add(journal);
+            context.SaveChanges();
         }
-        public void AddDescription(string description)
-        {
-            if (String.IsNullOrWhiteSpace(description))
-            {
-                throw new ArgumentException("The description can't be empty!");
-            }
-            //else
-                //journal.descriptions.Add(description);
 
-            /* if(journal.Description != "")
-             {journal.descriptions.Add(description);}
-             */
-        }
+        public List<Journal> GetJournals() => context.Journals.Where(x => x.User == Logged.Id).ToList();
+
+        public Journal GetJournal(string title) => GetJournals().Single(x => x.Title == title);
+       
     }
 }

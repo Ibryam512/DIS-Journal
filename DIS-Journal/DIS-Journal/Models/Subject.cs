@@ -15,15 +15,27 @@ namespace DIS_Journal.Models
             get; set;
         }
 
-        public string Color
+        public int R
         {
             get; set;
         }
 
-        public Subject(string title, string color)
+        public int G
+        {
+            get; set;
+        }
+
+        public int B
+        {
+            get; set;
+        }
+
+        public Subject(string title, int r, int g, int b)
         {
             this.Title = title;
-            this.Color = color;
+            this.R = r;
+            this.G = g;
+            this.B = b;
         }
     }
 }

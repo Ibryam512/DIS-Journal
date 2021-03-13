@@ -99,6 +99,7 @@ namespace DIS_Journal.Views
             string password = textBox2.Text;
             var userController = new UserController();
             userController.Login(username, password);
+            DesignController.OpenForm(DesignController.App = new MainAppForm(primary, secondary));
         }
 
         private void label5_MouseEnter(object sender, EventArgs e)

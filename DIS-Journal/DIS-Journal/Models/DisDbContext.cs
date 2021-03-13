@@ -16,7 +16,7 @@ namespace DIS_Journal.Models
         public DbSet<User> Users { get; set; }
         public DbSet<Journal> Journals { get; set; }
         public DbSet<Subject> Subjects { get; set; }
-
+        
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             //the string thanks to which there is connection between the database and the application

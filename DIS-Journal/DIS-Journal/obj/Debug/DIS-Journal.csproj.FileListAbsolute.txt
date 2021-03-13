@@ -165,3 +165,4 @@ C:\Users\Ibryam\Desktop\DIS-Journal\DIS-Journal\DIS-Journal\obj\Debug\DIS_Journa
 C:\Users\Ibryam\Desktop\DIS-Journal\DIS-Journal\DIS-Journal\obj\Debug\DIS_Journal.Views.AddSubjectPopUp.resources
 C:\Users\Ibryam\Desktop\DIS-Journal\DIS-Journal\DIS-Journal\obj\Debug\DIS_Journal.Views.ScheduleForm.resources
 C:\Users\valer\Desktop\DIS-Journal\DIS-Journal\DIS-Journal\obj\Debug\DIS_Journal.Views.ArchiveForm.resources
+C:\Users\Ibryam\Desktop\DIS-Journal\DIS-Journal\DIS-Journal\obj\Debug\DIS_Journal.Views.ArchiveForm.resources

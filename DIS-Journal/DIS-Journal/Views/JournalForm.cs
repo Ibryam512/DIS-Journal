@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Globalization;
+using DIS_Journal.Controllers;
 
 namespace DIS_Journal.Views
 {
@@ -88,7 +89,11 @@ namespace DIS_Journal.Views
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            string title = textBox1.Text;
+            string description = richTextBox1.Text;
+            DateTime date = new DateTime(DateTime.Today.Year, DateTime.Today.Month, DateTime.Today.Day);
+            var journalController = new JournalController();
+            journalController.UploadJournal(title, description, date);
         }
 
         private void richTextBox1_Leave(object sender, EventArgs e)
