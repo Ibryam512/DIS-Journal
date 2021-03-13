@@ -93,6 +93,7 @@ namespace DIS_Journal.Views
             this.panel7 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel43.SuspendLayout();
             this.panel37.SuspendLayout();
@@ -168,7 +169,7 @@ namespace DIS_Journal.Views
             this.tableLayoutPanel1.Controls.Add(this.panel2, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.panel1, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.panel7, 0, 1);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(12, 107);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(8, 94);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 8;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9F));
@@ -684,24 +685,44 @@ namespace DIS_Journal.Views
             this.button1.Font = new System.Drawing.Font("Bahnschrift", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(545, 698);
+            this.button1.Location = new System.Drawing.Point(571, 689);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(172, 69);
+            this.button1.Size = new System.Drawing.Size(201, 87);
             this.button1.TabIndex = 4;
-            this.button1.Text = "Submit";
+            this.button1.Text = "Add new subject";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.Transparent;
+            this.button2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button2.BackgroundImage")));
+            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button2.FlatAppearance.BorderSize = 0;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Font = new System.Drawing.Font("Bahnschrift", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button2.Location = new System.Drawing.Point(351, 689);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(201, 87);
+            this.button2.TabIndex = 5;
+            this.button2.Text = "Add new class";
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // ScheduleForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(788, 788);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "ScheduleForm";
             this.Text = "ScheduleForm";
+            this.Load += new System.EventHandler(this.ScheduleForm_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panel43.ResumeLayout(false);
             this.panel43.PerformLayout();
@@ -798,5 +819,6 @@ namespace DIS_Journal.Views
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
     }
 }

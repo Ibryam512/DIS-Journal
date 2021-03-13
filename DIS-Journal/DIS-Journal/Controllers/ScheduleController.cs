@@ -27,17 +27,17 @@ namespace DIS_Journal.Controllers
 
         public static void AddClass(Subject subject, int dayOfTheWeek, int period)
         {
-            if (schedule[dayOfTheWeek - 1, period - 1] != default(Subject))
+            if (schedule[dayOfTheWeek, period] != default(Subject))
             {
                 throw new Exception("There's already a class there!");
             }
             else
             {
-                schedule[dayOfTheWeek - 1, period - 1] = subject;
+                schedule[dayOfTheWeek, period] = subject;
             }
         }
 
-        public static void AddClass(string title, Color color, int dayOfTheWeek, int period)
+        public static void AddClass(string title, int dayOfTheWeek, int period)
         {
             Subject s = subjects.Find(x => x.Title == title);
             AddClass(s, dayOfTheWeek, period);

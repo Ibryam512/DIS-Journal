@@ -91,19 +91,7 @@ namespace DIS_Journal.Views
 
         private void button1_Click(object sender, EventArgs e)
         {
-            PictureBox pic = pictureBox1;
-            foreach (Control p in this.Controls)
-            {
-                if (p is PictureBox)
-                {
-                    if((p as PictureBox).BorderStyle == BorderStyle.None)
-                    {
-                        pic = (p as PictureBox);
-                    }
-                }
-            }
-            ScheduleController.AddSubject(textBox1.Text, pic.BackColor);
-            this.Close();
+            
         }
 
         private void button1_MouseEnter(object sender, EventArgs e)
@@ -125,6 +113,23 @@ namespace DIS_Journal.Views
             button2.BackgroundImage = hover;
             button2.BackColor = Color.Transparent;
             button2.ForeColor = Color.White;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            PictureBox pic = pictureBox1;
+            foreach (Control p in this.Controls)
+            {
+                if (p is PictureBox)
+                {
+                    if ((p as PictureBox).BorderStyle == BorderStyle.None)
+                    {
+                        pic = (p as PictureBox);
+                    }
+                }
+            }
+            ScheduleController.AddSubject(textBox1.Text, pic.BackColor);
+            this.Close();
         }
 
         private void button1_MouseLeave(object sender, EventArgs e)

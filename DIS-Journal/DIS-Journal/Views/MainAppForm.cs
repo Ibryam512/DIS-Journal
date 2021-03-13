@@ -38,6 +38,10 @@ namespace DIS_Journal.Views
             panel1.BackColor = primary;
             button1.BackColor = primary;
             button2.BackColor = primary;
+            if (object.ReferenceEquals(DesignController.Schedule, null))
+            {
+                DesignController.Schedule = new ScheduleForm(primary, secondary, hover);
+            }
         }
 
         private void button1_MouseEnter(object sender, EventArgs e)
@@ -106,10 +110,6 @@ namespace DIS_Journal.Views
                 button3.BackgroundImage = null;
                 button3.BackColor = primary;
                 button3.ForeColor = Color.WhiteSmoke;
-            }
-            if (object.ReferenceEquals(DesignController.Schedule, null))
-            {
-                DesignController.Schedule = new ScheduleForm(primary, secondary, hover);
             }
             DesignController.OpenFormInApp(DesignController.Schedule);
         }
