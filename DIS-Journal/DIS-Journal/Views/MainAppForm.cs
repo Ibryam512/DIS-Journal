@@ -64,6 +64,12 @@ namespace DIS_Journal.Views
                 button2.BackColor = primary;
                 button2.ForeColor = Color.WhiteSmoke;
             }
+            if(button3.ForeColor == Color.White)
+            {
+                button3.BackgroundImage = null;
+                button3.BackColor = primary;
+                button3.ForeColor = Color.WhiteSmoke;
+            }
             if (object.ReferenceEquals(DesignController.Journal, null))
             {
                 DesignController.Journal = new JournalForm(primary, secondary, hover);
@@ -94,6 +100,49 @@ namespace DIS_Journal.Views
                 button1.BackgroundImage = null;
                 button1.BackColor = primary;
                 button1.ForeColor = Color.WhiteSmoke;
+            }
+            if (button3.ForeColor == Color.White)
+            {
+                button3.BackgroundImage = null;
+                button3.BackColor = primary;
+                button3.ForeColor = Color.WhiteSmoke;
+            }
+            if (object.ReferenceEquals(DesignController.Schedule, null))
+            {
+                DesignController.Schedule = new ScheduleForm(primary, secondary, hover);
+            }
+            DesignController.OpenFormInApp(DesignController.Schedule);
+        }
+
+        private void button3_MouseEnter(object sender, EventArgs e)
+        {
+            button3.BackgroundImage = hover;
+        }
+
+        private void button3_MouseLeave(object sender, EventArgs e)
+        {
+            if (button3.ForeColor != Color.White)
+            {
+                button3.BackgroundImage = null;
+                button3.BackColor = primary;
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            button3.ForeColor = Color.White;
+            button3.BackgroundImage = hover;
+            if (button1.ForeColor == Color.White)
+            {
+                button1.BackgroundImage = null;
+                button1.BackColor = primary;
+                button1.ForeColor = Color.WhiteSmoke;
+            }
+            if (button2.ForeColor == Color.White)
+            {
+                button2.BackgroundImage = null;
+                button2.BackColor = primary;
+                button2.ForeColor = Color.WhiteSmoke;
             }
             if (object.ReferenceEquals(DesignController.Schedule, null))
             {

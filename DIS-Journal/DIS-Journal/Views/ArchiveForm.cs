@@ -7,28 +7,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Globalization;
 
 namespace DIS_Journal.Views
 {
-    public partial class JournalForm : Form
+    public partial class ArchiveForm : Form
     {
         Color primary, secondary;
-        Image hover;
-        public JournalForm(Color pr, Color se, Image h)
+        public ArchiveForm(Color pr, Color se)
         {
             InitializeComponent();
-            primary = pr;
-            secondary = se;
-            hover = h;
         }
 
-        private void JournalForm_Load(object sender, EventArgs e)
+        private void ArchiveForm_Load(object sender, EventArgs e)
         {
             label1.ForeColor = primary;
             textBox1.ForeColor = Color.LightGray;
-            richTextBox1.ForeColor = Color.LightGray;
-            label1.Text = $"{DateTime.Today.DayOfWeek}, {CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(DateTime.Today.Month)} {DateTime.Today.Day}, {DateTime.Today.Year}";
+            richTextBox1.ForeColor = Color.LightGray;           
 
             switch (primary.R)
             {
@@ -42,9 +36,7 @@ namespace DIS_Journal.Views
                     this.BackColor = Color.FromArgb(186, 136, 238);
                     break;
             }
-            button1.BackgroundImage = hover;
         }
-
         private void textBox1_Click(object sender, EventArgs e)
         {
             if (textBox1.Text == " Title")
@@ -72,25 +64,6 @@ namespace DIS_Journal.Views
             richTextBox1.ForeColor = primary;
         }
 
-        private void button1_MouseEnter(object sender, EventArgs e)
-        {
-            button1.BackgroundImage = null;
-            button1.BackColor = Color.White;
-            button1.ForeColor = primary;
-        }
-
-        private void button1_MouseLeave(object sender, EventArgs e)
-        {
-            button1.BackgroundImage = hover;
-            button1.BackColor = Color.Transparent;
-            button1.ForeColor = Color.White;
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void richTextBox1_Leave(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(richTextBox1.Text))
@@ -99,6 +72,5 @@ namespace DIS_Journal.Views
                 richTextBox1.ForeColor = Color.LightGray;
             }
         }
-
     }
 }
