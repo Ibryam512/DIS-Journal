@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -172,6 +173,21 @@ namespace DIS_Journal.Views
             string username = textBox1.Text;
             string password = textBox2.Text;
             string email = textBox3.Text;
+            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password) || string.IsNullOrEmpty(email) || comboBox1.SelectedIndex < 0 || comboBox2.SelectedIndex < 0 || comboBox3.SelectedIndex < 0)
+            {
+                MessageBox.Show("There are empty spaces!");
+                return;
+            }
+            if (password.Length < 8)
+            {
+                MessageBox.Show("Your password should be 8 symbols or more long!");
+                return;
+            }
+            if (!new EmailAddressAttribute().IsValid(email))
+            {
+                MessageBox.Show("Your email is not valid!");
+                return;
+            }
             int year = int.Parse(comboBox3.SelectedItem.ToString());
             int month = int.Parse(comboBox1.SelectedItem.ToString());
             int day = int.Parse(comboBox2.SelectedItem.ToString());

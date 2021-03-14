@@ -91,6 +91,11 @@ namespace DIS_Journal.Views
         {
             string title = textBox1.Text;
             string description = richTextBox1.Text;
+            if (description.Length > 10000)
+            {
+                MessageBox.Show("The description is too long!");
+                return;
+            }
             DateTime date = new DateTime(DateTime.Today.Year, DateTime.Today.Month, DateTime.Today.Day);
             var journalController = new JournalController();
             journalController.UploadJournal(title, description, date);

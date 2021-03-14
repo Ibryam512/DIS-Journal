@@ -97,9 +97,16 @@ namespace DIS_Journal.Views
         {
             string username = textBox1.Text;
             string password = textBox2.Text;
+            if(string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
+            {
+                MessageBox.Show("The username and password should not be empty!");
+                return;
+            }
             var userController = new UserController();
-            userController.Login(username, password);
-            DesignController.OpenForm(DesignController.App = new MainAppForm(primary, secondary));
+            if (userController.Login(username, password))
+                DesignController.OpenForm(DesignController.App = new MainAppForm(primary, secondary));
+            else
+                MessageBox.Show("Wrong username/email or password!");
         }
 
         private void label5_MouseEnter(object sender, EventArgs e)

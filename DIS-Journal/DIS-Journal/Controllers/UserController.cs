@@ -16,6 +16,18 @@ namespace DIS_Journal.Controllers
         public void Register(string username, string email, string password, DateTime birth, string role)
         {
             //making new object to class User - the new object is the new user
+            var usersWithSameEmail = context.Users.Where(x => x.Email == email).ToList();
+            if (usersWithSameEmail.Count > 0)
+            {
+                MessageBox.Show("An user with that email exists!");
+                return;
+            }
+            var usersWithSameUsername = context.Users.Where(x => x.Username == username).ToList();
+            if (usersWithSameUsername.Count > 0)
+            {
+                MessageBox.Show("An user with that username exists!");
+                return;
+            }
             var user = new User()
             {
                 Username = username,
@@ -29,7 +41,7 @@ namespace DIS_Journal.Controllers
             MessageBox.Show($"Успешна регистрация!");
         }
 
-        public void Login(string email, string password)
+        public bool Login(string email, string password)
         {
             password = Hash(password);
             //searching for users with the same email and password
@@ -43,8 +55,9 @@ namespace DIS_Journal.Controllers
                 Logged.Password = user.Password;
                 Logged.Birth = user.Birth;
                 Logged.Role = user.Role;
-                MessageBox.Show($"{Logged.Username}, влязохте успешно!");
+                return true;
             }
+            return false;
         }
 
         public void Update(int id, string username, string password)
