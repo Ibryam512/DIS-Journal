@@ -24,8 +24,9 @@ namespace DIS_Journal.Views
         private void ArchiveForm_Load(object sender, EventArgs e)
         {
             label1.ForeColor = primary;
-            textBox1.ForeColor = Color.LightGray;
-            richTextBox1.ForeColor = Color.LightGray;           
+            textBox1.ForeColor = primary;
+            richTextBox1.ForeColor = primary;
+            comboBox1.ForeColor = primary;
 
             switch (primary.R)
             {
@@ -47,49 +48,15 @@ namespace DIS_Journal.Views
             }
           
         }
-        private void textBox1_Click(object sender, EventArgs e)
-        {
-            if (textBox1.Text == " Title")
-            {
-                textBox1.Clear();
-            }
-            textBox1.ForeColor = primary;
-        }
-
-        private void textBox1_Leave(object sender, EventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(textBox1.Text))
-            {
-                textBox1.Text = " Title";
-                textBox1.ForeColor = Color.LightGray;
-            }
-        }
-
-        private void richTextBox1_Click(object sender, EventArgs e)
-        {
-            if (richTextBox1.Text == " Dear Diary...")
-            {
-                richTextBox1.Clear();
-            }
-            richTextBox1.ForeColor = primary;
-        }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             var title = comboBox1.SelectedItem.ToString();
             var journalController = new JournalController();
             var journal = journalController.GetJournal(title);
-            textBox1.Text = journal.Title;
+            textBox1.Text = $"{journal.Date.Day}.{journal.Date.Month}.{journal.Date.Year}";
             richTextBox1.Text = journal.Description;
         }
 
-        private void richTextBox1_Leave(object sender, EventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(richTextBox1.Text))
-            {
-                richTextBox1.Text = " Dear Diary...";
-                richTextBox1.ForeColor = Color.LightGray;
-            }
-        }
     }
 }
