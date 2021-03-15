@@ -45,7 +45,7 @@ namespace DIS_Journal.Views
             l.Location = new Point(3, 25);
             l.Text = comboBox1.SelectedItem.ToString();
             ScheduleForm.classes[period, day].Controls.Add(l);
-            ScheduleForm.classes[period, day].BackColor = Color.Red;
+            ScheduleForm.classes[period, day].BackColor = Color.FromArgb(100, s.R, s.G, s.B);
         }
 
         public AddClassPopUp(Color pr, Color se, Image h)
@@ -54,7 +54,6 @@ namespace DIS_Journal.Views
             primary = pr;
             secondary = se;
             hover = h;
-        }
-    
+        } 
     }
 }

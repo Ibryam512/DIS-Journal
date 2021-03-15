@@ -21,7 +21,7 @@ namespace DIS_Journal.Controllers
             }
             else
             {
-                subjects.Add(new Subject(title, 1, 1, 1));
+                subjects.Add(new Subject(title, color.R, color.G, color.B));
             }
         }
 
