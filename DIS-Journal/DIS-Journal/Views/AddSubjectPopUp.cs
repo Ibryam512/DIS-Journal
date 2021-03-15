@@ -46,52 +46,17 @@ namespace DIS_Journal.Views
             }
         }
 
-        private void PickColor(PictureBox pbox)
+        private void PickColor(Panel pbox)
         {
-            foreach(Control p in this.Controls)
+            foreach(Control p in panel1.Controls)
             {
-                if(p is PictureBox)
+                MessageBox.Show("yeet");
+                if(p is Panel box)
                 {
-                    (p as PictureBox).BorderStyle = BorderStyle.None;
+                    box.BackColor = Color.FromArgb(255, box.BackColor);
                 }
             }
-            pbox.BorderStyle = BorderStyle.Fixed3D;
-        }
-
-        private void pictureBox2_Click(object sender, EventArgs e)
-        {
-            PickColor(pictureBox2);
-        }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-            PickColor(pictureBox1);
-        }
-
-        private void pictureBox3_Click(object sender, EventArgs e)
-        {
-            PickColor(pictureBox3);
-
-        }
-
-        private void pictureBox4_Click(object sender, EventArgs e)
-        {
-            PickColor(pictureBox4);
-        }
-
-        private void pictureBox5_Click(object sender, EventArgs e)
-        {
-            PickColor(pictureBox5);
-        }
-
-        private void pictureBox6_Click(object sender, EventArgs e)
-        {
-            PickColor(pictureBox6);
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            
+            pbox.BackColor = Color.FromArgb(80, pbox.BackColor);
         }
 
         private void button1_MouseEnter(object sender, EventArgs e)
@@ -117,19 +82,54 @@ namespace DIS_Journal.Views
 
         private void button2_Click(object sender, EventArgs e)
         {
-            PictureBox pic = pictureBox1;
-            foreach (Control p in this.Controls)
+            Panel pic = panel2;
+            foreach (Control p in this.panel1.Controls)
             {
-                if (p is PictureBox)
+                if (p is Panel)
                 {
-                    if ((p as PictureBox).BorderStyle == BorderStyle.None)
+                    if ((p as Panel).BackColor.A == 80)
                     {
-                        pic = (p as PictureBox);
+                        pic = (p as Panel);
                     }
                 }
             }
-            ScheduleController.AddSubject(textBox1.Text, pic.BackColor);
+            ScheduleController.AddSubject(textBox1.Text, Color.FromArgb(255, pic.BackColor));
             this.Close();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel2_Click(object sender, EventArgs e)
+        {
+            PickColor(panel2);
+        }
+
+        private void panel3_Click(object sender, EventArgs e)
+        {
+            PickColor(panel3);
+        }
+
+        private void panel4_Click(object sender, EventArgs e)
+        {
+            PickColor(panel4);
+        }
+
+        private void panel5_Click(object sender, EventArgs e)
+        {
+            PickColor(panel5);
+        }
+
+        private void panel6_Click(object sender, EventArgs e)
+        {
+            PickColor(panel6);
+        }
+
+        private void panel7_Click(object sender, EventArgs e)
+        {
+            PickColor(panel7);
         }
 
         private void button1_MouseLeave(object sender, EventArgs e)

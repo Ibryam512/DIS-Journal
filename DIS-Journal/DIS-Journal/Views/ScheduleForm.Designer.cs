@@ -187,35 +187,35 @@ namespace DIS_Journal.Views
             // 
             this.Friday_7.Location = new System.Drawing.Point(622, 500);
             this.Friday_7.Name = "Friday_7";
-            this.Friday_7.Size = new System.Drawing.Size(136, 67);
+            this.Friday_7.Size = new System.Drawing.Size(136, 72);
             this.Friday_7.TabIndex = 45;
             // 
             // Thursday_7
             // 
             this.Thursday_7.Location = new System.Drawing.Point(480, 500);
             this.Thursday_7.Name = "Thursday_7";
-            this.Thursday_7.Size = new System.Drawing.Size(135, 67);
+            this.Thursday_7.Size = new System.Drawing.Size(135, 72);
             this.Thursday_7.TabIndex = 44;
             // 
             // Wednesday_7
             // 
             this.Wednesday_7.Location = new System.Drawing.Point(338, 500);
             this.Wednesday_7.Name = "Wednesday_7";
-            this.Wednesday_7.Size = new System.Drawing.Size(135, 67);
+            this.Wednesday_7.Size = new System.Drawing.Size(135, 72);
             this.Wednesday_7.TabIndex = 43;
             // 
             // Tuesday_7
             // 
             this.Tuesday_7.Location = new System.Drawing.Point(196, 500);
             this.Tuesday_7.Name = "Tuesday_7";
-            this.Tuesday_7.Size = new System.Drawing.Size(135, 67);
+            this.Tuesday_7.Size = new System.Drawing.Size(135, 72);
             this.Tuesday_7.TabIndex = 42;
             // 
             // Monday_7
             // 
             this.Monday_7.Location = new System.Drawing.Point(54, 500);
             this.Monday_7.Name = "Monday_7";
-            this.Monday_7.Size = new System.Drawing.Size(135, 67);
+            this.Monday_7.Size = new System.Drawing.Size(135, 72);
             this.Monday_7.TabIndex = 41;
             // 
             // panel43

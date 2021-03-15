@@ -27,7 +27,19 @@ namespace DIS_Journal.Views
 
         private void ScheduleForm_Load(object sender, EventArgs e)
         {
-
+            this.BackColor = secondary;
+            switch (primary.R)
+            {
+                case 58:
+                    this.BackColor = Color.FromArgb(169, 223, 175);
+                    break;
+                case 105:
+                    this.BackColor = Color.FromArgb(179, 209, 236);
+                    break;
+                default:
+                    this.BackColor = Color.FromArgb(186, 136, 238);
+                    break;
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
