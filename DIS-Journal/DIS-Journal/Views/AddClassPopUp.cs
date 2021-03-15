@@ -42,10 +42,17 @@ namespace DIS_Journal.Views
             ScheduleController.AddClass(comboBox1.SelectedItem.ToString(), day, period);
             Subject s = ScheduleController.subjects.Find(x => x.Title == comboBox1.SelectedItem.ToString());
             Label l = new Label();
+            Label cl = new Label();
+            
             l.Location = new Point(3, 25);
             l.Text = comboBox1.SelectedItem.ToString();
             ScheduleForm.classes[period, day].Controls.Add(l);
             ScheduleForm.classes[period, day].BackColor = Color.FromArgb(100, s.R, s.G, s.B);
+        }
+
+        private void CLcik()
+        {
+
         }
 
         public AddClassPopUp(Color pr, Color se, Image h)
