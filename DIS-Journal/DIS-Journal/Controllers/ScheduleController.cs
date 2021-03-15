@@ -61,13 +61,13 @@ namespace DIS_Journal.Controllers
 
         public static void RemoveClass(int dayOfTheWeek, int period)
         {
-            if (schedule[dayOfTheWeek - 1, period - 1] == default(Subject))
+            if (schedule[dayOfTheWeek, period] == default(Subject))
             {
                 throw new ArgumentException("There isn't a class there");
             }
             else
             {
-                schedule[dayOfTheWeek - 1, period - 1] = default(Subject);
+                schedule[dayOfTheWeek, period] = default(Subject);
             }
         }
     } 

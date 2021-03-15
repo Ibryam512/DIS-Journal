@@ -38,6 +38,7 @@ namespace DIS_Journal.Views
             panel1.BackColor = primary;
             button1.BackColor = primary;
             button2.BackColor = primary;
+            button3.BackColor = primary;
             if (object.ReferenceEquals(DesignController.Schedule, null))
             {
                 DesignController.Schedule = new ScheduleForm(primary, secondary, hover);

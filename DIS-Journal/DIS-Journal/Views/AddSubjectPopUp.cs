@@ -21,6 +21,7 @@ namespace DIS_Journal.Views
             primary = pr;
             secondary = se;
             hover = h;
+            button2.BackgroundImage = h;
         }
 
         private void ClassPopUp_Load(object sender, EventArgs e)
@@ -50,7 +51,6 @@ namespace DIS_Journal.Views
         {
             foreach(Control p in panel1.Controls)
             {
-                MessageBox.Show("yeet");
                 if(p is Panel box)
                 {
                     box.BackColor = Color.FromArgb(255, box.BackColor);
@@ -99,7 +99,7 @@ namespace DIS_Journal.Views
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            this.Close();
         }
 
         private void panel2_Click(object sender, EventArgs e)

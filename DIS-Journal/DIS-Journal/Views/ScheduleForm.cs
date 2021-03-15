@@ -23,11 +23,13 @@ namespace DIS_Journal.Views
             secondary = se;
             hover = h;
             FillArray();
+            button1.BackgroundImage = h;
+            button2.BackgroundImage = h;
         }
 
         private void ScheduleForm_Load(object sender, EventArgs e)
         {
-            this.BackColor = secondary;
+            //this.BackColor = secondary;
             switch (primary.R)
             {
                 case 58:
