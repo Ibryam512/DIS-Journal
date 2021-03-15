@@ -27,14 +27,19 @@ namespace DIS_Journal.Views
             {
                 case 58:
                     hover = Image.FromFile("main_form/ihover.png");
+                    pictureBox2.Image = Image.FromFile("main_form/gteam.png");
                     break;
                 case 105:
                     hover = Image.FromFile("main_form/vhover.png");
+                    pictureBox2.Image = Image.FromFile("main_form/bteam.png");
                     break;
                 default:
                     hover = Image.FromFile("main_form/nhover.png");
+                    pictureBox2.Image = Image.FromFile("main_form/pteam.png");
                     break;
             }
+            label1.ForeColor = primary;
+            label2.ForeColor = secondary;
             panel1.BackColor = primary;
             button1.BackColor = primary;
             button2.BackColor = primary;
