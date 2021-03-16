@@ -30,12 +30,17 @@ namespace DIS_Journal.Models
             get; set;
         }
 
-        public Subject(string title, int r, int g, int b)
+        public int User
+        {
+            get; set;
+        }
+        public Subject(string title, int r, int g, int b, int user)
         {
             this.Title = title;
             this.R = r;
             this.G = g;
             this.B = b;
+            this.User = user;
         }
     }
 }

@@ -55,6 +55,8 @@ namespace DIS_Journal.Controllers
                 Logged.Password = user.Password;
                 Logged.Birth = user.Birth;
                 Logged.Role = user.Role;
+                //setting user's subjects
+                ScheduleController.Start();
                 return true;
             }
             return false;

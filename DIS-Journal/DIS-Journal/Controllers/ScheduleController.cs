@@ -10,18 +10,27 @@ namespace DIS_Journal.Controllers
 {
     static class ScheduleController
     {
+        public static DisDbContext context = new DisDbContext();
         public static Subject[,] schedule = new Subject[5, 7];
-        public static List<Subject> subjects = new List<Subject>();
 
+        public static void Start()
+        {
+            foreach (var subject in context.Classes)
+            {
+                schedule[subject.Hour, subject.Day] = context.Subjects.Single(x => subject.Subject == x.Id && x.User == Logged.Id);
+            }
+        }
         public static void AddSubject(string title, Color color)
         {
-            if(subjects.Any(x => x.Title == title))
+            if(context.Subjects.Any(x => x.Title == title))
             {
                 throw new Exception("The subject already exsists");
             }
             else
             {
-                subjects.Add(new Subject(title, color.R, color.G, color.B));
+                var subject = new Subject(title, color.R, color.G, color.B, Logged.Id);
+                context.Subjects.Add(subject);
+                context.SaveChanges();
             }
         }
 
@@ -34,20 +43,29 @@ namespace DIS_Journal.Controllers
             else
             {
                 schedule[dayOfTheWeek, period] = subject;
+                var clss = new Class()
+                {
+                    Day = dayOfTheWeek,
+                    Hour = period,
+                    Subject = subject.Id
+                };
+                context.Classes.Add(clss);
+                context.SaveChanges();
             }
         }
 
         public static void AddClass(string title, int dayOfTheWeek, int period)
         {
-            Subject s = subjects.Find(x => x.Title == title);
+            Subject s = context.Subjects.Single(x => x.Title == title);
             AddClass(s, dayOfTheWeek, period);
         }
 
         public static void RemoveSubject(string title)
         {
-            Subject subject = subjects.Find(x => x.Title == title);
-            subjects.Remove(subject);
-            for(int i = 0; i < 8; i++)
+            Subject subject = context.Subjects.Single(x => x.Title == title);
+            context.Subjects.Remove(subject);
+            context.SaveChanges();
+            for (int i = 0; i < 8; i++)
             {
                 for(int j = 0; j < 5; j++)
                 {
@@ -68,6 +86,9 @@ namespace DIS_Journal.Controllers
             else
             {
                 schedule[dayOfTheWeek, period] = default(Subject);
+                var clss = context.Classes.Single(x => x.Day == dayOfTheWeek && x.Hour == period);
+                context.Classes.Remove(clss);
+                context.SaveChanges();
             }
         }
     } 

@@ -29,7 +29,7 @@ namespace DIS_Journal.Views
         private void AddClassPopUp_Load(object sender, EventArgs e)
         {
             this.BackColor = primary;
-            foreach (Subject s in ScheduleController.subjects)
+            foreach (Subject s in ScheduleController.context.Subjects)
             {
                 comboBox1.Items.Add(s.Title);
             }
@@ -50,7 +50,7 @@ namespace DIS_Journal.Views
             int day = comboBox2.SelectedIndex;
             int period = int.Parse(comboBox3.SelectedItem.ToString()) - 1;
             ScheduleController.AddClass(comboBox1.SelectedItem.ToString(), day, period);
-            Subject subject = ScheduleController.subjects.Find(x => x.Title == comboBox1.SelectedItem.ToString());
+            Subject subject = ScheduleController.context.Subjects.Single(x => x.Title == comboBox1.SelectedItem.ToString());
             Label label_subject = new Label();
             Label close_panel = new Label();
 

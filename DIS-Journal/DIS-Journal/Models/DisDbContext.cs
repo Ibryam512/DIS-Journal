@@ -16,6 +16,7 @@ namespace DIS_Journal.Models
         public DbSet<User> Users { get; set; }
         public DbSet<Journal> Journals { get; set; }
         public DbSet<Subject> Subjects { get; set; }
+        public DbSet<Class> Classes { get; set; }
         
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
