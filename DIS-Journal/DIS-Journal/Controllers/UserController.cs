@@ -55,29 +55,44 @@ namespace DIS_Journal.Controllers
                 Logged.Password = user.Password;
                 Logged.Birth = user.Birth;
                 Logged.Role = user.Role;
-                //setting user's subjects
-                ScheduleController.Start();
                 return true;
             }
             return false;
         }
 
-        public void Update(int id, string username, string password)
+        public void Update(int id, string username)
         {
             //finnding the user who wants to edit his information
             User user = context.Users.Single(e => e.Id == id);
             user.Username = username;
-            user.Password = Hash(password);
+            Logged.Username = username;
             context.SaveChanges();
 
         }
 
         public void Delete(int id)
         {
-            //finnding the user who wants to delete his account
+            //finnding the user who wants to delete his account and deleting all his journals, classes and subjects
+            //List with id-s of all the subjects the user added
+            List<int> subjects = new List<int>();
             User user = context.Users.Single(e => e.Id == id);
             context.Users.Remove(user);
+            foreach (var journal in context.Journals.Where(x => x.User == id))
+                context.Journals.Remove(journal);
+            foreach (var subject in context.Subjects.Where(x => x.User == id))
+            {
+                subjects.Add(subject.Id);
+                context.Subjects.Remove(subject);
+            }
+            foreach (var sid in subjects)
+            {
+                foreach (var subject in context.Classes.Where(x => x.Subject == sid))
+                {
+                    context.Classes.Remove(subject);
+                }
+            }
             context.SaveChanges();
+            Logout();
         }
 
         public void Logout()

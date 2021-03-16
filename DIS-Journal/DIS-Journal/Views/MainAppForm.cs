@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DIS_Journal.Controllers;
 
 namespace DIS_Journal.Views
 {
@@ -130,6 +131,7 @@ namespace DIS_Journal.Views
                 button4.BackColor = primary;
                 button4.ForeColor = Color.WhiteSmoke;
             }
+            //setting user's subjects
             DesignController.OpenFormInApp(DesignController.Schedule);
         }
 

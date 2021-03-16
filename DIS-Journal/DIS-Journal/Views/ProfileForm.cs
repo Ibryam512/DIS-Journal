@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DIS_Journal.Controllers;
 
 namespace DIS_Journal.Views
 {
@@ -34,11 +35,37 @@ namespace DIS_Journal.Views
             }
             button1.BackColor = secondary;
             pictureBox2.BackColor = textBox2.BackColor;
+            DateTime birth = Logged.Birth.Date;
+            textBox1.Text = Logged.Email;
+            textBox2.Text = Logged.Username;
+            textBox3.Text = $"{birth.Day}.{birth.Month}.{birth.Year}"; ;
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)
         {
             textBox2.ReadOnly = false;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            var userController = new UserController();
+            userController.Delete(Logged.Id);
+            DesignController.OpenForm(DesignController.Intro);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string username = textBox2.Text;
+            var userController = new UserController();
+            userController.Update(Logged.Id, username);
+            textBox2.ReadOnly = true;
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+            var userController = new UserController();
+            userController.Logout();
+            DesignController.OpenForm(DesignController.Intro);
         }
 
         public ProfileForm(Color pr, Color se, Image h)

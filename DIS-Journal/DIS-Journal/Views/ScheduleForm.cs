@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DIS_Journal.Controllers;
 
 namespace DIS_Journal.Views
 {
@@ -42,6 +43,36 @@ namespace DIS_Journal.Views
                     this.BackColor = Color.FromArgb(186, 136, 238);
                     break;
             }
+
+            ScheduleController.Start();
+            for (int i = 0; i < 5; i++)
+            {
+                for (int j = 0; j < 7; j++)
+                {
+                    var subject = ScheduleController.schedule[i, j];
+                    if (subject != null)
+                    {
+                        Label label_subject = new Label();
+                        Label close_panel = new Label();
+                        classes[j, i].Controls.Add(label_subject);
+                        classes[j, i].Controls.Add(close_panel);
+
+                        close_panel.Text = "x";
+                        close_panel.ForeColor = Color.White;
+                        close_panel.BackColor = Color.Transparent;
+                        close_panel.Font = new Font("Bahnschrift", 12);
+                        close_panel.Location = new Point(73, 0);
+                        var clss = ScheduleController.context.Classes.Single(x => x.Subject == subject.Id && x.Hour == j && x.Day == i);
+                        close_panel.Click += delegate (object s, EventArgs ea) { Clear_Panel(s, ea, clss.Hour, clss.Day); };
+
+                        label_subject.Location = new Point(3, 25);
+                        label_subject.Text = subject.Title;
+
+                        classes[j, i].BackColor = Color.FromArgb(100, subject.R, subject.G, subject.B);
+                    }
+                }
+            }
+
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -93,5 +124,16 @@ namespace DIS_Journal.Views
             classes[5, 4] = Friday_6;
             classes[6, 4] = Friday_7;
         }
+
+        private void Clear_Panel(object sender, EventArgs e, int period, int day)
+        {
+            MessageBox.Show(period + " " + day);
+            Panel panel = classes[period, day];
+            panel.Controls.Clear();
+            panel.BackColor = Color.White;
+            ScheduleController.RemoveClass(day, period);
+
+        }
+
     }
 }

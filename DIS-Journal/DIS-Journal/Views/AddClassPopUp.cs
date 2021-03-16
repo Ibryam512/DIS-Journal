@@ -46,7 +46,6 @@ namespace DIS_Journal.Views
 
         private void button2_Click(object sender, EventArgs e)
         {
-            //putting relevant names for Her Majesty :)
             int day = comboBox2.SelectedIndex;
             int period = int.Parse(comboBox3.SelectedItem.ToString()) - 1;
             ScheduleController.AddClass(comboBox1.SelectedItem.ToString(), day, period);

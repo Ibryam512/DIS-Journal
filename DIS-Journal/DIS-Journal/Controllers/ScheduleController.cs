@@ -15,9 +15,11 @@ namespace DIS_Journal.Controllers
 
         public static void Start()
         {
-            foreach (var subject in context.Classes)
+            var classes = context.Classes.ToList();
+            var subjects = context.Subjects.ToList();
+            foreach (var subject in classes)
             {
-                schedule[subject.Hour, subject.Day] = context.Subjects.Single(x => subject.Subject == x.Id && x.User == Logged.Id);
+                schedule[subject.Day, subject.Hour] = subjects.Single(x => subject.Subject == x.Id && x.User == Logged.Id);
             }
         }
         public static void AddSubject(string title, Color color)
