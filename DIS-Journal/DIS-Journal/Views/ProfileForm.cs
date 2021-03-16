@@ -36,6 +36,11 @@ namespace DIS_Journal.Views
             pictureBox2.BackColor = textBox2.BackColor;
         }
 
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            textBox2.ReadOnly = false;
+        }
+
         public ProfileForm(Color pr, Color se, Image h)
         {
             InitializeComponent();

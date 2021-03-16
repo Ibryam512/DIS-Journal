@@ -34,6 +34,7 @@ namespace DIS_Journal.Views
             panel1.BackColor = primary;
             button1.ForeColor = secondary;
             button1.BackgroundImage = Image.FromFile(button_o);
+            
         }
 
         //username textbox
@@ -106,7 +107,9 @@ namespace DIS_Journal.Views
             if (userController.Login(username, password))
                 DesignController.OpenForm(DesignController.App = new MainAppForm(primary, secondary));
             else
+            {
                 MessageBox.Show("Wrong username/email or password!");
+            }
         }
 
         private void label5_MouseEnter(object sender, EventArgs e)
