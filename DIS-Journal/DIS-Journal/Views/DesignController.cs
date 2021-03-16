@@ -18,6 +18,7 @@ namespace DIS_Journal.Views
         public static JournalForm Journal;
         public static ScheduleForm Schedule;
         public static ArchiveForm Archive;
+        public static ProfileForm Profile;
 
         public static Form OpenMainForm()
         {

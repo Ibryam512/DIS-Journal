@@ -171,3 +171,4 @@ C:\Users\Ibryam\Desktop\DIS-Journal\DIS-Journal\DIS-Journal\obj\Debug\DIS_Journa
 C:\Users\valer\Desktop\DIS-Journal\DIS-Journal\DIS-Journal\obj\Debug\DIS_Journal.Views.AddClassPopUp.resources
 >>>>>>> Stashed changes
 C:\Users\Ibryam\Desktop\DIS-Journal\DIS-Journal\DIS-Journal\obj\Debug\DIS_Journal.Views.AddClassPopUp.resources
+C:\Users\valer\Desktop\DIS-Journal\DIS-Journal\DIS-Journal\obj\Debug\DIS_Journal.Views.ProfileForm.resources

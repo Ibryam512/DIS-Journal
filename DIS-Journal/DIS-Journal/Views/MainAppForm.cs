@@ -209,11 +209,11 @@ namespace DIS_Journal.Views
                 button1.BackColor = primary;
                 button1.ForeColor = Color.WhiteSmoke;
             }
-            if (object.ReferenceEquals(DesignController.Journal, null))
+            if (object.ReferenceEquals(DesignController.Profile, null))
             {
-                DesignController.Journal = new JournalForm(primary, secondary, hover);
+                DesignController.Profile = new ProfileForm(primary, secondary, hover);
             }
-            DesignController.OpenFormInApp(DesignController.Journal);
+            DesignController.OpenFormInApp(DesignController.Profile);
         }
     }
 }
