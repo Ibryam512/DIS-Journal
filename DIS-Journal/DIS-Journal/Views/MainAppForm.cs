@@ -44,6 +44,7 @@ namespace DIS_Journal.Views
             button1.BackColor = primary;
             button2.BackColor = primary;
             button3.BackColor = primary;
+            button4.BackColor = primary;
             if (object.ReferenceEquals(DesignController.Schedule, null))
             {
                 DesignController.Schedule = new ScheduleForm(primary, secondary, hover);
@@ -79,6 +80,12 @@ namespace DIS_Journal.Views
                 button3.BackgroundImage = null;
                 button3.BackColor = primary;
                 button3.ForeColor = Color.WhiteSmoke;
+            }
+            if(button4.ForeColor == Color.White)
+            {
+                button4.BackgroundImage = null;
+                button4.BackColor = primary;
+                button4.ForeColor = Color.WhiteSmoke;
             }
             if (object.ReferenceEquals(DesignController.Journal, null))
             {
@@ -117,6 +124,12 @@ namespace DIS_Journal.Views
                 button3.BackColor = primary;
                 button3.ForeColor = Color.WhiteSmoke;
             }
+            if (button4.ForeColor == Color.White)
+            {
+                button4.BackgroundImage = null;
+                button4.BackColor = primary;
+                button4.ForeColor = Color.WhiteSmoke;
+            }
             DesignController.OpenFormInApp(DesignController.Schedule);
         }
 
@@ -150,9 +163,57 @@ namespace DIS_Journal.Views
                 button2.BackColor = primary;
                 button2.ForeColor = Color.WhiteSmoke;
             }
-           
+            if (button4.ForeColor == Color.White)
+            {
+                button4.BackgroundImage = null;
+                button4.BackColor = primary;
+                button4.ForeColor = Color.WhiteSmoke;
+            }
             DesignController.Archive = new ArchiveForm(primary, secondary);
             DesignController.OpenFormInApp(DesignController.Archive);
+        }
+
+        private void button4_MouseEnter(object sender, EventArgs e)
+        {
+            button4.BackgroundImage = hover;
+        }
+
+        private void button4_MouseLeave(object sender, EventArgs e)
+        {
+            if (button4.ForeColor != Color.White)
+            {
+                button4.BackgroundImage = null;
+                button4.BackColor = primary;
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            button4.ForeColor = Color.White;
+            button4.BackgroundImage = hover;
+            if (button2.ForeColor == Color.White)
+            {
+                button2.BackgroundImage = null;
+                button2.BackColor = primary;
+                button2.ForeColor = Color.WhiteSmoke;
+            }
+            if (button3.ForeColor == Color.White)
+            {
+                button3.BackgroundImage = null;
+                button3.BackColor = primary;
+                button3.ForeColor = Color.WhiteSmoke;
+            }
+            if (button1.ForeColor == Color.White)
+            {
+                button1.BackgroundImage = null;
+                button1.BackColor = primary;
+                button1.ForeColor = Color.WhiteSmoke;
+            }
+            if (object.ReferenceEquals(DesignController.Journal, null))
+            {
+                DesignController.Journal = new JournalForm(primary, secondary, hover);
+            }
+            DesignController.OpenFormInApp(DesignController.Journal);
         }
     }
 }
