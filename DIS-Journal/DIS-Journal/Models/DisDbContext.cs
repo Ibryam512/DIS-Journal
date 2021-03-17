@@ -10,7 +10,7 @@ using MySql.EntityFrameworkCore;
 namespace DIS_Journal.Models
 {
     //This is DbContext class, which is required for the connection between the database and the application
-    class DisDbContext : DbContext
+    public class DisDbContext : DbContext
     {
         //This collections referes to the tables in the database (the name of the collection should be just like the name of the table which it refers to)
         public DbSet<User> Users { get; set; }

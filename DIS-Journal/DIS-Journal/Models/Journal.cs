@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DIS_Journal.Models
 {
-    class Journal
+    public class Journal
     {
         public int Id { get; set; }
         public string Title { get; set; }

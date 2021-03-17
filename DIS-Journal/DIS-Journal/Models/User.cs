@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DIS_Journal.Models
 {
-    class User : IUser
+    public class User : IUser
     {
         public int Id { get; set; }
         public string Username { get; set; }

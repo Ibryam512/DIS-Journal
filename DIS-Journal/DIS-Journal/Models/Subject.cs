@@ -7,7 +7,7 @@ using System.Drawing;
 
 namespace DIS_Journal.Models
 {
-    class Subject
+    public class Subject
     {
         public int Id { get; set; }
         public string Title
