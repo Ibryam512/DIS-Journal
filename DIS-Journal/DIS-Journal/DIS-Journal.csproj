@@ -179,6 +179,12 @@
     <Compile Include="Views\ArchiveForm.Designer.cs">
       <DependentUpon>ArchiveForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\CustomBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\CustomBox.Designer.cs">
+      <DependentUpon>CustomBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\DesignController.cs" />
     <Compile Include="Views\IntroForm.cs">
       <SubType>Form</SubType>
@@ -248,6 +254,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\ArchiveForm.resx">
       <DependentUpon>ArchiveForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\CustomBox.resx">
+      <DependentUpon>CustomBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\IntroForm.resx">
       <DependentUpon>IntroForm.cs</DependentUpon>
