@@ -186,6 +186,8 @@ namespace DIS_Journal.Views
             this.Controls.Add(this.button1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.textBox1);
+            this.MaximumSize = new System.Drawing.Size(764, 405);
+            this.MinimumSize = new System.Drawing.Size(764, 405);
             this.Name = "AddSubjectPopUp";
             this.Text = "Add Subject";
             this.Load += new System.EventHandler(this.ClassPopUp_Load);

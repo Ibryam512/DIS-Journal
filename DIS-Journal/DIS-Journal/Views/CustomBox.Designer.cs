@@ -67,6 +67,8 @@ namespace DIS_Journal.Views
             this.Controls.Add(this.label1);
             this.Controls.Add(this.richTextBox1);
             this.DoubleBuffered = true;
+            this.MaximumSize = new System.Drawing.Size(766, 337);
+            this.MinimumSize = new System.Drawing.Size(766, 337);
             this.Name = "CustomBox";
             this.Text = "MessageBox";
             this.Load += new System.EventHandler(this.CustomBox_Load);

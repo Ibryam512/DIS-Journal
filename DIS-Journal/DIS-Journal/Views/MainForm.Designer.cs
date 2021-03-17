@@ -46,6 +46,8 @@ namespace DIS_Journal.Views
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1145, 785);
             this.Controls.Add(this.panel1);
+            this.MaximumSize = new System.Drawing.Size(1167, 841);
+            this.MinimumSize = new System.Drawing.Size(1167, 841);
             this.Name = "MainForm";
             this.Text = "MainForm";
             this.ResumeLayout(false);

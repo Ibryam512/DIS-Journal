@@ -153,6 +153,8 @@ namespace DIS_Journal.Views
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Bahnschrift", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
+            this.MaximumSize = new System.Drawing.Size(764, 405);
+            this.MinimumSize = new System.Drawing.Size(764, 405);
             this.Name = "AddClassPopUp";
             this.Text = "AddClassPopUp";
             this.Load += new System.EventHandler(this.AddClassPopUp_Load);
