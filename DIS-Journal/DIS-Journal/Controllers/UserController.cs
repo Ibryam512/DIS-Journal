@@ -6,10 +6,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DIS_Journal.Models;
+using DIS_Journal.Views;
 
 namespace DIS_Journal.Controllers
 {
-    class UserController
+    public class UserController
     {
         DisDbContext context = new DisDbContext();
 
@@ -19,13 +20,15 @@ namespace DIS_Journal.Controllers
             var usersWithSameEmail = context.Users.Where(x => x.Email == email).ToList();
             if (usersWithSameEmail.Count > 0)
             {
-                MessageBox.Show("An user with that email exists!");
+                var message = new CustomBox("An user with that email exists!");
+                message.ShowDialog();
                 return;
             }
             var usersWithSameUsername = context.Users.Where(x => x.Username == username).ToList();
             if (usersWithSameUsername.Count > 0)
             {
-                MessageBox.Show("An user with that username exists!");
+                var message = new CustomBox("An user with that username exists!");
+                message.ShowDialog();
                 return;
             }
             var user = new User()
@@ -38,7 +41,6 @@ namespace DIS_Journal.Controllers
             };
             context.Users.Add(user);
             context.SaveChanges();
-            MessageBox.Show($"Успешна регистрация!");
         }
 
         public bool Login(string email, string password)
@@ -105,7 +107,7 @@ namespace DIS_Journal.Controllers
             Logged.Role = null;
         }
 
-        private string Hash(string password)
+        public string Hash(string password)
         {
             var data = Encoding.ASCII.GetBytes(password);
             var md5 = new MD5CryptoServiceProvider();

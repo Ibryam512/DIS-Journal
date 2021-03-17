@@ -100,7 +100,8 @@ namespace DIS_Journal.Views
             string password = textBox2.Text;
             if(string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             {
-                MessageBox.Show("The username and password should not be empty!");
+                var message = new CustomBox("The username and password should not be empty!");
+                message.ShowDialog();
                 return;
             }
             var userController = new UserController();
@@ -108,7 +109,8 @@ namespace DIS_Journal.Views
                 DesignController.OpenForm(DesignController.App = new MainAppForm(primary, secondary));
             else
             {
-                MessageBox.Show("Wrong username/email or password!");
+                var message = new CustomBox("Wrong username/email or password!");
+                message.ShowDialog();
             }
         }
 

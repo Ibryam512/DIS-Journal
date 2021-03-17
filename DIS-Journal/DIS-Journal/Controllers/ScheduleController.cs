@@ -5,10 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
 using DIS_Journal.Models;
+using DIS_Journal.Views;
 
 namespace DIS_Journal.Controllers
 {
-    static class ScheduleController
+    public static class ScheduleController
     {
         public static DisDbContext context = new DisDbContext();
         public static Subject[,] schedule = new Subject[5, 7];
@@ -26,7 +27,9 @@ namespace DIS_Journal.Controllers
         {
             if(context.Subjects.Any(x => x.Title == title))
             {
-                throw new Exception("The subject already exsists");
+                var message = new CustomBox("The subject already exsists");
+                message.ShowDialog();
+                return;
             }
             else
             {
@@ -40,7 +43,9 @@ namespace DIS_Journal.Controllers
         {
             if (schedule[dayOfTheWeek, period] != default(Subject))
             {
-                throw new Exception("There's already a class there!");
+                var message = new CustomBox("There's already a class there!");
+                message.ShowDialog();
+                return;
             }
             else
             {
@@ -83,7 +88,9 @@ namespace DIS_Journal.Controllers
         {
             if (schedule[dayOfTheWeek, period] == default(Subject))
             {
-                throw new ArgumentException("There isn't a class there");
+                var message = new CustomBox("There isn't a class there");
+                message.ShowDialog();
+                return;
             }
             else
             {

@@ -175,17 +175,20 @@ namespace DIS_Journal.Views
             string email = textBox3.Text;
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password) || string.IsNullOrEmpty(email) || comboBox1.SelectedIndex < 0 || comboBox2.SelectedIndex < 0 || comboBox3.SelectedIndex < 0)
             {
-                MessageBox.Show("There are empty spaces!");
+                var message = new CustomBox("There are empty spaces!");
+                message.ShowDialog();
                 return;
             }
             if (password.Length < 8)
             {
-                MessageBox.Show("Your password should be 8 symbols or more long!");
+                var message = new CustomBox("Your password should be 8 symbols or more long!");
+                message.ShowDialog();
                 return;
             }
             if (!new EmailAddressAttribute().IsValid(email))
             {
-                MessageBox.Show("Your email is not valid!");
+                var message = new CustomBox("Your email is not valid!");
+                message.ShowDialog();
                 return;
             }
             int year = int.Parse(comboBox3.SelectedItem.ToString());

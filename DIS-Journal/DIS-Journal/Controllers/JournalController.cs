@@ -5,10 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DIS_Journal.Models;
+using DIS_Journal.Views;
 
 namespace DIS_Journal.Controllers
 {
-    class JournalController
+    public class JournalController
     {
         DisDbContext context = new DisDbContext();
         public void UploadJournal(string title, string description, DateTime date)
@@ -16,7 +17,8 @@ namespace DIS_Journal.Controllers
             var journalsWithSameTitle = context.Journals.Where(x => x.Title == title && x.User == Logged.Id).ToList();
             if (journalsWithSameTitle.Count > 0)
             {
-                MessageBox.Show("There is a journal with the same title!");
+                var message = new CustomBox("There is a journal with the same title!");
+                message.ShowDialog();
                 return;
             }
             var journal = new Journal()

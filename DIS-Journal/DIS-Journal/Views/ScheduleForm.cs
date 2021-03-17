@@ -127,7 +127,6 @@ namespace DIS_Journal.Views
 
         private void Clear_Panel(object sender, EventArgs e, int period, int day)
         {
-            MessageBox.Show(period + " " + day);
             Panel panel = classes[period, day];
             panel.Controls.Clear();
             panel.BackColor = Color.White;

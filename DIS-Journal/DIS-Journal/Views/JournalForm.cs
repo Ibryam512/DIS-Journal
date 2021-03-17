@@ -93,7 +93,8 @@ namespace DIS_Journal.Views
             string description = richTextBox1.Text;
             if (description.Length > 10000)
             {
-                MessageBox.Show("The description is too long!");
+                var message = new CustomBox("The description is too long!");
+                message.ShowDialog();
                 return;
             }
             DateTime date = new DateTime(DateTime.Today.Year, DateTime.Today.Month, DateTime.Today.Day);

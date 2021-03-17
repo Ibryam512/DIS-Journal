@@ -1,0 +1,3 @@
+C:\Users\Ibryam\Desktop\DIS-Journal\DIS-Journal\DIS-Journal.Tests\obj\Debug\DIS-Journal.Tests.csprojAssemblyReference.cache
+C:\Users\Ibryam\Desktop\DIS-Journal\DIS-Journal\DIS-Journal.Tests\obj\Debug\DIS-Journal.Tests.dll.config
+C:\Users\Ibryam\Desktop\DIS-Journal\DIS-Journal\DIS-Journal.Tests\obj\Debug\DIS-Journal.Tests.csproj.CoreCompileInputs.cache
