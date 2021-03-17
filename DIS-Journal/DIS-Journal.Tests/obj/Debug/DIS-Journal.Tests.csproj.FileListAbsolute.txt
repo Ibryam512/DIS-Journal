@@ -2,7 +2,6 @@ C:\Users\Ibryam\Desktop\DIS-Journal\DIS-Journal\DIS-Journal.Tests\obj\Debug\DIS-
 C:\Users\Ibryam\Desktop\DIS-Journal\DIS-Journal\DIS-Journal.Tests\obj\Debug\DIS-Journal.Tests.dll.config
 C:\Users\Ibryam\Desktop\DIS-Journal\DIS-Journal\DIS-Journal.Tests\obj\Debug\DIS-Journal.Tests.csproj.CoreCompileInputs.cache
 C:\Users\valer\Desktop\DIS-Journal\DIS-Journal\DIS-Journal.Tests\obj\Debug\DIS-Journal.Tests.csprojAssemblyReference.cache
-C:\Users\valer\Desktop\DIS-Journal\DIS-Journal\DIS-Journal.Tests\obj\Debug\DIS-Journal.Tests.dll.config
 C:\Users\valer\Desktop\DIS-Journal\DIS-Journal\DIS-Journal.Tests\obj\Debug\DIS-Journal.Tests.csproj.CoreCompileInputs.cache
 C:\Users\valer\Desktop\DIS-Journal\DIS-Journal\DIS-Journal.Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
 C:\Users\valer\Desktop\DIS-Journal\DIS-Journal\DIS-Journal.Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
@@ -83,3 +82,13 @@ C:\Users\valer\Desktop\DIS-Journal\DIS-Journal\DIS-Journal.Tests\bin\Debug\K4os.
 C:\Users\valer\Desktop\DIS-Journal\DIS-Journal\DIS-Journal.Tests\obj\Debug\DIS-Journal.Tests.csproj.CopyComplete
 C:\Users\valer\Desktop\DIS-Journal\DIS-Journal\DIS-Journal.Tests\obj\Debug\DIS-Journal.Tests.dll
 C:\Users\valer\Desktop\DIS-Journal\DIS-Journal\DIS-Journal.Tests\obj\Debug\DIS-Journal.Tests.pdb
+C:\Users\valer\Desktop\DIS-Journal\DIS-Journal\DIS-Journal.Tests\bin\Debug\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\Users\valer\Desktop\DIS-Journal\DIS-Journal\DIS-Journal.Tests\bin\Debug\Microsoft.Extensions.Configuration.Binder.dll
+C:\Users\valer\Desktop\DIS-Journal\DIS-Journal\DIS-Journal.Tests\bin\Debug\Microsoft.Extensions.Configuration.dll
+C:\Users\valer\Desktop\DIS-Journal\DIS-Journal\DIS-Journal.Tests\bin\Debug\Microsoft.Extensions.Primitives.dll
+C:\Users\valer\Desktop\DIS-Journal\DIS-Journal\DIS-Journal.Tests\bin\Debug\System.ComponentModel.Annotations.dll
+C:\Users\valer\Desktop\DIS-Journal\DIS-Journal\DIS-Journal.Tests\bin\Debug\Microsoft.Extensions.Configuration.xml
+C:\Users\valer\Desktop\DIS-Journal\DIS-Journal\DIS-Journal.Tests\bin\Debug\Microsoft.Extensions.Configuration.Abstractions.xml
+C:\Users\valer\Desktop\DIS-Journal\DIS-Journal\DIS-Journal.Tests\bin\Debug\Microsoft.Extensions.Configuration.Binder.xml
+C:\Users\valer\Desktop\DIS-Journal\DIS-Journal\DIS-Journal.Tests\bin\Debug\Microsoft.Extensions.Primitives.xml
+C:\Users\valer\Desktop\DIS-Journal\DIS-Journal\DIS-Journal.Tests\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
