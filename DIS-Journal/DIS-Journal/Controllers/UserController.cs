@@ -13,7 +13,7 @@ namespace DIS_Journal.Controllers
 {
     public class UserController
     {
-        DisDbContext context = new DisDbContext();
+        public DisDbContext context = new DisDbContext();
 
         public void Register(string username, string email, string password, DateTime birth, string role)
         {
