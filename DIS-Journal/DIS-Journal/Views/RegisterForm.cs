@@ -197,6 +197,12 @@ namespace DIS_Journal.Views
             DateTime birth = new DateTime(year, month, day);
             var userController = new UserController();
             userController.Register(username, email, password, birth, "user");
+            textBox1.Clear();
+            textBox2.Clear();
+            textBox3.Clear();
+            comboBox1.Text = "MM";
+            comboBox2.Text = "DD";
+            comboBox3.Text = "YYYY";
         }
 
         private void label5_MouseEnter(object sender, EventArgs e)

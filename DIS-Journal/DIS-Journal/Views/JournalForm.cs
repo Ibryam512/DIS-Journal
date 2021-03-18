@@ -100,6 +100,8 @@ namespace DIS_Journal.Views
             DateTime date = new DateTime(DateTime.Today.Year, DateTime.Today.Month, DateTime.Today.Day);
             var journalController = new JournalController();
             journalController.UploadJournal(title, description, date);
+            textBox1.Clear();
+            richTextBox1.Clear();
         }
 
         private void richTextBox1_Leave(object sender, EventArgs e)
