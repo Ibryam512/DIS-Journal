@@ -38,7 +38,7 @@ namespace DIS_Journal.Views
             DateTime birth = Logged.Birth.Date;
             textBox1.Text = Logged.Email;
             textBox2.Text = Logged.Username;
-            textBox3.Text = $"{birth.Day}.{birth.Month}.{birth.Year}"; ;
+            textBox3.Text = $"{birth.Day}.{birth.Month}.{birth.Year}";
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)
@@ -65,6 +65,9 @@ namespace DIS_Journal.Views
         {
             var userController = new UserController();
             userController.Logout();
+            textBox1.Text = "";
+            textBox2.Text = "";
+            textBox3.Text = "";
             DesignController.OpenForm(DesignController.Intro);
         }
 

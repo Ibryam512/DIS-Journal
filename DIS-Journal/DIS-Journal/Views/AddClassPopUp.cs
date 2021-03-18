@@ -29,7 +29,7 @@ namespace DIS_Journal.Views
         private void AddClassPopUp_Load(object sender, EventArgs e)
         {
             this.BackColor = primary;
-            foreach (Subject s in ScheduleController.context.Subjects)
+            foreach (Subject s in ScheduleController.context.Subjects.Where(x => x.User == Logged.Id))
             {
                 comboBox1.Items.Add(s.Title);
             }

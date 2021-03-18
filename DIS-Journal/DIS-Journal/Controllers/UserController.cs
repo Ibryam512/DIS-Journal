@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -41,6 +42,8 @@ namespace DIS_Journal.Controllers
             };
             context.Users.Add(user);
             context.SaveChanges();
+            var congrats = new CustomBox("Congrats", "You registered successfully!");
+            congrats.ShowDialog();
         }
 
         public bool Login(string email, string password)
@@ -105,6 +108,11 @@ namespace DIS_Journal.Controllers
             Logged.Password = null;
             Logged.Birth = new DateTime();
             Logged.Role = null;
+            foreach (var panel in ScheduleForm.classes)
+            {
+                panel.Controls.Clear();
+                panel.BackColor = Color.White;
+            }
         }
 
         public string Hash(string password)
