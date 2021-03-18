@@ -14,8 +14,11 @@ namespace DIS_Journal.Tests
         [TestMethod]
         public void TestAddSubject()
         {
+            UserController user = new UserController();
+            user.Login("test", "testtest");
             string name = "Subject";
             Color c = Color.AliceBlue;
+            ScheduleController.Start();
             ScheduleController.AddSubject(name, c);
             Assert.IsTrue(ScheduleController.context.Subjects.Any(x => x.Title == name && Color.FromArgb(255, x.R, x.G, x.B) == c));
         }
