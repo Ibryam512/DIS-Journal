@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DIS-Journal", "DIS-Journal\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DIS-Journal.Tests", "DIS-Journal.Tests\DIS-Journal.Tests.csproj", "{044A0359-F82F-428D-9876-B34ABC01867B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DIS-Admin", "DIS-Admin\DIS-Admin.csproj", "{7D452C5D-A524-434F-A60C-920FE266A301}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{044A0359-F82F-428D-9876-B34ABC01867B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{044A0359-F82F-428D-9876-B34ABC01867B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{044A0359-F82F-428D-9876-B34ABC01867B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D452C5D-A524-434F-A60C-920FE266A301}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D452C5D-A524-434F-A60C-920FE266A301}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D452C5D-A524-434F-A60C-920FE266A301}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D452C5D-A524-434F-A60C-920FE266A301}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
