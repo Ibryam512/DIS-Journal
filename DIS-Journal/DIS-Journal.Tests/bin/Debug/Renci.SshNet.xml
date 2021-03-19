@@ -102,16 +102,20 @@
             <param name="buffer">An array of type <see cref="T:System.Byte"/> that is the storage location for the received data. </param>
             <param name="offset">The position in <paramref name="buffer"/> parameter to store the received data.</param>
             <param name="size">The number of bytes to receive.</param>
-            <param name="timeout">Specifies the amount of time after which the call will time out.</param>
+            <param name="readTimeout">The maximum time to wait until <paramref name="size"/> bytes have been received.</param>
             <returns>
             The number of bytes received.
             </returns>
             <remarks>
+            <para>
             If no data is available for reading, the <see cref="M:Renci.SshNet.Abstractions.SocketAbstraction.Read(System.Net.Sockets.Socket,System.Byte[],System.Int32,System.Int32,System.TimeSpan)"/> method will
             block until data is available or the time-out value is exceeded. If the time-out value is exceeded, the
             <see cref="M:Renci.SshNet.Abstractions.SocketAbstraction.Read(System.Net.Sockets.Socket,System.Byte[],System.Int32,System.Int32,System.TimeSpan)"/> call will throw a <see cref="T:Renci.SshNet.Common.SshOperationTimeoutException"/>.
-             If you are in non-blocking mode, and there is no data available in the in the protocol stack buffer, the
+            </para>
+            <para>
+            If you are in non-blocking mode, and there is no data available in the in the protocol stack buffer, the
             <see cref="M:Renci.SshNet.Abstractions.SocketAbstraction.Read(System.Net.Sockets.Socket,System.Byte[],System.Int32,System.Int32,System.TimeSpan)"/> method will complete immediately and throw a <see cref="T:System.Net.Sockets.SocketException"/>.
+            </para>
             </remarks>
         </member>
         <member name="M:Renci.SshNet.Abstractions.ThreadAbstraction.Sleep(System.Int32)">
@@ -5476,6 +5480,9 @@
             <summary>
             Gets connection host.
             </summary>
+            <value>
+            The connection host.
+            </value>
         </member>
         <member name="P:Renci.SshNet.ConnectionInfo.Port">
             <summary>
@@ -5689,6 +5696,228 @@
             </summary>
             <param name="sender">The session in which the banner message was received.</param>
             <param name="e">The banner message.{</param>
+        </member>
+        <member name="M:Renci.SshNet.Connection.ConnectorBase.SocketConnect(System.String,System.Int32,System.TimeSpan)">
+            <summary>
+            Establishes a socket connection to the specified host and port.
+            </summary>
+            <param name="host">The host name of the server to connect to.</param>
+            <param name="port">The port to connect to.</param>
+            <param name="timeout">The maximum time to wait for the connection to be established.</param>
+            <exception cref="T:Renci.SshNet.Common.SshOperationTimeoutException">The connection failed to establish within the configured <see cref="P:Renci.SshNet.ConnectionInfo.Timeout"/>.</exception>
+            <exception cref="T:System.Net.Sockets.SocketException">An error occurred trying to establish the connection.</exception>
+        </member>
+        <member name="M:Renci.SshNet.Connection.ConnectorBase.SocketRead(System.Net.Sockets.Socket,System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Performs a blocking read on the socket until <paramref name="length"/> bytes are received.
+            </summary>
+            <param name="socket">The <see cref="T:System.Net.Sockets.Socket"/> to read from.</param>
+            <param name="buffer">An array of type <see cref="T:System.Byte"/> that is the storage location for the received data.</param>
+            <param name="offset">The position in <paramref name="buffer"/> parameter to store the received data.</param>
+            <param name="length">The number of bytes to read.</param>
+            <returns>
+            The number of bytes read.
+            </returns>
+            <exception cref="T:Renci.SshNet.Common.SshConnectionException">The socket is closed.</exception>
+            <exception cref="T:System.Net.Sockets.SocketException">The read failed.</exception>
+        </member>
+        <member name="M:Renci.SshNet.Connection.ConnectorBase.SocketRead(System.Net.Sockets.Socket,System.Byte[],System.Int32,System.Int32,System.TimeSpan)">
+            <summary>
+            Performs a blocking read on the socket until <paramref name="length"/> bytes are received.
+            </summary>
+            <param name="socket">The <see cref="T:System.Net.Sockets.Socket"/> to read from.</param>
+            <param name="buffer">An array of type <see cref="T:System.Byte"/> that is the storage location for the received data.</param>
+            <param name="offset">The position in <paramref name="buffer"/> parameter to store the received data.</param>
+            <param name="length">The number of bytes to read.</param>
+            <param name="readTimeout">The maximum time to wait until <paramref name="length"/> bytes have been received.</param>
+            <returns>
+            The number of bytes read.
+            </returns>
+            <exception cref="T:Renci.SshNet.Common.SshConnectionException">The socket is closed.</exception>
+            <exception cref="T:Renci.SshNet.Common.SshOperationTimeoutException">The read has timed-out.</exception>
+            <exception cref="T:System.Net.Sockets.SocketException">The read failed.</exception>
+        </member>
+        <member name="T:Renci.SshNet.Connection.HttpConnector">
+            <summary>
+            Establishes a tunnel via an HTTP proxy server.
+            </summary>
+            <remarks>
+            <list type="table">
+              <listheader>
+                <term>Specification</term>
+                <description>URL</description>
+              </listheader>
+              <item>
+                <term>HTTP CONNECT method</term>
+                <description>https://tools.ietf.org/html/rfc7231#section-4.3.6</description>
+              </item>
+              <item>
+                <term>HTTP Authentication: Basic and Digest Access Authentication</term>
+                <description>https://tools.ietf.org/html/rfc2617</description>
+              </item>
+            </list>
+            </remarks>
+        </member>
+        <member name="M:Renci.SshNet.Connection.HttpConnector.SocketReadLine(System.Net.Sockets.Socket,System.TimeSpan)">
+            <summary>
+            Performs a blocking read on the socket until a line is read.
+            </summary>
+            <param name="socket">The <see cref="T:System.Net.Sockets.Socket"/> to read from.</param>
+            <param name="readTimeout">A <see cref="T:System.TimeSpan"/> that represents the time to wait until a line is read.</param>
+            <exception cref="T:Renci.SshNet.Common.SshOperationTimeoutException">The read has timed-out.</exception>
+            <exception cref="T:System.Net.Sockets.SocketException">An error occurred when trying to access the socket.</exception>
+            <returns>
+            The line read from the socket, or <c>null</c> when the remote server has shutdown and all data has been received.
+            </returns>
+        </member>
+        <member name="T:Renci.SshNet.Connection.IProtocolVersionExchange">
+            <summary>
+            Handles the SSH protocol version exchange.
+            </summary>
+        </member>
+        <member name="M:Renci.SshNet.Connection.IProtocolVersionExchange.Start(System.String,System.Net.Sockets.Socket,System.TimeSpan)">
+            <summary>
+            Performs the SSH protocol version exchange.
+            </summary>
+            <param name="clientVersion">The identification string of the SSH client.</param>
+            <param name="socket">A <see cref="T:System.Net.Sockets.Socket"/> connected to the server.</param>
+            <param name="timeout">The maximum time to wait for the server to respond.</param>
+            <returns>
+            The SSH identification of the server.
+            </returns>
+        </member>
+        <member name="T:Renci.SshNet.Connection.ProtocolVersionExchange">
+            <summary>
+            Handles the SSH protocol version exchange.
+            </summary>
+            <remarks>
+            https://tools.ietf.org/html/rfc4253#section-4.2
+            </remarks>
+        </member>
+        <member name="M:Renci.SshNet.Connection.ProtocolVersionExchange.Start(System.String,System.Net.Sockets.Socket,System.TimeSpan)">
+            <summary>
+            Performs the SSH protocol version exchange.
+            </summary>
+            <param name="clientVersion">The identification string of the SSH client.</param>
+            <param name="socket">A <see cref="T:System.Net.Sockets.Socket"/> connected to the server.</param>
+            <param name="timeout">The maximum time to wait for the server to respond.</param>
+            <returns>
+            The SSH identification of the server.
+            </returns>
+        </member>
+        <member name="M:Renci.SshNet.Connection.ProtocolVersionExchange.SocketReadLine(System.Net.Sockets.Socket,System.TimeSpan,System.Collections.Generic.List{System.Byte})">
+            <summary>
+            Performs a blocking read on the socket until a line is read.
+            </summary>
+            <param name="socket">The <see cref="T:System.Net.Sockets.Socket"/> to read from.</param>
+            <param name="timeout">A <see cref="T:System.TimeSpan"/> that represents the time to wait until a line is read.</param>
+            <param name="buffer">A <see cref="T:System.Collections.Generic.List`1"/> to which read bytes will be added.</param>
+            <exception cref="T:Renci.SshNet.Common.SshOperationTimeoutException">The read has timed-out.</exception>
+            <exception cref="T:System.Net.Sockets.SocketException">An error occurred when trying to access the socket.</exception>
+            <returns>
+            The line read from the socket, or <c>null</c> when the remote server has shutdown and all data has been received.
+            </returns>
+        </member>
+        <member name="T:Renci.SshNet.Connection.Socks4Connector">
+            <summary>
+            Establishes a tunnel via a SOCKS4 proxy server.
+            </summary>
+            <remarks>
+            https://www.openssh.com/txt/socks4.protocol
+            </remarks>
+        </member>
+        <member name="M:Renci.SshNet.Connection.Socks4Connector.HandleProxyConnect(Renci.SshNet.IConnectionInfo,System.Net.Sockets.Socket)">
+            <summary>
+            Establishes a connection to the server via a SOCKS5 proxy.
+            </summary>
+            <param name="connectionInfo">The connection information.</param>
+            <param name="socket">The <see cref="T:System.Net.Sockets.Socket"/>.</param>
+        </member>
+        <member name="T:Renci.SshNet.Connection.Socks5Connector">
+            <summary>
+            Establishes a tunnel via a SOCKS5 proxy server.
+            </summary>
+            <remarks>
+            https://en.wikipedia.org/wiki/SOCKS#SOCKS5
+            </remarks>
+        </member>
+        <member name="M:Renci.SshNet.Connection.Socks5Connector.HandleProxyConnect(Renci.SshNet.IConnectionInfo,System.Net.Sockets.Socket)">
+            <summary>
+            Establishes a connection to the server via a SOCKS5 proxy.
+            </summary>
+            <param name="connectionInfo">The connection information.</param>
+            <param name="socket">The <see cref="T:System.Net.Sockets.Socket"/>.</param>
+        </member>
+        <member name="M:Renci.SshNet.Connection.Socks5Connector.CreateSocks5UserNameAndPasswordAuthenticationRequest(System.String,System.String)">
+            <summary>
+            https://tools.ietf.org/html/rfc1929
+            </summary>
+        </member>
+        <member name="T:Renci.SshNet.Connection.SshIdentification">
+            <summary>
+            Represents an SSH identification.
+            </summary>
+        </member>
+        <member name="M:Renci.SshNet.Connection.SshIdentification.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new <see cref="T:Renci.SshNet.Connection.SshIdentification"/> instance with the specified protocol version
+            and software version.
+            </summary>
+            <param name="protocolVersion">The SSH protocol version.</param>
+            <param name="softwareVersion">The software version of the implementation</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="protocolVersion"/> is <see langword="null"/>.</exception>
+            <exception cref="T:System.ArgumentNullException"><paramref name="softwareVersion"/> is <see langword="null"/>.</exception>
+        </member>
+        <member name="M:Renci.SshNet.Connection.SshIdentification.#ctor(System.String,System.String,System.String)">
+            <summary>
+            Initializes a new <see cref="T:Renci.SshNet.Connection.SshIdentification"/> instance with the specified protocol version,
+            software version and comments.
+            </summary>
+            <param name="protocolVersion">The SSH protocol version.</param>
+            <param name="softwareVersion">The software version of the implementation</param>
+            <param name="comments">The comments.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="protocolVersion"/> is <see langword="null"/>.</exception>
+            <exception cref="T:System.ArgumentNullException"><paramref name="softwareVersion"/> is <see langword="null"/>.</exception>
+        </member>
+        <member name="P:Renci.SshNet.Connection.SshIdentification.SoftwareVersion">
+            <summary>
+            Gets or sets the software version of the implementation.
+            </summary>
+            <value>
+            The software version of the implementation.
+            </value>
+            <remarks>
+            This is primarily used to trigger compatibility extensions and to indicate
+            the capabilities of an implementation.
+            </remarks>
+        </member>
+        <member name="P:Renci.SshNet.Connection.SshIdentification.ProtocolVersion">
+            <summary>
+            Gets or sets the SSH protocol version.
+            </summary>
+            <value>
+            The SSH protocol version.
+            </value>
+        </member>
+        <member name="P:Renci.SshNet.Connection.SshIdentification.Comments">
+            <summary>
+            Gets or sets the comments.
+            </summary>
+            <value>
+            The comments, or <see langword="null"/> if there are no comments.
+            </value>
+            <remarks>
+            <see cref="P:Renci.SshNet.Connection.SshIdentification.Comments"/> should contain additional information that might be useful
+            in solving user problems.
+            </remarks>
+        </member>
+        <member name="M:Renci.SshNet.Connection.SshIdentification.ToString">
+            <summary>
+            Returns the SSH identification string.
+            </summary>
+            <returns>
+            The SSH identification string.
+            </returns>
         </member>
         <member name="T:Renci.SshNet.ExpectAction">
             <summary>
@@ -6347,6 +6576,50 @@
             The character encoding.
             </value>
         </member>
+        <member name="P:Renci.SshNet.IConnectionInfo.Host">
+            <summary>
+            Gets connection host.
+            </summary>
+            <value>
+            The connection host.
+            </value>
+        </member>
+        <member name="P:Renci.SshNet.IConnectionInfo.Port">
+            <summary>
+            Gets connection port.
+            </summary>
+            <value>
+            The connection port. The default value is 22.
+            </value>
+        </member>
+        <member name="P:Renci.SshNet.IConnectionInfo.ProxyType">
+            <summary>
+            Gets proxy type.
+            </summary>
+            <value>
+            The type of the proxy.
+            </value>
+        </member>
+        <member name="P:Renci.SshNet.IConnectionInfo.ProxyHost">
+            <summary>
+            Gets proxy connection host.
+            </summary>
+        </member>
+        <member name="P:Renci.SshNet.IConnectionInfo.ProxyPort">
+            <summary>
+            Gets proxy connection port.
+            </summary>
+        </member>
+        <member name="P:Renci.SshNet.IConnectionInfo.ProxyUsername">
+            <summary>
+            Gets proxy connection username.
+            </summary>
+        </member>
+        <member name="P:Renci.SshNet.IConnectionInfo.ProxyPassword">
+            <summary>
+            Gets proxy connection password.
+            </summary>
+        </member>
         <member name="P:Renci.SshNet.IConnectionInfo.RetryAttempts">
             <summary>
             Gets the number of retry attempts when session channel creation failed.
@@ -6400,15 +6673,18 @@
             Factory for creating new services.
             </summary>
         </member>
-        <member name="M:Renci.SshNet.IServiceFactory.CreateSession(Renci.SshNet.ConnectionInfo)">
+        <member name="M:Renci.SshNet.IServiceFactory.CreateSession(Renci.SshNet.ConnectionInfo,Renci.SshNet.Connection.ISocketFactory)">
             <summary>
-            Creates a new <see cref="T:Renci.SshNet.ISession"/> with the specified <see cref="T:Renci.SshNet.ConnectionInfo"/>.
+            Creates a new <see cref="T:Renci.SshNet.ISession"/> with the specified <see cref="T:Renci.SshNet.ConnectionInfo"/> and
+            <see cref="T:Renci.SshNet.Connection.ISocketFactory"/>.
             </summary>
             <param name="connectionInfo">The <see cref="T:Renci.SshNet.ConnectionInfo"/> to use for creating a new session.</param>
+            <param name="socketFactory">A factory to create <see cref="T:System.Net.Sockets.Socket"/> instances.</param>
             <returns>
             An <see cref="T:Renci.SshNet.ISession"/> for the specified <see cref="T:Renci.SshNet.ConnectionInfo"/>.
             </returns>
             <exception cref="T:System.ArgumentNullException"><paramref name="connectionInfo"/> is <c>null</c>.</exception>
+            <exception cref="T:System.ArgumentNullException"><paramref name="socketFactory"/> is <c>null</c>.</exception>
         </member>
         <member name="M:Renci.SshNet.IServiceFactory.CreateSftpSession(Renci.SshNet.ISession,System.Int32,System.Text.Encoding,Renci.SshNet.Sftp.ISftpResponseFactory)">
             <summary>
@@ -6481,6 +6757,38 @@
             An <see cref="T:Renci.SshNet.IRemotePathTransformation"/> that encloses a path in double quotes, and escapes any
             embedded double quote with a backslash.
             with a shell.
+            </returns>
+        </member>
+        <member name="M:Renci.SshNet.IServiceFactory.CreateConnector(Renci.SshNet.IConnectionInfo,Renci.SshNet.Connection.ISocketFactory)">
+            <summary>
+            Creates an <see cref="T:Renci.SshNet.Connection.IConnector"/> that can be used to establish a connection
+            to the server identified by the specified <paramref name="connectionInfo"/>.
+            </summary>
+            <param name="connectionInfo">A <see cref="T:Renci.SshNet.IConnectionInfo"/> detailing the server to establish a connection to.</param>
+            <param name="socketFactory">A factory to create <see cref="T:System.Net.Sockets.Socket"/> instances.</param>
+            <returns>
+            An <see cref="T:Renci.SshNet.Connection.IConnector"/> that can be used to establish a connection to the
+            server identified by the specified <paramref name="connectionInfo"/>.
+            </returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="connectionInfo"/> is <see langword="null"/>.</exception>
+            <exception cref="T:System.ArgumentNullException"><paramref name="socketFactory"/> is <see langword="null"/>.</exception>
+            <exception cref="T:System.NotSupportedException">The <see cref="P:Renci.SshNet.IConnectionInfo.ProxyType"/> value of <paramref name="connectionInfo"/> is not supported.</exception>
+        </member>
+        <member name="M:Renci.SshNet.IServiceFactory.CreateProtocolVersionExchange">
+            <summary>
+            Creates an <see cref="T:Renci.SshNet.Connection.IProtocolVersionExchange"/> that deals with the SSH protocol
+            version exchange.
+            </summary>
+            <returns>
+            An <see cref="T:Renci.SshNet.Connection.IProtocolVersionExchange"/>.
+            </returns>
+        </member>
+        <member name="M:Renci.SshNet.IServiceFactory.CreateSocketFactory">
+            <summary>
+            Creates a factory to create <see cref="T:System.Net.Sockets.Socket"/> instances.
+            </summary>
+            <returns>
+            An <see cref="T:Renci.SshNet.Connection.ISocketFactory"/>.
             </returns>
         </member>
         <member name="M:Renci.SshNet.IServiceFactory.CreateNetConfSession(Renci.SshNet.ISession,System.Int32)">
@@ -6748,6 +7056,1061 @@
             <summary>
             Occurs when <see cref="T:Renci.SshNet.Messages.Authentication.BannerMessage"/> message is received from the server.
             </summary>
+        </member>
+        <member name="T:Renci.SshNet.ISftpClient">
+            <summary>
+            Implementation of the SSH File Transfer Protocol (SFTP) over SSH.
+            </summary>
+        </member>
+        <member name="P:Renci.SshNet.ISftpClient.BufferSize">
+            <summary>
+            Gets or sets the maximum size of the buffer in bytes.
+            </summary>
+            <value>
+            The size of the buffer. The default buffer size is 32768 bytes (32 KB).
+            </value>
+            <remarks>
+            <para>
+            For write operations, this limits the size of the payload for
+            individual SSH_FXP_WRITE messages. The actual size is always
+            capped at the maximum packet size supported by the peer
+            (minus the size of protocol fields).
+            </para>
+            <para>
+            For read operations, this controls the size of the payload which
+            is requested from the peer in a SSH_FXP_READ message. The peer
+            will send the requested number of bytes in a SSH_FXP_DATA message,
+            possibly split over multiple SSH_MSG_CHANNEL_DATA messages.
+            </para>
+            <para>
+            To optimize the size of the SSH packets sent by the peer,
+            the actual requested size will take into account the size of the
+            SSH_FXP_DATA protocol fields.
+            </para>
+            <para>
+            The size of the each indivual SSH_FXP_DATA message is limited to the
+            local maximum packet size of the channel, which is set to <c>64 KB</c>
+            for SSH.NET. However, the peer can limit this even further.
+            </para>
+            </remarks>
+            <exception cref="T:System.ObjectDisposedException">The method was called after the client was disposed.</exception>
+        </member>
+        <member name="P:Renci.SshNet.ISftpClient.OperationTimeout">
+            <summary>
+            Gets or sets the operation timeout.
+            </summary>
+            <value>
+            The timeout to wait until an operation completes. The default value is negative
+            one (-1) milliseconds, which indicates an infinite timeout period.
+            </value>
+            <exception cref="T:System.ObjectDisposedException">The method was called after the client was disposed.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="value"/> represents a value that is less than -1 or greater than <see cref="F:System.Int32.MaxValue"/> milliseconds.</exception>
+        </member>
+        <member name="P:Renci.SshNet.ISftpClient.ProtocolVersion">
+            <summary>
+            Gets sftp protocol version.
+            </summary>
+            <exception cref="T:Renci.SshNet.Common.SshConnectionException">Client is not connected.</exception>
+            <exception cref="T:System.ObjectDisposedException">The method was called after the client was disposed.</exception>
+        </member>
+        <member name="P:Renci.SshNet.ISftpClient.WorkingDirectory">
+            <summary>
+            Gets remote working directory.
+            </summary>
+            <exception cref="T:Renci.SshNet.Common.SshConnectionException">Client is not connected.</exception>
+            <exception cref="T:System.ObjectDisposedException">The method was called after the client was disposed.</exception>
+        </member>
+        <member name="M:Renci.SshNet.ISftpClient.AppendAllLines(System.String,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Appends lines to a file, creating the file if it does not already exist.
+            </summary>
+            <param name="path">The file to append the lines to. The file is created if it does not already exist.</param>
+            <param name="contents">The lines to append to the file.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="path"/> is<b>null</b> <para>-or-</para> <paramref name="contents"/> is <b>null</b>.</exception>
+            <exception cref="T:Renci.SshNet.Common.SshConnectionException">Client is not connected.</exception>
+            <exception cref="T:Renci.SshNet.Common.SftpPathNotFoundException">The specified path is invalid, or its directory was not found on the remote host.</exception>
+            <exception cref="T:System.ObjectDisposedException">The method was called after the client was disposed.</exception>
+            <remarks>
+            The characters are written to the file using UTF-8 encoding without a Byte-Order Mark (BOM)
+            </remarks>
+        </member>
+        <member name="M:Renci.SshNet.ISftpClient.AppendAllLines(System.String,System.Collections.Generic.IEnumerable{System.String},System.Text.Encoding)">
+            <summary>
+            Appends lines to a file by using a specified encoding, creating the file if it does not already exist.
+            </summary>
+            <param name="path">The file to append the lines to. The file is created if it does not already exist.</param>
+            <param name="contents">The lines to append to the file.</param>
+            <param name="encoding">The character encoding to use.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="path"/> is <b>null</b>. <para>-or-</para> <paramref name="contents"/> is <b>null</b>. <para>-or-</para> <paramref name="encoding"/> is <b>null</b>.</exception>
+            <exception cref="T:Renci.SshNet.Common.SshConnectionException">Client is not connected.</exception>
+            <exception cref="T:Renci.SshNet.Common.SftpPathNotFoundException">The specified path is invalid, or its directory was not found on the remote host.</exception>
+            <exception cref="T:System.ObjectDisposedException">The method was called after the client was disposed.</exception>
+        </member>
+        <member name="M:Renci.SshNet.ISftpClient.AppendAllText(System.String,System.String)">
+            <summary>
+            Appends the specified string to the file, creating the file if it does not already exist.
+            </summary>
+            <param name="path">The file to append the specified string to.</param>
+            <param name="contents">The string to append to the file.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="path"/> is <b>null</b>. <para>-or-</para> <paramref name="contents"/> is <b>null</b>.</exception>
+            <exception cref="T:Renci.SshNet.Common.SshConnectionException">Client is not connected.</exception>
+            <exception cref="T:Renci.SshNet.Common.SftpPathNotFoundException">The specified path is invalid, or its directory was not found on the remote host.</exception>
+            <exception cref="T:System.ObjectDisposedException">The method was called after the client was disposed.</exception>
+            <remarks>
+            The characters are written to the file using UTF-8 encoding without a Byte-Order Mark (BOM).
+            </remarks>
+        </member>
+        <member name="M:Renci.SshNet.ISftpClient.AppendAllText(System.String,System.String,System.Text.Encoding)">
+            <summary>
+            Appends the specified string to the file, creating the file if it does not already exist.
+            </summary>
+            <param name="path">The file to append the specified string to.</param>
+            <param name="contents">The string to append to the file.</param>
+            <param name="encoding">The character encoding to use.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="path"/> is <b>null</b>. <para>-or-</para> <paramref name="contents"/> is <b>null</b>. <para>-or-</para> <paramref name="encoding"/> is <b>null</b>.</exception>
+            <exception cref="T:Renci.SshNet.Common.SshConnectionException">Client is not connected.</exception>
+            <exception cref="T:Renci.SshNet.Common.SftpPathNotFoundException">The specified path is invalid, or its directory was not found on the remote host.</exception>
+            <exception cref="T:System.ObjectDisposedException">The method was called after the client was disposed.</exception>
+        </member>
+        <member name="M:Renci.SshNet.ISftpClient.AppendText(System.String)">
+            <summary>
+            Creates a <see cref="T:System.IO.StreamWriter"/> that appends UTF-8 encoded text to the specified file,
+            creating the file if it does not already exist.
+            </summary>
+            <param name="path">The path to the file to append to.</param>
+            <returns>
+            A <see cref="T:System.IO.StreamWriter"/> that appends text to a file using UTF-8 encoding without a
+            Byte-Order Mark (BOM).
+            </returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="path"/> is <b>null</b>.</exception>
+            <exception cref="T:Renci.SshNet.Common.SshConnectionException">Client is not connected.</exception>
+            <exception cref="T:Renci.SshNet.Common.SftpPathNotFoundException">The specified path is invalid, or its directory was not found on the remote host.</exception>
+            <exception cref="T:System.ObjectDisposedException">The method was called after the client was disposed.</exception>
+        </member>
+        <member name="M:Renci.SshNet.ISftpClient.AppendText(System.String,System.Text.Encoding)">
+            <summary>
+            Creates a <see cref="T:System.IO.StreamWriter"/> that appends text to a file using the specified
+            encoding, creating the file if it does not already exist.
+            </summary>
+            <param name="path">The path to the file to append to.</param>
+            <param name="encoding">The character encoding to use.</param>
+            <returns>
+            A <see cref="T:System.IO.StreamWriter"/> that appends text to a file using the specified encoding.
+            </returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="path"/> is <b>null</b>. <para>-or-</para> <paramref name="encoding"/> is <b>null</b>.</exception>
+            <exception cref="T:Renci.SshNet.Common.SshConnectionException">Client is not connected.</exception>
+            <exception cref="T:Renci.SshNet.Common.SftpPathNotFoundException">The specified path is invalid, or its directory was not found on the remote host.</exception>
+            <exception cref="T:System.ObjectDisposedException">The method was called after the client was disposed.</exception>
+        </member>
+        <member name="M:Renci.SshNet.ISftpClient.BeginDownloadFile(System.String,System.IO.Stream)">
+            <summary>
+            Begins an asynchronous file downloading into the stream.
+            </summary>
+            <param name="path">The path.</param>
+            <param name="output">The output.</param>
+            <returns>
+            An <see cref="T:System.IAsyncResult" /> that references the asynchronous operation.
+            </returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="output" /> is <b>null</b>.</exception>
+            <exception cref="T:System.ArgumentException"><paramref name="path" /> is <b>null</b> or contains only whitespace characters.</exception>
+            <exception cref="T:Renci.SshNet.Common.SshConnectionException">Client is not connected.</exception>
+            <exception cref="T:Renci.SshNet.Common.SftpPermissionDeniedException">Permission to perform the operation was denied by the remote host. <para>-or-</para> A SSH command was denied by the server.</exception>
+            <exception cref="T:Renci.SshNet.Common.SshException">A SSH error where <see cref="P:System.Exception.Message" /> is the message from the remote host.</exception>
+            <exception cref="T:System.ObjectDisposedException">The method was called after the client was disposed.</exception>
+            <remarks>
+            Method calls made by this method to <paramref name="output" />, may under certain conditions result in exceptions thrown by the stream.
+            </remarks>
+        </member>
+        <member name="M:Renci.SshNet.ISftpClient.BeginDownloadFile(System.String,System.IO.Stream,System.AsyncCallback)">
+            <summary>
+            Begins an asynchronous file downloading into the stream.
+            </summary>
+            <param name="path">The path.</param>
+            <param name="output">The output.</param>
+            <param name="asyncCallback">The method to be called when the asynchronous write operation is completed.</param>
+            <returns>
+            An <see cref="T:System.IAsyncResult" /> that references the asynchronous operation.
+            </returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="output" /> is <b>null</b>.</exception>
+            <exception cref="T:System.ArgumentException"><paramref name="path" /> is <b>null</b> or contains only whitespace characters.</exception>
+            <exception cref="T:Renci.SshNet.Common.SshConnectionException">Client is not connected.</exception>
+            <exception cref="T:Renci.SshNet.Common.SftpPermissionDeniedException">Permission to perform the operation was denied by the remote host. <para>-or-</para> A SSH command was denied by the server.</exception>
+            <exception cref="T:Renci.SshNet.Common.SshException">A SSH error where <see cref="P:System.Exception.Message" /> is the message from the remote host.</exception>
+            <exception cref="T:System.ObjectDisposedException">The method was called after the client was disposed.</exception>
+            <remarks>
+            Method calls made by this method to <paramref name="output" />, may under certain conditions result in exceptions thrown by the stream.
+            </remarks>
+        </member>
+        <member name="M:Renci.SshNet.ISftpClient.BeginDownloadFile(System.String,System.IO.Stream,System.AsyncCallback,System.Object,System.Action{System.UInt64})">
+            <summary>
+            Begins an asynchronous file downloading into the stream.
+            </summary>
+            <param name="path">The path.</param>
+            <param name="output">The output.</param>
+            <param name="asyncCallback">The method to be called when the asynchronous write operation is completed.</param>
+            <param name="state">A user-provided object that distinguishes this particular asynchronous write request from other requests.</param>
+            <param name="downloadCallback">The download callback.</param>
+            <returns>
+            An <see cref="T:System.IAsyncResult" /> that references the asynchronous operation.
+            </returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="output" /> is <b>null</b>.</exception>
+            <exception cref="T:System.ArgumentException"><paramref name="path" /> is <b>null</b> or contains only whitespace characters.</exception>
+            <exception cref="T:System.ObjectDisposedException">The method was called after the client was disposed.</exception>
+            <remarks>
+            Method calls made by this method to <paramref name="output" />, may under certain conditions result in exceptions thrown by the stream.
+            </remarks>
+        </member>
+        <member name="M:Renci.SshNet.ISftpClient.BeginListDirectory(System.String,System.AsyncCallback,System.Object,System.Action{System.Int32})">
+            <summary>
+            Begins an asynchronous operation of retrieving list of files in remote directory.
+            </summary>
+            <param name="path">The path.</param>
+            <param name="asyncCallback">The method to be called when the asynchronous write operation is completed.</param>
+            <param name="state">A user-provided object that distinguishes this particular asynchronous write request from other requests.</param>
+            <param name="listCallback">The list callback.</param>
+            <returns>
+            An <see cref="T:System.IAsyncResult" /> that references the asynchronous operation.
+            </returns>
+            <exception cref="T:System.ObjectDisposedException">The method was called after the client was disposed.</exception>
+        </member>
+        <member name="M:Renci.SshNet.ISftpClient.BeginSynchronizeDirectories(System.String,System.String,System.String,System.AsyncCallback,System.Object)">
+            <summary>
+            Begins the synchronize directories.
+            </summary>
+            <param name="sourcePath">The source path.</param>
+            <param name="destinationPath">The destination path.</param>
+            <param name="searchPattern">The search pattern.</param>
+            <param name="asyncCallback">The async callback.</param>
+            <param name="state">The state.</param>
+            <returns>
+            An <see cref="T:System.IAsyncResult" /> that represents the asynchronous directory synchronization.
+            </returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="sourcePath"/> is <c>null</c>.</exception>
+            <exception cref="T:System.ArgumentException"><paramref name="destinationPath"/> is <c>null</c> or contains only whitespace.</exception>
+        </member>
+        <member name="M:Renci.SshNet.ISftpClient.BeginUploadFile(System.IO.Stream,System.String)">
+            <summary>
+            Begins an asynchronous uploading the stream into remote file.
+            </summary>
+            <param name="input">Data input stream.</param>
+            <param name="path">Remote file path.</param>
+            <returns>
+            An <see cref="T:System.IAsyncResult" /> that references the asynchronous operation.
+            </returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="input" /> is <b>null</b>.</exception>
+            <exception cref="T:System.ArgumentException"><paramref name="path" /> is <b>null</b> or contains only whitespace characters.</exception>
+            <exception cref="T:Renci.SshNet.Common.SshConnectionException">Client is not connected.</exception>
+            <exception cref="T:Renci.SshNet.Common.SftpPermissionDeniedException">Permission to list the contents of the directory was denied by the remote host. <para>-or-</para> A SSH command was denied by the server.</exception>
+            <exception cref="T:Renci.SshNet.Common.SshException">A SSH error where <see cref="P:System.Exception.Message" /> is the message from the remote host.</exception>
+            <exception cref="T:System.ObjectDisposedException">The method was called after the client was disposed.</exception>
+            <remarks>
+            <para>
+            Method calls made by this method to <paramref name="input" />, may under certain conditions result in exceptions thrown by the stream.
+            </para>
+            <para>
+            If the remote file already exists, it is overwritten and truncated.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:Renci.SshNet.ISftpClient.BeginUploadFile(System.IO.Stream,System.String,System.AsyncCallback)">
+            <summary>
+            Begins an asynchronous uploading the stream into remote file.
+            </summary>
+            <param name="input">Data input stream.</param>
+            <param name="path">Remote file path.</param>
+            <param name="asyncCallback">The method to be called when the asynchronous write operation is completed.</param>
+            <returns>
+            An <see cref="T:System.IAsyncResult" /> that references the asynchronous operation.
+            </returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="input" /> is <b>null</b>.</exception>
+            <exception cref="T:System.ArgumentException"><paramref name="path" /> is <b>null</b> or contains only whitespace characters.</exception>
+            <exception cref="T:Renci.SshNet.Common.SshConnectionException">Client is not connected.</exception>
+            <exception cref="T:Renci.SshNet.Common.SftpPermissionDeniedException">Permission to list the contents of the directory was denied by the remote host. <para>-or-</para> A SSH command was denied by the server.</exception>
+            <exception cref="T:Renci.SshNet.Common.SshException">A SSH error where <see cref="P:System.Exception.Message" /> is the message from the remote host.</exception>
+            <exception cref="T:System.ObjectDisposedException">The method was called after the client was disposed.</exception>
+            <remarks>
+            <para>
+            Method calls made by this method to <paramref name="input" />, may under certain conditions result in exceptions thrown by the stream.
+            </para>
+            <para>
+            If the remote file already exists, it is overwritten and truncated.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:Renci.SshNet.ISftpClient.BeginUploadFile(System.IO.Stream,System.String,System.AsyncCallback,System.Object,System.Action{System.UInt64})">
+            <summary>
+            Begins an asynchronous uploading the stream into remote file.
+            </summary>
+            <param name="input">Data input stream.</param>
+            <param name="path">Remote file path.</param>
+            <param name="asyncCallback">The method to be called when the asynchronous write operation is completed.</param>
+            <param name="state">A user-provided object that distinguishes this particular asynchronous write request from other requests.</param>
+            <param name="uploadCallback">The upload callback.</param>
+            <returns>
+            An <see cref="T:System.IAsyncResult" /> that references the asynchronous operation.
+            </returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="input" /> is <b>null</b>.</exception>
+            <exception cref="T:System.ArgumentException"><paramref name="path" /> is <b>null</b> or contains only whitespace characters.</exception>
+            <exception cref="T:Renci.SshNet.Common.SshConnectionException">Client is not connected.</exception>
+            <exception cref="T:Renci.SshNet.Common.SftpPermissionDeniedException">Permission to list the contents of the directory was denied by the remote host. <para>-or-</para> A SSH command was denied by the server.</exception>
+            <exception cref="T:Renci.SshNet.Common.SshException">A SSH error where <see cref="P:System.Exception.Message" /> is the message from the remote host.</exception>
+            <exception cref="T:System.ObjectDisposedException">The method was called after the client was disposed.</exception>
+            <remarks>
+            <para>
+            Method calls made by this method to <paramref name="input" />, may under certain conditions result in exceptions thrown by the stream.
+            </para>
+            <para>
+            If the remote file already exists, it is overwritten and truncated.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:Renci.SshNet.ISftpClient.BeginUploadFile(System.IO.Stream,System.String,System.Boolean,System.AsyncCallback,System.Object,System.Action{System.UInt64})">
+            <summary>
+            Begins an asynchronous uploading the stream into remote file.
+            </summary>
+            <param name="input">Data input stream.</param>
+            <param name="path">Remote file path.</param>
+            <param name="canOverride">Specified whether an existing file can be overwritten.</param>
+            <param name="asyncCallback">The method to be called when the asynchronous write operation is completed.</param>
+            <param name="state">A user-provided object that distinguishes this particular asynchronous write request from other requests.</param>
+            <param name="uploadCallback">The upload callback.</param>
+            <returns>
+            An <see cref="T:System.IAsyncResult" /> that references the asynchronous operation.
+            </returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="input" /> is <b>null</b>.</exception>
+            <exception cref="T:System.ArgumentException"><paramref name="path" /> is <b>null</b> or contains only whitespace characters.</exception>
+            <exception cref="T:System.ObjectDisposedException">The method was called after the client was disposed.</exception>
+            <remarks>
+            <para>
+            Method calls made by this method to <paramref name="input" />, may under certain conditions result in exceptions thrown by the stream.
+            </para>
+            <para>
+            When <paramref name="path"/> refers to an existing file, set <paramref name="canOverride"/> to <c>true</c> to overwrite and truncate that file.
+            If <paramref name="canOverride"/> is <c>false</c>, the upload will fail and <see cref="M:Renci.SshNet.ISftpClient.EndUploadFile(System.IAsyncResult)"/> will throw an
+            <see cref="T:Renci.SshNet.Common.SshException"/>.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:Renci.SshNet.ISftpClient.ChangeDirectory(System.String)">
+            <summary>
+            Changes remote directory to path.
+            </summary>
+            <param name="path">New directory path.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="path"/> is <b>null</b>.</exception>
+            <exception cref="T:Renci.SshNet.Common.SshConnectionException">Client is not connected.</exception>
+            <exception cref="T:Renci.SshNet.Common.SftpPermissionDeniedException">Permission to change directory denied by remote host. <para>-or-</para> A SSH command was denied by the server.</exception>
+            <exception cref="T:Renci.SshNet.Common.SftpPathNotFoundException"><paramref name="path"/> was not found on the remote host.</exception>
+            <exception cref="T:Renci.SshNet.Common.SshException">A SSH error where <see cref="P:System.Exception.Message"/> is the message from the remote host.</exception>
+            <exception cref="T:System.ObjectDisposedException">The method was called after the client was disposed.</exception>
+        </member>
+        <member name="M:Renci.SshNet.ISftpClient.ChangePermissions(System.String,System.Int16)">
+            <summary>
+            Changes permissions of file(s) to specified mode.
+            </summary>
+            <param name="path">File(s) path, may match multiple files.</param>
+            <param name="mode">The mode.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="path"/> is <b>null</b>.</exception>
+            <exception cref="T:Renci.SshNet.Common.SshConnectionException">Client is not connected.</exception>
+            <exception cref="T:Renci.SshNet.Common.SftpPermissionDeniedException">Permission to change permission on the path(s) was denied by the remote host. <para>-or-</para> A SSH command was denied by the server.</exception>
+            <exception cref="T:Renci.SshNet.Common.SftpPathNotFoundException"><paramref name="path"/> was not found on the remote host.</exception>
+            <exception cref="T:Renci.SshNet.Common.SshException">A SSH error where <see cref="P:System.Exception.Message"/> is the message from the remote host.</exception>
+            <exception cref="T:System.ObjectDisposedException">The method was called after the client was disposed.</exception>
+        </member>
+        <member name="M:Renci.SshNet.ISftpClient.Create(System.String)">
+            <summary>
+            Creates or overwrites a file in the specified path.
+            </summary>
+            <param name="path">The path and name of the file to create.</param>
+            <returns>
+            A <see cref="T:Renci.SshNet.Sftp.SftpFileStream"/> that provides read/write access to the file specified in path.
+            </returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="path"/> is <b>null</b>.</exception>
+            <exception cref="T:Renci.SshNet.Common.SshConnectionException">Client is not connected.</exception>
+            <exception cref="T:Renci.SshNet.Common.SftpPathNotFoundException">The specified path is invalid, or its directory was not found on the remote host.</exception>
+            <exception cref="T:System.ObjectDisposedException">The method was called after the client was disposed.</exception>
+            <remarks>
+            If the target file already exists, it is first truncated to zero bytes.
+            </remarks>
+        </member>
+        <member name="M:Renci.SshNet.ISftpClient.Create(System.String,System.Int32)">
+            <summary>
+            Creates or overwrites the specified file.
+            </summary>
+            <param name="path">The path and name of the file to create.</param>
+            <param name="bufferSize">The maximum number of bytes buffered for reads and writes to the file.</param>
+            <returns>
+            A <see cref="T:Renci.SshNet.Sftp.SftpFileStream"/> that provides read/write access to the file specified in path.
+            </returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="path"/> is <b>null</b>.</exception>
+            <exception cref="T:Renci.SshNet.Common.SshConnectionException">Client is not connected.</exception>
+            <exception cref="T:Renci.SshNet.Common.SftpPathNotFoundException">The specified path is invalid, or its directory was not found on the remote host.</exception>
+            <exception cref="T:System.ObjectDisposedException">The method was called after the client was disposed.</exception>
+            <remarks>
+            If the target file already exists, it is first truncated to zero bytes.
+            </remarks>
+        </member>
+        <member name="M:Renci.SshNet.ISftpClient.CreateDirectory(System.String)">
+            <summary>
+            Creates remote directory specified by path.
+            </summary>
+            <param name="path">Directory path to create.</param>
+            <exception cref="T:System.ArgumentException"><paramref name="path"/> is <b>null</b> or contains only whitespace characters.</exception>
+            <exception cref="T:Renci.SshNet.Common.SshConnectionException">Client is not connected.</exception>
+            <exception cref="T:Renci.SshNet.Common.SftpPermissionDeniedException">Permission to create the directory was denied by the remote host. <para>-or-</para> A SSH command was denied by the server.</exception>
+            <exception cref="T:Renci.SshNet.Common.SshException">A SSH error where <see cref="P:System.Exception.Message"/> is the message from the remote host.</exception>
+            <exception cref="T:System.ObjectDisposedException">The method was called after the client was disposed.</exception>
+        </member>
+        <member name="M:Renci.SshNet.ISftpClient.CreateText(System.String)">
+            <summary>
+            Creates or opens a file for writing UTF-8 encoded text.
+            </summary>
+            <param name="path">The file to be opened for writing.</param>
+            <returns>
+            A <see cref="T:System.IO.StreamWriter"/> that writes text to a file using UTF-8 encoding without
+            a Byte-Order Mark (BOM).
+            </returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="path"/> is <b>null</b>.</exception>
+            <exception cref="T:Renci.SshNet.Common.SshConnectionException">Client is not connected.</exception>
+            <exception cref="T:Renci.SshNet.Common.SftpPathNotFoundException">The specified path is invalid, or its directory was not found on the remote host.</exception>
+            <exception cref="T:System.ObjectDisposedException">The method was called after the client was disposed.</exception>
+            <remarks>
+            <para>
+            If the target file already exists, it is overwritten. It is not first truncated to zero bytes.
+            </para>
+            <para>
+            If the target file does not exist, it is created.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:Renci.SshNet.ISftpClient.CreateText(System.String,System.Text.Encoding)">
+            <summary>
+            Creates or opens a file for writing text using the specified encoding.
+            </summary>
+            <param name="path">The file to be opened for writing.</param>
+            <param name="encoding">The character encoding to use.</param>
+            <returns>
+            A <see cref="T:System.IO.StreamWriter"/> that writes to a file using the specified encoding.
+            </returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="path"/> is <b>null</b>.</exception>
+            <exception cref="T:Renci.SshNet.Common.SshConnectionException">Client is not connected.</exception>
+            <exception cref="T:Renci.SshNet.Common.SftpPathNotFoundException">The specified path is invalid, or its directory was not found on the remote host.</exception>
+            <exception cref="T:System.ObjectDisposedException">The method was called after the client was disposed.</exception>
+            <remarks>
+            <para>
+            If the target file already exists, it is overwritten. It is not first truncated to zero bytes.
+            </para>
+            <para>
+            If the target file does not exist, it is created.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:Renci.SshNet.ISftpClient.Delete(System.String)">
+            <summary>
+            Deletes the specified file or directory.
+            </summary>
+            <param name="path">The name of the file or directory to be deleted. Wildcard characters are not supported.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="path"/> is <b>null</b>.</exception>
+            <exception cref="T:Renci.SshNet.Common.SshConnectionException">Client is not connected.</exception>
+            <exception cref="T:Renci.SshNet.Common.SftpPathNotFoundException"><paramref name="path"/> was not found on the remote host.</exception>
+            <exception cref="T:System.ObjectDisposedException">The method was called after the client was disposed.</exception>
+        </member>
+        <member name="M:Renci.SshNet.ISftpClient.DeleteDirectory(System.String)">
+            <summary>
+            Deletes remote directory specified by path.
+            </summary>
+            <param name="path">Directory to be deleted path.</param>
+            <exception cref="T:System.ArgumentException"><paramref name="path"/> is <b>null</b> or contains only whitespace characters.</exception>
+            <exception cref="T:Renci.SshNet.Common.SshConnectionException">Client is not connected.</exception>
+            <exception cref="T:Renci.SshNet.Common.SftpPathNotFoundException"><paramref name="path"/> was not found on the remote host.</exception>
+            <exception cref="T:Renci.SshNet.Common.SftpPermissionDeniedException">Permission to delete the directory was denied by the remote host. <para>-or-</para> A SSH command was denied by the server.</exception>
+            <exception cref="T:Renci.SshNet.Common.SshException">A SSH error where <see cref="P:System.Exception.Message"/> is the message from the remote host.</exception>
+            <exception cref="T:System.ObjectDisposedException">The method was called after the client was disposed.</exception>
+        </member>
+        <member name="M:Renci.SshNet.ISftpClient.DeleteFile(System.String)">
+            <summary>
+            Deletes remote file specified by path.
+            </summary>
+            <param name="path">File to be deleted path.</param>
+            <exception cref="T:System.ArgumentException"><paramref name="path"/> is <b>null</b> or contains only whitespace characters.</exception>
+            <exception cref="T:Renci.SshNet.Common.SshConnectionException">Client is not connected.</exception>
+            <exception cref="T:Renci.SshNet.Common.SftpPathNotFoundException"><paramref name="path"/> was not found on the remote host.</exception>
+            <exception cref="T:Renci.SshNet.Common.SftpPermissionDeniedException">Permission to delete the file was denied by the remote host. <para>-or-</para> A SSH command was denied by the server.</exception>
+            <exception cref="T:Renci.SshNet.Common.SshException">A SSH error where <see cref="P:System.Exception.Message"/> is the message from the remote host.</exception>
+            <exception cref="T:System.ObjectDisposedException">The method was called after the client was disposed.</exception>
+        </member>
+        <member name="M:Renci.SshNet.ISftpClient.DownloadFile(System.String,System.IO.Stream,System.Action{System.UInt64})">
+            <summary>
+            Downloads remote file specified by the path into the stream.
+            </summary>
+            <param name="path">File to download.</param>
+            <param name="output">Stream to write the file into.</param>
+            <param name="downloadCallback">The download callback.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="output" /> is <b>null</b>.</exception>
+            <exception cref="T:System.ArgumentException"><paramref name="path" /> is <b>null</b> or contains only whitespace characters.</exception>
+            <exception cref="T:Renci.SshNet.Common.SshConnectionException">Client is not connected.</exception>
+            <exception cref="T:Renci.SshNet.Common.SftpPermissionDeniedException">Permission to perform the operation was denied by the remote host. <para>-or-</para> A SSH command was denied by the server.</exception>
+            <exception cref="T:Renci.SshNet.Common.SftpPathNotFoundException"><paramref name="path"/> was not found on the remote host.</exception>/// 
+            <exception cref="T:Renci.SshNet.Common.SshException">A SSH error where <see cref="P:System.Exception.Message" /> is the message from the remote host.</exception>
+            <exception cref="T:System.ObjectDisposedException">The method was called after the client was disposed.</exception>
+            <remarks>
+            Method calls made by this method to <paramref name="output" />, may under certain conditions result in exceptions thrown by the stream.
+            </remarks>
+        </member>
+        <member name="M:Renci.SshNet.ISftpClient.EndDownloadFile(System.IAsyncResult)">
+            <summary>
+            Ends an asynchronous file downloading into the stream.
+            </summary>
+            <param name="asyncResult">The pending asynchronous SFTP request.</param>
+            <exception cref="T:System.ArgumentException">The <see cref="T:System.IAsyncResult"/> object did not come from the corresponding async method on this type.<para>-or-</para><see cref="M:Renci.SshNet.ISftpClient.EndDownloadFile(System.IAsyncResult)"/> was called multiple times with the same <see cref="T:System.IAsyncResult"/>.</exception>
+            <exception cref="T:Renci.SshNet.Common.SshConnectionException">Client is not connected.</exception>
+            <exception cref="T:Renci.SshNet.Common.SftpPermissionDeniedException">Permission to perform the operation was denied by the remote host. <para>-or-</para> A SSH command was denied by the server.</exception>
+            <exception cref="T:Renci.SshNet.Common.SftpPathNotFoundException">The path was not found on the remote host.</exception>
+            <exception cref="T:Renci.SshNet.Common.SshException">A SSH error where <see cref="P:System.Exception.Message" /> is the message from the remote host.</exception>
+        </member>
+        <member name="M:Renci.SshNet.ISftpClient.EndListDirectory(System.IAsyncResult)">
+            <summary>
+            Ends an asynchronous operation of retrieving list of files in remote directory.
+            </summary>
+            <param name="asyncResult">The pending asynchronous SFTP request.</param>
+            <returns>
+            A list of files.
+            </returns>
+            <exception cref="T:System.ArgumentException">The <see cref="T:System.IAsyncResult"/> object did not come from the corresponding async method on this type.<para>-or-</para><see cref="M:Renci.SshNet.ISftpClient.EndListDirectory(System.IAsyncResult)"/> was called multiple times with the same <see cref="T:System.IAsyncResult"/>.</exception>
+        </member>
+        <member name="M:Renci.SshNet.ISftpClient.EndSynchronizeDirectories(System.IAsyncResult)">
+            <summary>
+            Ends the synchronize directories.
+            </summary>
+            <param name="asyncResult">The async result.</param>
+            <returns>
+            A list of uploaded files.
+            </returns>
+            <exception cref="T:System.ArgumentException">The <see cref="T:System.IAsyncResult"/> object did not come from the corresponding async method on this type.<para>-or-</para><see cref="M:Renci.SshNet.ISftpClient.EndSynchronizeDirectories(System.IAsyncResult)"/> was called multiple times with the same <see cref="T:System.IAsyncResult"/>.</exception>
+            <exception cref="T:Renci.SshNet.Common.SftpPathNotFoundException">The destination path was not found on the remote host.</exception>
+        </member>
+        <member name="M:Renci.SshNet.ISftpClient.EndUploadFile(System.IAsyncResult)">
+            <summary>
+            Ends an asynchronous uploading the stream into remote file.
+            </summary>
+            <param name="asyncResult">The pending asynchronous SFTP request.</param>
+            <exception cref="T:System.ArgumentException">The <see cref="T:System.IAsyncResult"/> object did not come from the corresponding async method on this type.<para>-or-</para><see cref="M:Renci.SshNet.ISftpClient.EndUploadFile(System.IAsyncResult)"/> was called multiple times with the same <see cref="T:System.IAsyncResult"/>.</exception>
+            <exception cref="T:Renci.SshNet.Common.SshConnectionException">Client is not connected.</exception>
+            <exception cref="T:Renci.SshNet.Common.SftpPathNotFoundException">The directory of the file was not found on the remote host.</exception>
+            <exception cref="T:Renci.SshNet.Common.SftpPermissionDeniedException">Permission to upload the file was denied by the remote host. <para>-or-</para> A SSH command was denied by the server.</exception>
+            <exception cref="T:Renci.SshNet.Common.SshException">A SSH error where <see cref="P:System.Exception.Message" /> is the message from the remote host.</exception>
+        </member>
+        <member name="M:Renci.SshNet.ISftpClient.Exists(System.String)">
+            <summary>
+            Checks whether file or directory exists;
+            </summary>
+            <param name="path">The path.</param>
+            <returns>
+            <c>true</c> if directory or file exists; otherwise <c>false</c>.
+            </returns>
+            <exception cref="T:System.ArgumentException"><paramref name="path"/> is <b>null</b> or contains only whitespace characters.</exception>
+            <exception cref="T:Renci.SshNet.Common.SshConnectionException">Client is not connected.</exception>
+            <exception cref="T:Renci.SshNet.Common.SftpPermissionDeniedException">Permission to perform the operation was denied by the remote host. <para>-or-</para> A SSH command was denied by the server.</exception>
+            <exception cref="T:Renci.SshNet.Common.SshException">A SSH error where <see cref="P:System.Exception.Message"/> is the message from the remote host.</exception>
+            <exception cref="T:System.ObjectDisposedException">The method was called after the client was disposed.</exception>
+        </member>
+        <member name="M:Renci.SshNet.ISftpClient.Get(System.String)">
+            <summary>
+            Gets reference to remote file or directory.
+            </summary>
+            <param name="path">The path.</param>
+            <returns>
+            A reference to <see cref="T:Renci.SshNet.Sftp.SftpFile"/> file object.
+            </returns>
+            <exception cref="T:Renci.SshNet.Common.SshConnectionException">Client is not connected.</exception>
+            <exception cref="T:Renci.SshNet.Common.SftpPathNotFoundException"><paramref name="path"/> was not found on the remote host.</exception>
+            <exception cref="T:System.ArgumentNullException"><paramref name="path" /> is <b>null</b>.</exception>
+            <exception cref="T:System.ObjectDisposedException">The method was called after the client was disposed.</exception>
+        </member>
+        <member name="M:Renci.SshNet.ISftpClient.GetAttributes(System.String)">
+            <summary>
+            Gets the <see cref="T:Renci.SshNet.Sftp.SftpFileAttributes"/> of the file on the path.
+            </summary>
+            <param name="path">The path to the file.</param>
+            <returns>
+            The <see cref="T:Renci.SshNet.Sftp.SftpFileAttributes"/> of the file on the path.
+            </returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="path"/> is <b>null</b>.</exception>
+            <exception cref="T:Renci.SshNet.Common.SshConnectionException">Client is not connected.</exception>
+            <exception cref="T:Renci.SshNet.Common.SftpPathNotFoundException"><paramref name="path"/> was not found on the remote host.</exception>
+            <exception cref="T:System.ObjectDisposedException">The method was called after the client was disposed.</exception>
+        </member>
+        <member name="M:Renci.SshNet.ISftpClient.GetLastAccessTime(System.String)">
+            <summary>
+            Returns the date and time the specified file or directory was last accessed.
+            </summary>
+            <param name="path">The file or directory for which to obtain access date and time information.</param>
+            <returns>
+            A <see cref="T:System.DateTime"/> structure set to the date and time that the specified file or directory was last accessed.
+            This value is expressed in local time.
+            </returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="path"/> is <b>null</b>.</exception>
+            <exception cref="T:Renci.SshNet.Common.SshConnectionException">Client is not connected.</exception>
+            <exception cref="T:System.ObjectDisposedException">The method was called after the client was disposed.</exception>
+        </member>
+        <member name="M:Renci.SshNet.ISftpClient.GetLastAccessTimeUtc(System.String)">
+            <summary>
+            Returns the date and time, in coordinated universal time (UTC), that the specified file or directory was last accessed.
+            </summary>
+            <param name="path">The file or directory for which to obtain access date and time information.</param>
+            <returns>
+            A <see cref="T:System.DateTime"/> structure set to the date and time that the specified file or directory was last accessed.
+            This value is expressed in UTC time.
+            </returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="path"/> is <b>null</b>.</exception>
+            <exception cref="T:Renci.SshNet.Common.SshConnectionException">Client is not connected.</exception>
+            <exception cref="T:System.ObjectDisposedException">The method was called after the client was disposed.</exception>
+        </member>
+        <member name="M:Renci.SshNet.ISftpClient.GetLastWriteTime(System.String)">
+            <summary>
+            Returns the date and time the specified file or directory was last written to.
+            </summary>
+            <param name="path">The file or directory for which to obtain write date and time information.</param>
+            <returns>
+            A <see cref="T:System.DateTime"/> structure set to the date and time that the specified file or directory was last written to.
+            This value is expressed in local time.
+            </returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="path"/> is <b>null</b>.</exception>
+            <exception cref="T:Renci.SshNet.Common.SshConnectionException">Client is not connected.</exception>
+            <exception cref="T:System.ObjectDisposedException">The method was called after the client was disposed.</exception>
+        </member>
+        <member name="M:Renci.SshNet.ISftpClient.GetLastWriteTimeUtc(System.String)">
+            <summary>
+            Returns the date and time, in coordinated universal time (UTC), that the specified file or directory was last written to.
+            </summary>
+            <param name="path">The file or directory for which to obtain write date and time information.</param>
+            <returns>
+            A <see cref="T:System.DateTime"/> structure set to the date and time that the specified file or directory was last written to.
+            This value is expressed in UTC time.
+            </returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="path"/> is <b>null</b>.</exception>
+            <exception cref="T:Renci.SshNet.Common.SshConnectionException">Client is not connected.</exception>
+            <exception cref="T:System.ObjectDisposedException">The method was called after the client was disposed.</exception>
+        </member>
+        <member name="M:Renci.SshNet.ISftpClient.GetStatus(System.String)">
+            <summary>
+            Gets status using statvfs@openssh.com request.
+            </summary>
+            <param name="path">The path.</param>
+            <returns>
+            A <see cref="T:Renci.SshNet.Sftp.SftpFileSytemInformation"/> instance that contains file status information.
+            </returns>
+            <exception cref="T:Renci.SshNet.Common.SshConnectionException">Client is not connected.</exception>
+            <exception cref="T:System.ArgumentNullException"><paramref name="path" /> is <b>null</b>.</exception>
+            <exception cref="T:System.ObjectDisposedException">The method was called after the client was disposed.</exception>
+        </member>
+        <member name="M:Renci.SshNet.ISftpClient.ListDirectory(System.String,System.Action{System.Int32})">
+            <summary>
+            Retrieves list of files in remote directory.
+            </summary>
+            <param name="path">The path.</param>
+            <param name="listCallback">The list callback.</param>
+            <returns>
+            A list of files.
+            </returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="path" /> is <b>null</b>.</exception>
+            <exception cref="T:Renci.SshNet.Common.SshConnectionException">Client is not connected.</exception>
+            <exception cref="T:Renci.SshNet.Common.SftpPermissionDeniedException">Permission to list the contents of the directory was denied by the remote host. <para>-or-</para> A SSH command was denied by the server.</exception>
+            <exception cref="T:Renci.SshNet.Common.SshException">A SSH error where <see cref="P:System.Exception.Message" /> is the message from the remote host.</exception>
+            <exception cref="T:System.ObjectDisposedException">The method was called after the client was disposed.</exception>
+        </member>
+        <member name="M:Renci.SshNet.ISftpClient.Open(System.String,System.IO.FileMode)">
+            <summary>
+            Opens a <see cref="T:Renci.SshNet.Sftp.SftpFileStream"/> on the specified path with read/write access.
+            </summary>
+            <param name="path">The file to open.</param>
+            <param name="mode">A <see cref="T:System.IO.FileMode"/> value that specifies whether a file is created if one does not exist, and determines whether the contents of existing files are retained or overwritten.</param>
+            <returns>
+            An unshared <see cref="T:Renci.SshNet.Sftp.SftpFileStream"/> that provides access to the specified file, with the specified mode and read/write access.
+            </returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="path"/> is <b>null</b>.</exception>
+            <exception cref="T:Renci.SshNet.Common.SshConnectionException">Client is not connected.</exception>
+            <exception cref="T:System.ObjectDisposedException">The method was called after the client was disposed.</exception>
+        </member>
+        <member name="M:Renci.SshNet.ISftpClient.Open(System.String,System.IO.FileMode,System.IO.FileAccess)">
+            <summary>
+            Opens a <see cref="T:Renci.SshNet.Sftp.SftpFileStream"/> on the specified path, with the specified mode and access.
+            </summary>
+            <param name="path">The file to open.</param>
+            <param name="mode">A <see cref="T:System.IO.FileMode"/> value that specifies whether a file is created if one does not exist, and determines whether the contents of existing files are retained or overwritten.</param>
+            <param name="access">A <see cref="T:System.IO.FileAccess"/> value that specifies the operations that can be performed on the file.</param>
+            <returns>
+            An unshared <see cref="T:Renci.SshNet.Sftp.SftpFileStream"/> that provides access to the specified file, with the specified mode and access.
+            </returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="path"/> is <b>null</b>.</exception>
+            <exception cref="T:Renci.SshNet.Common.SshConnectionException">Client is not connected.</exception>
+            <exception cref="T:System.ObjectDisposedException">The method was called after the client was disposed.</exception>
+        </member>
+        <member name="M:Renci.SshNet.ISftpClient.OpenRead(System.String)">
+            <summary>
+            Opens an existing file for reading.
+            </summary>
+            <param name="path">The file to be opened for reading.</param>
+            <returns>
+            A read-only <see cref="T:Renci.SshNet.Sftp.SftpFileStream"/> on the specified path.
+            </returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="path"/> is <b>null</b>.</exception>
+            <exception cref="T:Renci.SshNet.Common.SshConnectionException">Client is not connected.</exception>
+            <exception cref="T:System.ObjectDisposedException">The method was called after the client was disposed.</exception>
+        </member>
+        <member name="M:Renci.SshNet.ISftpClient.OpenText(System.String)">
+            <summary>
+            Opens an existing UTF-8 encoded text file for reading.
+            </summary>
+            <param name="path">The file to be opened for reading.</param>
+            <returns>
+            A <see cref="T:System.IO.StreamReader"/> on the specified path.
+            </returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="path"/> is <b>null</b>.</exception>
+            <exception cref="T:Renci.SshNet.Common.SshConnectionException">Client is not connected.</exception>
+            <exception cref="T:System.ObjectDisposedException">The method was called after the client was disposed.</exception>
+        </member>
+        <member name="M:Renci.SshNet.ISftpClient.OpenWrite(System.String)">
+            <summary>
+            Opens a file for writing.
+            </summary>
+            <param name="path">The file to be opened for writing.</param>
+            <returns>
+            An unshared <see cref="T:Renci.SshNet.Sftp.SftpFileStream"/> object on the specified path with <see cref="F:System.IO.FileAccess.Write"/> access.
+            </returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="path"/> is <b>null</b>.</exception>
+            <exception cref="T:Renci.SshNet.Common.SshConnectionException">Client is not connected.</exception>
+            <exception cref="T:System.ObjectDisposedException">The method was called after the client was disposed.</exception>
+            <remarks>
+            If the file does not exist, it is created.
+            </remarks>
+        </member>
+        <member name="M:Renci.SshNet.ISftpClient.ReadAllBytes(System.String)">
+            <summary>
+            Opens a binary file, reads the contents of the file into a byte array, and closes the file.
+            </summary>
+            <param name="path">The file to open for reading.</param>
+            <returns>
+            A byte array containing the contents of the file.
+            </returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="path"/> is <b>null</b>.</exception>
+            <exception cref="T:Renci.SshNet.Common.SshConnectionException">Client is not connected.</exception>
+            <exception cref="T:System.ObjectDisposedException">The method was called after the client was disposed.</exception>
+        </member>
+        <member name="M:Renci.SshNet.ISftpClient.ReadAllLines(System.String)">
+            <summary>
+            Opens a text file, reads all lines of the file using UTF-8 encoding, and closes the file.
+            </summary>
+            <param name="path">The file to open for reading.</param>
+            <returns>
+            A string array containing all lines of the file.
+            </returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="path"/> is <b>null</b>.</exception>
+            <exception cref="T:Renci.SshNet.Common.SshConnectionException">Client is not connected.</exception>
+            <exception cref="T:System.ObjectDisposedException">The method was called after the client was disposed.</exception>
+        </member>
+        <member name="M:Renci.SshNet.ISftpClient.ReadAllLines(System.String,System.Text.Encoding)">
+            <summary>
+            Opens a file, reads all lines of the file with the specified encoding, and closes the file.
+            </summary>
+            <param name="path">The file to open for reading.</param>
+            <param name="encoding">The encoding applied to the contents of the file.</param>
+            <returns>
+            A string array containing all lines of the file.
+            </returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="path"/> is <b>null</b>.</exception>
+            <exception cref="T:Renci.SshNet.Common.SshConnectionException">Client is not connected.</exception>
+            <exception cref="T:System.ObjectDisposedException">The method was called after the client was disposed.</exception>
+        </member>
+        <member name="M:Renci.SshNet.ISftpClient.ReadAllText(System.String)">
+            <summary>
+            Opens a text file, reads all lines of the file with the UTF-8 encoding, and closes the file.
+            </summary>
+            <param name="path">The file to open for reading.</param>
+            <returns>
+            A string containing all lines of the file.
+            </returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="path"/> is <b>null</b>.</exception>
+            <exception cref="T:Renci.SshNet.Common.SshConnectionException">Client is not connected.</exception>
+            <exception cref="T:System.ObjectDisposedException">The method was called after the client was disposed.</exception>
+        </member>
+        <member name="M:Renci.SshNet.ISftpClient.ReadAllText(System.String,System.Text.Encoding)">
+            <summary>
+            Opens a file, reads all lines of the file with the specified encoding, and closes the file.
+            </summary>
+            <param name="path">The file to open for reading.</param>
+            <param name="encoding">The encoding applied to the contents of the file.</param>
+            <returns>
+            A string containing all lines of the file.
+            </returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="path"/> is <b>null</b>.</exception>
+            <exception cref="T:Renci.SshNet.Common.SshConnectionException">Client is not connected.</exception>
+            <exception cref="T:System.ObjectDisposedException">The method was called after the client was disposed.</exception>
+        </member>
+        <member name="M:Renci.SshNet.ISftpClient.ReadLines(System.String)">
+            <summary>
+            Reads the lines of a file with the UTF-8 encoding.
+            </summary>
+            <param name="path">The file to read.</param>
+            <returns>
+            The lines of the file.
+            </returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="path"/> is <b>null</b>.</exception>
+            <exception cref="T:Renci.SshNet.Common.SshConnectionException">Client is not connected.</exception>
+            <exception cref="T:System.ObjectDisposedException">The method was called after the client was disposed.</exception>
+        </member>
+        <member name="M:Renci.SshNet.ISftpClient.ReadLines(System.String,System.Text.Encoding)">
+            <summary>
+            Read the lines of a file that has a specified encoding.
+            </summary>
+            <param name="path">The file to read.</param>
+            <param name="encoding">The encoding that is applied to the contents of the file.</param>
+            <returns>
+            The lines of the file.
+            </returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="path"/> is <b>null</b>.</exception>
+            <exception cref="T:Renci.SshNet.Common.SshConnectionException">Client is not connected.</exception>
+            <exception cref="T:System.ObjectDisposedException">The method was called after the client was disposed.</exception>
+        </member>
+        <member name="M:Renci.SshNet.ISftpClient.RenameFile(System.String,System.String)">
+            <summary>
+            Renames remote file from old path to new path.
+            </summary>
+            <param name="oldPath">Path to the old file location.</param>
+            <param name="newPath">Path to the new file location.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="oldPath"/> is <b>null</b>. <para>-or-</para> or <paramref name="newPath"/> is <b>null</b>.</exception>
+            <exception cref="T:Renci.SshNet.Common.SshConnectionException">Client is not connected.</exception>
+            <exception cref="T:Renci.SshNet.Common.SftpPermissionDeniedException">Permission to rename the file was denied by the remote host. <para>-or-</para> A SSH command was denied by the server.</exception>
+            <exception cref="T:Renci.SshNet.Common.SshException">A SSH error where <see cref="P:System.Exception.Message"/> is the message from the remote host.</exception>
+            <exception cref="T:System.ObjectDisposedException">The method was called after the client was disposed.</exception>
+        </member>
+        <member name="M:Renci.SshNet.ISftpClient.RenameFile(System.String,System.String,System.Boolean)">
+            <summary>
+            Renames remote file from old path to new path.
+            </summary>
+            <param name="oldPath">Path to the old file location.</param>
+            <param name="newPath">Path to the new file location.</param>
+            <param name="isPosix">if set to <c>true</c> then perform a posix rename.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="oldPath" /> is <b>null</b>. <para>-or-</para> or <paramref name="newPath" /> is <b>null</b>.</exception>
+            <exception cref="T:Renci.SshNet.Common.SshConnectionException">Client is not connected.</exception>
+            <exception cref="T:Renci.SshNet.Common.SftpPermissionDeniedException">Permission to rename the file was denied by the remote host. <para>-or-</para> A SSH command was denied by the server.</exception>
+            <exception cref="T:Renci.SshNet.Common.SshException">A SSH error where <see cref="P:System.Exception.Message" /> is the message from the remote host.</exception>
+            <exception cref="T:System.ObjectDisposedException">The method was called after the client was disposed.</exception>
+        </member>
+        <member name="M:Renci.SshNet.ISftpClient.SetAttributes(System.String,Renci.SshNet.Sftp.SftpFileAttributes)">
+            <summary>
+            Sets the specified <see cref="T:Renci.SshNet.Sftp.SftpFileAttributes"/> of the file on the specified path.
+            </summary>
+            <param name="path">The path to the file.</param>
+            <param name="fileAttributes">The desired <see cref="T:Renci.SshNet.Sftp.SftpFileAttributes"/>.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="path"/> is <b>null</b>.</exception>
+            <exception cref="T:Renci.SshNet.Common.SshConnectionException">Client is not connected.</exception>
+            <exception cref="T:System.ObjectDisposedException">The method was called after the client was disposed.</exception>
+        </member>
+        <member name="M:Renci.SshNet.ISftpClient.SymbolicLink(System.String,System.String)">
+            <summary>
+            Creates a symbolic link from old path to new path.
+            </summary>
+            <param name="path">The old path.</param>
+            <param name="linkPath">The new path.</param>
+            <exception cref="T:System.ArgumentException"><paramref name="path"/> is <b>null</b>. <para>-or-</para> <paramref name="linkPath"/> is <b>null</b> or contains only whitespace characters.</exception>
+            <exception cref="T:Renci.SshNet.Common.SshConnectionException">Client is not connected.</exception>
+            <exception cref="T:Renci.SshNet.Common.SftpPermissionDeniedException">Permission to create the symbolic link was denied by the remote host. <para>-or-</para> A SSH command was denied by the server.</exception>
+            <exception cref="T:Renci.SshNet.Common.SshException">A SSH error where <see cref="P:System.Exception.Message"/> is the message from the remote host.</exception>
+            <exception cref="T:System.ObjectDisposedException">The method was called after the client was disposed.</exception>
+        </member>
+        <member name="M:Renci.SshNet.ISftpClient.SynchronizeDirectories(System.String,System.String,System.String)">
+            <summary>
+            Synchronizes the directories.
+            </summary>
+            <param name="sourcePath">The source path.</param>
+            <param name="destinationPath">The destination path.</param>
+            <param name="searchPattern">The search pattern.</param>
+            <returns>
+            A list of uploaded files.
+            </returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="sourcePath"/> is <c>null</c>.</exception>
+            <exception cref="T:System.ArgumentException"><paramref name="destinationPath"/> is <c>null</c> or contains only whitespace.</exception>
+            <exception cref="T:Renci.SshNet.Common.SftpPathNotFoundException"><paramref name="destinationPath"/> was not found on the remote host.</exception>
+        </member>
+        <member name="M:Renci.SshNet.ISftpClient.UploadFile(System.IO.Stream,System.String,System.Action{System.UInt64})">
+            <summary>
+            Uploads stream into remote file.
+            </summary>
+            <param name="input">Data input stream.</param>
+            <param name="path">Remote file path.</param>
+            <param name="uploadCallback">The upload callback.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="input" /> is <b>null</b>.</exception>
+            <exception cref="T:System.ArgumentException"><paramref name="path" /> is <b>null</b> or contains only whitespace characters.</exception>
+            <exception cref="T:Renci.SshNet.Common.SshConnectionException">Client is not connected.</exception>
+            <exception cref="T:Renci.SshNet.Common.SftpPermissionDeniedException">Permission to upload the file was denied by the remote host. <para>-or-</para> A SSH command was denied by the server.</exception>
+            <exception cref="T:Renci.SshNet.Common.SshException">A SSH error where <see cref="P:System.Exception.Message" /> is the message from the remote host.</exception>
+            <exception cref="T:System.ObjectDisposedException">The method was called after the client was disposed.</exception>
+            <remarks>
+            Method calls made by this method to <paramref name="input" />, may under certain conditions result in exceptions thrown by the stream.
+            </remarks>
+        </member>
+        <member name="M:Renci.SshNet.ISftpClient.UploadFile(System.IO.Stream,System.String,System.Boolean,System.Action{System.UInt64})">
+            <summary>
+            Uploads stream into remote file.
+            </summary>
+            <param name="input">Data input stream.</param>
+            <param name="path">Remote file path.</param>
+            <param name="canOverride">if set to <c>true</c> then existing file will be overwritten.</param>
+            <param name="uploadCallback">The upload callback.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="input" /> is <b>null</b>.</exception>
+            <exception cref="T:System.ArgumentException"><paramref name="path" /> is <b>null</b> or contains only whitespace characters.</exception>
+            <exception cref="T:Renci.SshNet.Common.SshConnectionException">Client is not connected.</exception>
+            <exception cref="T:Renci.SshNet.Common.SftpPermissionDeniedException">Permission to upload the file was denied by the remote host. <para>-or-</para> A SSH command was denied by the server.</exception>
+            <exception cref="T:Renci.SshNet.Common.SshException">A SSH error where <see cref="P:System.Exception.Message" /> is the message from the remote host.</exception>
+            <exception cref="T:System.ObjectDisposedException">The method was called after the client was disposed.</exception>
+            <remarks>
+            Method calls made by this method to <paramref name="input" />, may under certain conditions result in exceptions thrown by the stream.
+            </remarks>
+        </member>
+        <member name="M:Renci.SshNet.ISftpClient.WriteAllBytes(System.String,System.Byte[])">
+            <summary>
+            Writes the specified byte array to the specified file, and closes the file.
+            </summary>
+            <param name="path">The file to write to.</param>
+            <param name="bytes">The bytes to write to the file.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="path"/> is <b>null</b>.</exception>
+            <exception cref="T:Renci.SshNet.Common.SshConnectionException">Client is not connected.</exception>
+            <exception cref="T:Renci.SshNet.Common.SftpPathNotFoundException">The specified path is invalid, or its directory was not found on the remote host.</exception>
+            <exception cref="T:System.ObjectDisposedException">The method was called after the client was disposed.</exception>
+            <remarks>
+            <para>
+            If the target file already exists, it is overwritten. It is not first truncated to zero bytes.
+            </para>
+            <para>
+            If the target file does not exist, it is created.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:Renci.SshNet.ISftpClient.WriteAllLines(System.String,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Writes a collection of strings to the file using the UTF-8 encoding, and closes the file.
+            </summary>
+            <param name="path">The file to write to.</param>
+            <param name="contents">The lines to write to the file.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="path"/> is <b>null</b>.</exception>
+            <exception cref="T:Renci.SshNet.Common.SshConnectionException">Client is not connected.</exception>
+            <exception cref="T:Renci.SshNet.Common.SftpPathNotFoundException">The specified path is invalid, or its directory was not found on the remote host.</exception>
+            <exception cref="T:System.ObjectDisposedException">The method was called after the client was disposed.</exception>
+            <remarks>
+            <para>
+            The characters are written to the file using UTF-8 encoding without a Byte-Order Mark (BOM).
+            </para>
+            <para>
+            If the target file already exists, it is overwritten. It is not first truncated to zero bytes.
+            </para>
+            <para>
+            If the target file does not exist, it is created.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:Renci.SshNet.ISftpClient.WriteAllLines(System.String,System.Collections.Generic.IEnumerable{System.String},System.Text.Encoding)">
+            <summary>
+            Writes a collection of strings to the file using the specified encoding, and closes the file.
+            </summary>
+            <param name="path">The file to write to.</param>
+            <param name="contents">The lines to write to the file.</param>
+            <param name="encoding">The character encoding to use.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="path"/> is <b>null</b>.</exception>
+            <exception cref="T:Renci.SshNet.Common.SshConnectionException">Client is not connected.</exception>
+            <exception cref="T:Renci.SshNet.Common.SftpPathNotFoundException">The specified path is invalid, or its directory was not found on the remote host.</exception>
+            <exception cref="T:System.ObjectDisposedException">The method was called after the client was disposed.</exception>
+            <remarks>
+            <para>
+            If the target file already exists, it is overwritten. It is not first truncated to zero bytes.
+            </para>
+            <para>
+            If the target file does not exist, it is created.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:Renci.SshNet.ISftpClient.WriteAllLines(System.String,System.String[])">
+            <summary>
+            Write the specified string array to the file using the UTF-8 encoding, and closes the file.
+            </summary>
+            <param name="path">The file to write to.</param>
+            <param name="contents">The string array to write to the file.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="path"/> is <b>null</b>.</exception>
+            <exception cref="T:Renci.SshNet.Common.SshConnectionException">Client is not connected.</exception>
+            <exception cref="T:Renci.SshNet.Common.SftpPathNotFoundException">The specified path is invalid, or its directory was not found on the remote host.</exception>
+            <exception cref="T:System.ObjectDisposedException">The method was called after the client was disposed.</exception>
+            <remarks>
+            <para>
+            The characters are written to the file using UTF-8 encoding without a Byte-Order Mark (BOM).
+            </para>
+            <para>
+            If the target file already exists, it is overwritten. It is not first truncated to zero bytes.
+            </para>
+            <para>
+            If the target file does not exist, it is created.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:Renci.SshNet.ISftpClient.WriteAllLines(System.String,System.String[],System.Text.Encoding)">
+            <summary>
+            Writes the specified string array to the file by using the specified encoding, and closes the file.
+            </summary>
+            <param name="path">The file to write to.</param>
+            <param name="contents">The string array to write to the file.</param>
+            <param name="encoding">An <see cref="T:System.Text.Encoding"/> object that represents the character encoding applied to the string array.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="path"/> is <b>null</b>.</exception>
+            <exception cref="T:Renci.SshNet.Common.SshConnectionException">Client is not connected.</exception>
+            <exception cref="T:Renci.SshNet.Common.SftpPathNotFoundException">The specified path is invalid, or its directory was not found on the remote host.</exception>
+            <exception cref="T:System.ObjectDisposedException">The method was called after the client was disposed.</exception>
+            <remarks>
+            <para>
+            If the target file already exists, it is overwritten. It is not first truncated to zero bytes.
+            </para>
+            <para>
+            If the target file does not exist, it is created.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:Renci.SshNet.ISftpClient.WriteAllText(System.String,System.String)">
+            <summary>
+            Writes the specified string to the file using the UTF-8 encoding, and closes the file.
+            </summary>
+            <param name="path">The file to write to.</param>
+            <param name="contents">The string to write to the file.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="path"/> is <b>null</b>.</exception>
+            <exception cref="T:Renci.SshNet.Common.SshConnectionException">Client is not connected.</exception>
+            <exception cref="T:Renci.SshNet.Common.SftpPathNotFoundException">The specified path is invalid, or its directory was not found on the remote host.</exception>
+            <exception cref="T:System.ObjectDisposedException">The method was called after the client was disposed.</exception>
+            <remarks>
+            <para>
+            The characters are written to the file using UTF-8 encoding without a Byte-Order Mark (BOM).
+            </para>
+            <para>
+            If the target file already exists, it is overwritten. It is not first truncated to zero bytes.
+            </para>
+            <para>
+            If the target file does not exist, it is created.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:Renci.SshNet.ISftpClient.WriteAllText(System.String,System.String,System.Text.Encoding)">
+            <summary>
+            Writes the specified string to the file using the specified encoding, and closes the file.
+            </summary>
+            <param name="path">The file to write to.</param>
+            <param name="contents">The string to write to the file.</param>
+            <param name="encoding">The encoding to apply to the string.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="path"/> is <b>null</b>.</exception>
+            <exception cref="T:Renci.SshNet.Common.SshConnectionException">Client is not connected.</exception>
+            <exception cref="T:Renci.SshNet.Common.SftpPathNotFoundException">The specified path is invalid, or its directory was not found on the remote host.</exception>
+            <exception cref="T:System.ObjectDisposedException">The method was called after the client was disposed.</exception>
+            <remarks>
+            <para>
+            If the target file already exists, it is overwritten. It is not first truncated to zero bytes.
+            </para>
+            <para>
+            If the target file does not exist, it is created.
+            </para>
+            </remarks>
         </member>
         <member name="T:Renci.SshNet.ISubsystemSession">
             <summary>
@@ -15942,15 +17305,18 @@
             A <see cref="T:Renci.SshNet.IClientAuthentication"/>.
             </returns>
         </member>
-        <member name="M:Renci.SshNet.ServiceFactory.CreateSession(Renci.SshNet.ConnectionInfo)">
+        <member name="M:Renci.SshNet.ServiceFactory.CreateSession(Renci.SshNet.ConnectionInfo,Renci.SshNet.Connection.ISocketFactory)">
             <summary>
-            Creates a new <see cref="T:Renci.SshNet.ISession"/> with the specified <see cref="T:Renci.SshNet.ConnectionInfo"/>.
+            Creates a new <see cref="T:Renci.SshNet.ISession"/> with the specified <see cref="T:Renci.SshNet.ConnectionInfo"/> and
+            <see cref="T:Renci.SshNet.Connection.ISocketFactory"/>.
             </summary>
             <param name="connectionInfo">The <see cref="T:Renci.SshNet.ConnectionInfo"/> to use for creating a new session.</param>
+            <param name="socketFactory">A factory to create <see cref="T:System.Net.Sockets.Socket"/> instances.</param>
             <returns>
             An <see cref="T:Renci.SshNet.ISession"/> for the specified <see cref="T:Renci.SshNet.ConnectionInfo"/>.
             </returns>
             <exception cref="T:System.ArgumentNullException"><paramref name="connectionInfo"/> is <c>null</c>.</exception>
+            <exception cref="T:System.ArgumentNullException"><paramref name="socketFactory"/> is <c>null</c>.</exception>
         </member>
         <member name="M:Renci.SshNet.ServiceFactory.CreateSftpSession(Renci.SshNet.ISession,System.Int32,System.Text.Encoding,Renci.SshNet.Sftp.ISftpResponseFactory)">
             <summary>
@@ -16023,6 +17389,38 @@
             An <see cref="T:Renci.SshNet.IRemotePathTransformation"/> that encloses a path in double quotes, and escapes any
             embedded double quote with a backslash.
             with a shell.
+            </returns>
+        </member>
+        <member name="M:Renci.SshNet.ServiceFactory.CreateConnector(Renci.SshNet.IConnectionInfo,Renci.SshNet.Connection.ISocketFactory)">
+            <summary>
+            Creates an <see cref="T:Renci.SshNet.Connection.IConnector"/> that can be used to establish a connection
+            to the server identified by the specified <paramref name="connectionInfo"/>.
+            </summary>
+            <param name="connectionInfo">A <see cref="T:Renci.SshNet.IConnectionInfo"/> detailing the server to establish a connection to.</param>
+            <param name="socketFactory">A factory to create <see cref="T:System.Net.Sockets.Socket"/> instances.</param>
+            <returns>
+            An <see cref="T:Renci.SshNet.Connection.IConnector"/> that can be used to establish a connection to the
+            server identified by the specified <paramref name="connectionInfo"/>.
+            </returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="connectionInfo"/> is <see langword="null"/>.</exception>
+            <exception cref="T:System.ArgumentNullException"><paramref name="socketFactory"/> is <see langword="null"/>.</exception>
+            <exception cref="T:System.NotSupportedException">The <see cref="P:Renci.SshNet.IConnectionInfo.ProxyType"/> value of <paramref name="connectionInfo"/> is not supported.</exception>
+        </member>
+        <member name="M:Renci.SshNet.ServiceFactory.CreateProtocolVersionExchange">
+            <summary>
+            Creates an <see cref="T:Renci.SshNet.Connection.IProtocolVersionExchange"/> that deals with the SSH protocol
+            version exchange.
+            </summary>
+            <returns>
+            An <see cref="T:Renci.SshNet.Connection.IProtocolVersionExchange"/>.
+            </returns>
+        </member>
+        <member name="M:Renci.SshNet.ServiceFactory.CreateSocketFactory">
+            <summary>
+            Creates a factory to create <see cref="T:System.Net.Sockets.Socket"/> instances.
+            </summary>
+            <returns>
+            An <see cref="T:Renci.SshNet.Connection.ISocketFactory"/>.
             </returns>
         </member>
         <member name="M:Renci.SshNet.ServiceFactory.CreateNetConfSession(Renci.SshNet.ISession,System.Int32)">
@@ -16448,14 +17846,16 @@
             Occurs when <see cref="T:Renci.SshNet.Messages.Connection.ChannelFailureMessage"/> message received
             </summary>
         </member>
-        <member name="M:Renci.SshNet.Session.#ctor(Renci.SshNet.ConnectionInfo,Renci.SshNet.IServiceFactory)">
+        <member name="M:Renci.SshNet.Session.#ctor(Renci.SshNet.ConnectionInfo,Renci.SshNet.IServiceFactory,Renci.SshNet.Connection.ISocketFactory)">
             <summary>
             Initializes a new instance of the <see cref="T:Renci.SshNet.Session"/> class.
             </summary>
             <param name="connectionInfo">The connection info.</param>
             <param name="serviceFactory">The factory to use for creating new services.</param>
+            <param name="socketFactory">A factory to create <see cref="T:System.Net.Sockets.Socket"/> instances.</param>
             <exception cref="T:System.ArgumentNullException"><paramref name="connectionInfo"/> is <c>null</c>.</exception>
             <exception cref="T:System.ArgumentNullException"><paramref name="serviceFactory"/> is <c>null</c>.</exception>
+            <exception cref="T:System.ArgumentNullException"><paramref name="socketFactory"/> is <c>null</c>.</exception>
         </member>
         <member name="M:Renci.SshNet.Session.Connect">
             <summary>
@@ -16808,30 +18208,6 @@
             </returns>
             <exception cref="T:Renci.SshNet.Common.SshException">The type of the message is not supported.</exception>
         </member>
-        <member name="M:Renci.SshNet.Session.SocketConnect(System.String,System.Int32)">
-            <summary>
-            Establishes a socket connection to the specified host and port.
-            </summary>
-            <param name="host">The host name of the server to connect to.</param>
-            <param name="port">The port to connect to.</param>
-            <exception cref="T:Renci.SshNet.Common.SshOperationTimeoutException">The connection failed to establish within the configured <see cref="P:Renci.SshNet.ConnectionInfo.Timeout"/>.</exception>
-            <exception cref="T:System.Net.Sockets.SocketException">An error occurred trying to establish the connection.</exception>
-        </member>
-        <member name="M:Renci.SshNet.Session.SocketRead(System.Net.Sockets.Socket,System.Byte[],System.Int32,System.Int32)">
-            <summary>
-            Performs a blocking read on the socket until <paramref name="length"/> bytes are received.
-            </summary>
-            <param name="socket">The <see cref="T:System.Net.Sockets.Socket"/> to read from.</param>
-            <param name="buffer">An array of type <see cref="T:System.Byte"/> that is the storage location for the received data.</param>
-            <param name="offset">The position in <paramref name="buffer"/> parameter to store the received data.</param>
-            <param name="length">The number of bytes to read.</param>
-            <returns>
-            The number of bytes read.
-            </returns>
-            <exception cref="T:Renci.SshNet.Common.SshConnectionException">The socket is closed.</exception>
-            <exception cref="T:Renci.SshNet.Common.SshOperationTimeoutException">The read has timed-out.</exception>
-            <exception cref="T:System.Net.Sockets.SocketException">The read failed.</exception>
-        </member>
         <member name="M:Renci.SshNet.Session.IsSocketConnected">
             <summary>
             Gets a value indicating whether the socket is connected.
@@ -16887,18 +18263,6 @@
             <exception cref="T:Renci.SshNet.Common.SshOperationTimeoutException">The read has timed-out.</exception>
             <exception cref="T:System.Net.Sockets.SocketException">The read failed.</exception>
         </member>
-        <member name="M:Renci.SshNet.Session.SocketReadLine(System.Net.Sockets.Socket,System.TimeSpan)">
-            <summary>
-            Performs a blocking read on the socket until a line is read.
-            </summary>
-            <param name="socket">The <see cref="T:System.Net.Sockets.Socket"/> to read from.</param>
-            <param name="timeout">A <see cref="T:System.TimeSpan"/> that represents the time to wait until a line is read.</param>
-            <exception cref="T:Renci.SshNet.Common.SshOperationTimeoutException">The read has timed-out.</exception>
-            <exception cref="T:System.Net.Sockets.SocketException">An error occurred when trying to access the socket.</exception>
-            <returns>
-            The line read from the socket, or <c>null</c> when the remote server has shutdown and all data has been received.
-            </returns>
-        </member>
         <member name="M:Renci.SshNet.Session.SocketDisconnectAndDispose">
             <summary>
             Shuts down and disposes the socket.
@@ -16907,11 +18271,6 @@
         <member name="M:Renci.SshNet.Session.MessageListener">
             <summary>
             Listens for incoming message from the server and handles them. This method run as a task on separate thread.
-            </summary>
-        </member>
-        <member name="M:Renci.SshNet.Session.CreateSocks5UserNameAndPasswordAuthenticationRequest(System.String,System.String)">
-            <summary>
-            https://tools.ietf.org/html/rfc1929
             </summary>
         </member>
         <member name="M:Renci.SshNet.Session.RaiseError(System.Exception)">
@@ -19164,18 +20523,34 @@
         </member>
         <member name="P:Renci.SshNet.Sftp.SftpFileAttributes.LastAccessTime">
             <summary>
-            Gets or sets the time the current file or directory was last accessed.
+            Gets or sets the local time the current file or directory was last accessed.
             </summary>
             <value>
-            The time that the current file or directory was last accessed.
+            The local time that the current file or directory was last accessed.
             </value>
         </member>
         <member name="P:Renci.SshNet.Sftp.SftpFileAttributes.LastWriteTime">
             <summary>
-            Gets or sets the time when the current file or directory was last written to.
+            Gets or sets the local time when the current file or directory was last written to.
             </summary>
             <value>
-            The time the current file was last written.
+            The local time the current file was last written.
+            </value>
+        </member>
+        <member name="P:Renci.SshNet.Sftp.SftpFileAttributes.LastAccessTimeUtc">
+            <summary>
+            Gets or sets the UTC time the current file or directory was last accessed.
+            </summary>
+            <value>
+            The UTC time that the current file or directory was last accessed.
+            </value>
+        </member>
+        <member name="P:Renci.SshNet.Sftp.SftpFileAttributes.LastWriteTimeUtc">
+            <summary>
+            Gets or sets the UTC time when the current file or directory was last written to.
+            </summary>
+            <value>
+            The UTC time the current file was last written.
             </value>
         </member>
         <member name="P:Renci.SshNet.Sftp.SftpFileAttributes.Size">

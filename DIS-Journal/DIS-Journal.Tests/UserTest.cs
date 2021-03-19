@@ -21,7 +21,8 @@ namespace DIS_Journal.Tests
         public void TestLogin()
         {
             var userController = new UserController();
-            Assert.IsTrue(userController.Login("test", "testtest"));
+            userController.Login("test", "testtest");
+            Assert.IsNotNull(Logged.Username);
         }
         
         [TestMethod]

@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace DIS_Admin
 {
-    class AdminController
+    public class AdminController
     {
-        AdminDbContext context = new AdminDbContext();
+        public AdminDbContext context = new AdminDbContext();
 
         public List<User> GetAllUsers() => context.Users.ToList();
 
