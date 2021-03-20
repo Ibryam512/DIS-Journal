@@ -14,8 +14,9 @@ namespace DIS_Journal.Tests
         [TestMethod]
         public void TestAddSubject()
         {
-            UserController user = new UserController();
-            user.Login("test", "testtest");
+            //UserController user = new UserController();
+            //user.Login("test", "testtest");
+            Logged.Id = 4;
             string name = "Subject";
             Color c = Color.AliceBlue;
             ScheduleController.Start();

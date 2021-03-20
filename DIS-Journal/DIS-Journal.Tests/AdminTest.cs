@@ -11,6 +11,7 @@ namespace DIS_Journal.Tests
         [TestMethod]
         public void TestGettingAllUsers()
         {
+            Admin.Id = 8;
             var controller = new AdminController();
             List<User> users = controller.GetAllUsers();
             Assert.IsNotNull(users);
@@ -19,6 +20,7 @@ namespace DIS_Journal.Tests
         [TestMethod]
         public void TestGettingOneUser()
         {
+            Admin.Id = 8;
             var controller = new AdminController();
             User user = controller.GetUser(3);
             Assert.IsNotNull(user);

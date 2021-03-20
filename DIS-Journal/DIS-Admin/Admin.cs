@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DIS_Admin
 {
-    static class Admin
+    public static class Admin
     {
         public static int Id { get; set; }
         public static string Username { get; set; }

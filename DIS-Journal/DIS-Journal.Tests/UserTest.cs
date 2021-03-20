@@ -28,6 +28,7 @@ namespace DIS_Journal.Tests
         [TestMethod]
         public void TestUpdate()
         {
+            Logged.Id = 4;
             var userController = new UserController();
             userController.Update(1, "test4e");
             Assert.AreEqual("tes4e", Logged.Username);
@@ -36,6 +37,7 @@ namespace DIS_Journal.Tests
         [TestMethod]
         public void TestDeleteAndLogout()
         {
+            Logged.Id = 4;
             var userController = new UserController();
             userController.Delete(1);
             Assert.AreEqual("", Logged.Username);

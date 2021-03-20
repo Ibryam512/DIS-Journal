@@ -12,12 +12,15 @@ namespace DIS_Journal.Controllers
     public static class ScheduleController
     {
         public static DisDbContext context = new DisDbContext();
+        public static List<Subject> subjects = context.Subjects.Where(x => x.User == Logged.Id).ToList();
         public static Subject[,] schedule = new Subject[5, 7];
 
         public static void Start()
         {
-            var classes = context.Classes.ToList();
-            var subjects = context.Subjects.ToList();
+            List<int> subjectIds = new List<int>();
+            foreach (var x in subjects) subjectIds.Add(x.Id);
+            var classes = context.Classes.Where(x => subjectIds.Contains(x.Subject)).ToList();
+            //var subjects = context.Subjects.ToList();
             foreach (var subject in classes)
             {
                 schedule[subject.Day, subject.Hour] = subjects.Single(x => subject.Subject == x.Id && x.User == Logged.Id);
@@ -25,7 +28,7 @@ namespace DIS_Journal.Controllers
         }
         public static void AddSubject(string title, Color color)
         {
-            if(context.Subjects.Any(x => x.Title == title))
+            if(subjects.Any(x => x.Title == title))
             {
                 var message = new CustomBox("The subject already exsists");
                 message.ShowDialog();
@@ -35,6 +38,7 @@ namespace DIS_Journal.Controllers
             {
                 var subject = new Subject(title, color.R, color.G, color.B, Logged.Id);
                 context.Subjects.Add(subject);
+                subjects.Add(subject);
                 context.SaveChanges();
             }
         }

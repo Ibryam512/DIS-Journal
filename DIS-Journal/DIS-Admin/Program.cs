@@ -13,6 +13,7 @@ namespace DIS_Admin
         {
 
             Login();
+            Console.WriteLine("Type 'Help' for the commands!");
             string[] command = Console.ReadLine().Split().ToArray();
             while (command[0].ToLower() != "end")
             {
@@ -26,11 +27,17 @@ namespace DIS_Admin
                         break;
                     case "Delete":
                         DeleteUser(int.Parse(command[1]));
-                        Console.WriteLine("Successfully deleted!");
                         GetAllUsers();
                         break;
                     case "Clear":
                         Console.Clear();
+                        break;
+                    case "Help":
+                        Console.WriteLine("GetAll - gets all users");
+                        Console.WriteLine("GetUser {id} - gets the user with the given id");
+                        Console.WriteLine("Delete {id} - deletes the user with the given id");
+                        Console.WriteLine("Clear - clears the console");
+                        Console.WriteLine("End - logs out the logged admin");
                         break;
                     default:
                         Console.WriteLine("This command is unknown!");
@@ -70,7 +77,13 @@ namespace DIS_Admin
         
         public static void DeleteUser(int id)
         {
+            if (Admin.Id == id)
+            {
+                Console.WriteLine("You can't delete your account!");
+                return;
+            }
             adminController.DeleteUser(id);
+            Console.WriteLine("Successfully deleted!");
         }
 
         public static bool Login(string email, string password)
