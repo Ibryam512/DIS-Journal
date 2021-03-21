@@ -76,9 +76,9 @@ namespace DIS_Journal.Controllers
             Subject subject = context.Subjects.Single(x => x.Title == title);
             context.Subjects.Remove(subject);
             context.SaveChanges();
-            for (int i = 0; i < 8; i++)
+            for (int i = 0; i < 5; i++)
             {
-                for(int j = 0; j < 5; j++)
+                for(int j = 0; j < 7; j++)
                 {
                     if(schedule[i, j] == subject)
                     {

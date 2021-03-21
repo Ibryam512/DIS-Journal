@@ -183,3 +183,6 @@ C:\Users\Ibryam\Desktop\DIS-Journal\DIS-Journal\DIS-Journal.Tests\obj\Debug\DIS-
 C:\Users\Ibryam\Desktop\DIS-Journal\DIS-Journal\DIS-Journal.Tests\bin\Debug\DIS-Admin.exe
 C:\Users\Ibryam\Desktop\DIS-Journal\DIS-Journal\DIS-Journal.Tests\bin\Debug\DIS-Admin.pdb
 C:\Users\Ibryam\Desktop\DIS-Journal\DIS-Journal\DIS-Journal.Tests\bin\Debug\DIS-Admin.exe.config
+C:\Users\valer\Desktop\DIS-Journal\DIS-Journal\DIS-Journal.Tests\bin\Debug\DIS-Admin.exe
+C:\Users\valer\Desktop\DIS-Journal\DIS-Journal\DIS-Journal.Tests\bin\Debug\DIS-Admin.pdb
+C:\Users\valer\Desktop\DIS-Journal\DIS-Journal\DIS-Journal.Tests\bin\Debug\DIS-Admin.exe.config
